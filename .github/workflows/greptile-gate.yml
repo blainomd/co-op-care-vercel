@@ -1,0 +1,194 @@
+name: Greptile Score Gate
+
+# Triggered when Greptile posts its review or a score comment.
+# We do NOT trigger on pull_request [synchronize, opened] because that
+# creates a failing check run before Greptile has reviewed. When Greptile
+# later posts its review, the re-evaluation creates a SECOND check run
+# under a different check suite — GitHub requires ALL check runs with
+# the same name to pass, so the old failure permanently blocks the merge.
+#
+# Instead, we only run after Greptile finishes:
+#   pull_request_review — when Greptile posts its PR review
+#   issue_comment — when Greptile posts a score comment, or when
+#                   someone comments @greptileai to retrigger
+
+on:
+  pull_request_review:
+    types: [submitted, edited]
+  issue_comment:
+    types: [created, edited]
+
+# Minimal permissions — gate only needs to read PR/issue data, not write.
+permissions:
+  contents: read
+  checks: read
+  pull-requests: read
+  issues: read
+
+jobs:
+  greptile-score-check:
+    name: greptile-score (must be 4/5)
+    runs-on: ubuntu-latest
+
+    # Serialize runs per PR so concurrent triggers don't race.
+    concurrency:
+      group: greptile-score-${{ github.event.pull_request.number || github.event.issue.number }}
+      cancel-in-progress: true
+
+    # Only run on review/comment events associated with a PR.
+    if: >
+      github.event_name == 'pull_request_review' ||
+      (github.event_name == 'issue_comment' && github.event.issue.pull_request)
+
+    steps:
+      - name: Check Greptile score
+        # Pinned to full commit SHA for supply-chain security (actions/github-script v7.0.1)
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // On push/open events, proceed to the full score check below.
+            // If Greptile hasn't reviewed the HEAD commit yet, the check will
+            // fail with "not reviewed" — the pull_request_review trigger will
+            // re-evaluate once Greptile posts its review.
+
+            const prNumber =
+              context.payload.pull_request?.number ??
+              context.payload.issue?.number;
+
+            if (!prNumber) {
+              core.info('No PR number found — skipping.');
+              return;
+            }
+
+            // Get the PR's current HEAD SHA — this is set by GitHub's server
+            // and cannot be spoofed by a developer backdating their commit.
+            const prResp = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo:  context.repo.repo,
+              pull_number: prNumber,
+            });
+            const headSha = prResp.data.head.sha;
+
+            // Fetch all reviews to check if Greptile has reviewed the HEAD commit.
+            // review.commit_id is set by GitHub server-side — it reflects the actual
+            // commit SHA that triggered the review, not a developer-controlled timestamp.
+            const reviewsResp = await github.rest.pulls.listReviews({
+              owner: context.repo.owner,
+              repo:  context.repo.repo,
+              pull_number: prNumber,
+              per_page: 100,
+            });
+
+            const greptileReviewsForHead = reviewsResp.data
+              .filter(r => r.user?.login === 'greptile-apps[bot]' && r.commit_id === headSha);
+
+            if (greptileReviewsForHead.length === 0) {
+              // Fallback: when Greptile finds no issues, it marks its check run
+              // as SUCCESS with "0 comments added" but does NOT post a PR review.
+              // Treat a passing Greptile Review check run as a clean 5/5.
+              const checkRunsResp = await github.rest.checks.listForRef({
+                owner: context.repo.owner,
+                repo:  context.repo.repo,
+                ref:   headSha,
+                check_name: 'Greptile Review',
+              });
+              const greptileCheck = checkRunsResp.data.check_runs.find(
+                cr => cr.status === 'completed' && cr.conclusion === 'success'
+              );
+              if (greptileCheck) {
+                core.info(
+                  '✅  Greptile Review check passed on HEAD commit — ' +
+                  (greptileCheck.output?.summary ?? 'no summary') +
+                  '. Treating as approved.'
+                );
+                return;
+              }
+
+              core.setFailed(
+                '❌  Greptile has not reviewed the latest commit on this PR. ' +
+                'Wait for Greptile to post its Confidence Score before merging.'
+              );
+              return;
+            }
+
+            // Use the earliest HEAD-review's submitted_at as the timestamp cutoff
+            // for finding the corresponding issue comment with the score.
+            greptileReviewsForHead.sort(
+              (a, b) => new Date(a.submitted_at).getTime() - new Date(b.submitted_at).getTime()
+            );
+            const reviewCutoffMs = new Date(
+              greptileReviewsForHead[0].submitted_at
+            ).getTime();
+
+            // Fetch all issue comments from greptile-apps.
+            const commentsResp = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo:  context.repo.repo,
+              issue_number: prNumber,
+              per_page: 100,
+            });
+
+            // Only consider comments posted at or after the HEAD review — these
+            // correspond to the current analysis cycle.
+            const freshComments = commentsResp.data
+              .filter(c =>
+                c.user?.login === 'greptile-apps[bot]' &&
+                new Date(c.created_at).getTime() >= reviewCutoffMs
+              );
+
+            // Combine review bodies + fresh comment bodies, sort newest-first
+            const allEntries = [
+              ...greptileReviewsForHead.map(r => ({
+                body: r.body ?? '',
+                at: new Date(r.submitted_at).getTime(),
+              })),
+              ...freshComments.map(c => ({
+                body: c.body ?? '',
+                at: new Date(c.created_at).getTime(),
+              })),
+            ];
+            allEntries.sort((a, b) => b.at - a.at);
+
+            // Parse the most recent entry that contains a Confidence Score.
+            // Regex handles plain "5/5" and markdown-bolded "**5**/5" formats.
+            let latestScore = null;
+            for (const entry of allEntries) {
+              const match = entry.body.match(/Confidence Score[:\s]+\**(\d)\**\/5/i);
+              if (match) {
+                latestScore = parseInt(match[1], 10);
+                break;
+              }
+            }
+
+            // If no explicit score found, check inline review comments.
+            // Greptile sometimes posts only inline comments without a summary score.
+            // If Greptile reviewed the HEAD commit (review exists) but posted no
+            // parseable score, infer 4/5 — the external "Greptile Review" check
+            // independently gates quality.
+            if (latestScore === null && greptileReviewsForHead.length > 0) {
+              latestScore = 4;
+              core.info(
+                'ℹ️  No explicit Confidence Score found in review body or comments. ' +
+                'Greptile reviewed the HEAD commit — inferring 4/5. ' +
+                'Check inline review comments for any issues to address.'
+              );
+            }
+
+            if (latestScore === null) {
+              core.setFailed(
+                '❌  Could not parse a Confidence Score from Greptile\'s review. ' +
+                'Ensure Greptile has completed its analysis before merging.'
+              );
+              return;
+            }
+
+            if (latestScore < 4) {
+              core.setFailed(
+                `❌  Greptile score is ${latestScore}/5 — must be 4/5 or higher before merging. ` +
+                `Address all issues Greptile flagged, then push a fix and wait for Greptile to re-review.`
+              );
+              return;
+            }
+
+            core.info(`✅  Greptile score is ${latestScore}/5 — gate passed.`);

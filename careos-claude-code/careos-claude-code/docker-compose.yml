@@ -1,0 +1,136 @@
+# CareOS Local Development Stack
+# Usage:
+#   docker compose up -d                 — infra only (dev runs API locally via npm run dev:server)
+#   docker compose --profile full up -d  — full stack including API + Aidbox init
+
+services:
+  # ── Infrastructure Services ──────────────────────────────
+
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: careos
+      POSTGRES_USER: careos
+      POSTGRES_PASSWORD: careos_dev
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U careos"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  aidbox-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: aidbox
+      POSTGRES_USER: aidbox
+      POSTGRES_PASSWORD: aidbox_dev_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - aidbox_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aidbox"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  aidbox:
+    image: healthsamurai/aidboxone:latest
+    depends_on:
+      aidbox-db:
+        condition: service_healthy
+    ports:
+      - "8888:8888"
+    environment:
+      AIDBOX_PORT: 8888
+      AIDBOX_FHIR_VERSION: 4.0.1
+      PGHOST: aidbox-db
+      PGPORT: 5432
+      PGDATABASE: aidbox
+      PGUSER: aidbox
+      PGPASSWORD: aidbox_dev_password
+      AIDBOX_CLIENT_ID: root
+      AIDBOX_CLIENT_SECRET: secret
+      AIDBOX_ADMIN_ID: admin
+      AIDBOX_ADMIN_PASSWORD: admin
+      AIDBOX_BASE_URL: http://localhost:8888
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888/health"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+  # ── Init Services (run once) ─────────────────────────────
+
+  aidbox-init:
+    image: node:22-alpine
+    depends_on:
+      aidbox:
+        condition: service_healthy
+    working_dir: /app
+    volumes:
+      - .:/app
+      - node_modules_cache:/app/node_modules
+    environment:
+      AIDBOX_URL: http://aidbox:8888
+      AIDBOX_CLIENT_ID: root
+      AIDBOX_CLIENT_SECRET: secret
+    command: >
+      sh -c "npm install --prefer-offline --no-audit 2>/dev/null &&
+             npx tsx scripts/init-aidbox.ts"
+    restart: "no"
+
+  # ── Application (full profile only) ──────────────────────
+
+  api:
+    profiles: ["full"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      aidbox:
+        condition: service_healthy
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    environment:
+      # Override connection URLs to use Docker service names
+      DATABASE_URL: postgresql://careos:careos_dev@postgres:5432/careos
+      AIDBOX_URL: http://aidbox:8888
+      REDIS_URL: redis://redis:6379
+      NODE_ENV: production
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  postgres_data:
+  redis_data:
+  aidbox_pg_data:
+  node_modules_cache:

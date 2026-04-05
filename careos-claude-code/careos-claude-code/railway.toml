@@ -1,0 +1,86 @@
+# CareOS Railway Deployment Config
+# Railway detects and uses the Dockerfile automatically.
+#
+# ════════════════════════════════════════════════════════════════
+#  RAILWAY DASHBOARD — REQUIRED ENV VARS
+#  Set ALL of these before the first production deploy.
+#  The server calls assertProductionSecrets() at startup and will
+#  exit(1) immediately if any required secret is missing.
+# ════════════════════════════════════════════════════════════════
+#
+# ── Application ────────────────────────────────────────────────
+#   NODE_ENV                         = production
+#   PORT                             = 3001   (Railway sets this automatically)
+#   FRONTEND_URL                     = https://your-app.up.railway.app
+#   CORS_ORIGINS                     = https://your-app.up.railway.app
+#
+# ── JWT (RS256) — HIPAA REQUIRED ───────────────────────────────
+#   JWT_PRIVATE_KEY                  = <RS256 PEM private key, newlines as \n>
+#   JWT_PUBLIC_KEY                   = <RS256 PEM public key, newlines as \n>
+#   JWT_ACCESS_EXPIRY                = 15m
+#   JWT_REFRESH_EXPIRY               = 7d
+#
+#   Generate with:
+#     openssl genrsa -out private.pem 2048
+#     openssl rsa -in private.pem -pubout -out public.pem
+#   Paste each file's content with literal \n replacing newlines.
+#
+# ── PostgreSQL — HIPAA REQUIRED ────────────────────────────────
+#   DATABASE_URL  ← auto-injected by Railway Postgres plugin
+#
+#   POSTGRES_SSL_REJECT_UNAUTHORIZED = false
+#     Railway Postgres uses a self-signed cert not in Node's trust store.
+#     Must be false for Railway Postgres. Remove if using external Postgres
+#     with a trusted CA (e.g. AWS RDS — use POSTGRES_SSL_CA instead).
+#
+# ── Redis — HIPAA REQUIRED ─────────────────────────────────────
+#   REDIS_URL  ← auto-injected by Railway Redis plugin
+#
+#   Option A — Railway Redis plugin (same private network, no public TLS)
+#     REDIS_URL is auto-injected as redis://... on the private network.
+#     Acceptable only if API + Redis are in the same Railway project.
+#
+#   Option B — Upstash Redis (TLS encrypted, HIPAA recommended)
+#     REDIS_URL                      = rediss://:<password>@<host>:6380
+#     REDIS_TLS_REJECT_UNAUTHORIZED  = false   (Upstash uses their own CA)
+#
+# ── Stripe — HIPAA REQUIRED ────────────────────────────────────
+#   STRIPE_SECRET_KEY                = sk_live_...
+#   STRIPE_WEBHOOK_SECRET            = whsec_...
+#   STRIPE_MEMBERSHIP_PRICE_ID       = price_...
+#
+# ── Twilio (SMS notifications) ─────────────────────────────────
+#   TWILIO_ACCOUNT_SID               = AC...
+#   TWILIO_AUTH_TOKEN                = <token>
+#   TWILIO_PHONE_NUMBER              = +1...
+#
+# ── SendGrid (transactional email) ─────────────────────────────
+#   SENDGRID_API_KEY                 = SG...
+#   SENDGRID_FROM_EMAIL              = hello@co-op.care
+#
+# ── Web Push / VAPID ───────────────────────────────────────────
+#   VAPID_PUBLIC_KEY                 = <base64url public key>
+#   VAPID_PRIVATE_KEY                = <base64url private key>
+#   VAPID_MAILTO                     = mailto:blaine@co-op.care
+#
+#   Generate with:  npx web-push generate-vapid-keys
+#
+# ── Aidbox FHIR R4 ─────────────────────────────────────────────
+#   AIDBOX_URL                       = https://<your-aidbox-host>
+#   AIDBOX_CLIENT_ID                 = <client id>
+#   AIDBOX_CLIENT_SECRET             = <client secret>
+#
+# ── Dev environment differences ────────────────────────────────
+#   On dev Railway environment:
+#   - NODE_ENV                       = development  (or leave unset)
+#   - STRIPE_SECRET_KEY              = sk_test_...
+#   - assertProductionSecrets() is skipped in non-production
+#   - POSTGRES_SSL_REJECT_UNAUTHORIZED = false  (same as prod for Railway PG)
+#   - All other secrets same as prod (use Railway environment variables
+#     feature to keep dev/prod sets separate)
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3

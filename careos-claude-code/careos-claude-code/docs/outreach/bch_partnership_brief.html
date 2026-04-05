@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>co-op.care × BCH | Partnership Brief 2026</title>
+<style>
+  :root {
+    --teal: #0D4F5C; --teal-light: #1a6b7a; --teal-pale: #e8f4f7;
+    --gold: #D4A017; --gold-light: #fdf8ec;
+    --gray-100: #f8f9fa; --gray-200: #e9ecef; --gray-500: #6c757d; --gray-700: #495057;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Inter, system-ui, sans-serif; font-size: 14px; line-height: 1.65; color: #1a2332; background: #f8f9fa; }
+  
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 52px; background: var(--teal); color: white; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+  .topbar-brand { font-size: 18px; font-weight: 700; }
+  .topbar-brand span { color: var(--gold); }
+  .btn-pdf { background: var(--gold); color: #1a2332; font-weight: 700; border: none; padding: 7px 18px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+  .btn-pdf:hover { background: #e8b820; }
+
+  .page { max-width: 820px; margin: 72px auto 60px; padding: 0 24px; }
+
+  /* LETTERHEAD */
+  .letterhead { background: white; border-radius: 12px; padding: 40px 48px; margin-bottom: 28px; border-top: 6px solid var(--teal); box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+  .lh-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; }
+  .lh-brand { font-size: 28px; font-weight: 800; color: var(--teal); letter-spacing: -1px; }
+  .lh-brand span { color: var(--gold); }
+  .lh-meta { text-align: right; font-size: 12px; color: var(--gray-500); line-height: 1.8; }
+  .lh-to { background: var(--teal-pale); border-left: 4px solid var(--teal); padding: 14px 18px; border-radius: 0 6px 6px 0; margin-bottom: 20px; }
+  .lh-to p { font-size: 13px; color: var(--gray-700); }
+  .lh-to strong { color: var(--teal); font-size: 14px; }
+  .lh-subject { font-size: 20px; font-weight: 700; color: var(--teal); margin-bottom: 8px; }
+  .lh-tagline { font-size: 14px; color: var(--gray-500); font-style: italic; }
+
+  /* SECTIONS */
+  .card { background: white; border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+  .card h2 { font-size: 17px; font-weight: 700; color: var(--teal); border-bottom: 2px solid var(--teal-pale); padding-bottom: 8px; margin-bottom: 16px; }
+  .card h3 { font-size: 14px; font-weight: 700; color: var(--teal); margin: 16px 0 8px; }
+  .card p { margin-bottom: 10px; font-size: 13.5px; }
+  .card ul { list-style: none; padding: 0; }
+  .card ul li { font-size: 13.5px; padding: 5px 0 5px 18px; position: relative; border-bottom: 1px dashed var(--gray-200); color: var(--gray-700); }
+  .card ul li:last-child { border-bottom: none; }
+  .card ul li::before { content: '→'; position: absolute; left: 0; color: var(--teal); }
+
+  /* METRIC ROW */
+  .metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 20px; }
+  .metric { background: white; border: 1px solid var(--gray-200); border-top: 4px solid var(--teal); border-radius: 8px; padding: 14px 12px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .metric.gold { border-top-color: var(--gold); }
+  .metric-num { font-size: 26px; font-weight: 800; color: var(--teal); line-height: 1; }
+  .metric.gold .metric-num { color: #a07000; }
+  .metric-label { font-size: 10px; color: var(--gray-500); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+
+  /* VALUE TABLE */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+  th { background: var(--teal); color: white; padding: 9px 12px; text-align: left; font-size: 12px; font-weight: 600; }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+  tr:nth-child(even) td { background: var(--gray-100); }
+  .check { color: #28a745; font-weight: 700; }
+
+  /* SHARED SAVINGS BOX */
+  .savings-box { background: linear-gradient(135deg, var(--teal), var(--teal-light)); color: white; border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; }
+  .savings-box h2 { font-size: 18px; font-weight: 700; color: var(--gold-light); margin-bottom: 16px; }
+  .savings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .savings-item h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; opacity: 0.7; margin-bottom: 6px; }
+  .savings-item ul { list-style: none; }
+  .savings-item ul li { font-size: 13px; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+  /* CALLOUT */
+  .callout { border-left: 4px solid var(--teal); background: var(--teal-pale); padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; font-size: 13.5px; }
+  .callout.gold { border-left-color: var(--gold); background: var(--gold-light); }
+  .callout strong { color: var(--teal); }
+  .callout.gold strong { color: #8a6800; }
+
+  /* TIMELINE */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-item { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--gray-200); }
+  .tl-date { font-size: 12px; font-weight: 700; color: var(--teal); min-width: 80px; padding-top: 2px; }
+  .tl-content { font-size: 13px; color: var(--gray-700); }
+  .tl-content strong { color: var(--teal); }
+
+  /* SIGNATURE */
+  .sig-box { background: white; border-radius: 10px; padding: 28px 32px; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+  .sig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .sig-party h3 { font-size: 14px; font-weight: 700; color: var(--teal); margin-bottom: 20px; }
+  .sig-line { border-bottom: 1px solid var(--gray-500); margin-bottom: 6px; height: 32px; }
+  .sig-label { font-size: 11px; color: var(--gray-500); }
+
+  .footer { text-align: center; font-size: 11px; color: var(--gray-500); padding: 24px 0; margin-top: 12px; }
+
+  @media print {
+    .topbar, .btn-pdf { display: none !important; }
+    .page { margin-top: 0; }
+    .card, .savings-box, .sig-box { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-brand">co-op<span>.</span>care × BCH Partnership Brief</div>
+  <button class="btn-pdf" onclick="window.print()">⬇ Save as PDF</button>
+</header>
+
+<div class="page">
+
+  <!-- LETTERHEAD -->
+  <div class="letterhead">
+    <div class="lh-top">
+      <div>
+        <div class="lh-brand">co-op<span>.</span>care</div>
+        <div style="font-size:12px; color:var(--gray-500); margin-top:4px;">co-op.care Technologies LLC · Boulder, CO</div>
+      </div>
+      <div class="lh-meta">
+        March 2026<br>
+        Blaine Warkentine, MD<br>
+        Founder & CEO<br>
+        orthoblaino@gmail.com
+      </div>
+    </div>
+    <div class="lh-to">
+      <strong>To: Boulder Community Health (BCH) — Clinical &amp; Strategy Leadership</strong>
+      <p>Re: Post-Discharge Home Care Partnership &amp; Shared Savings Opportunity</p>
+    </div>
+    <div class="lh-subject">Eliminating the Discharge Bottleneck — Together</div>
+    <div class="lh-tagline">A proposed channel partnership between Boulder Community Health and co-op.care to reduce readmissions, unlock federal shared savings, and improve post-acute outcomes for Boulder's Medicare population.</div>
+  </div>
+
+  <!-- KEY METRICS -->
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-num">$15K+</div>
+      <div class="metric-label">Cost per Unplanned Readmission</div>
+    </div>
+    <div class="metric gold">
+      <div class="metric-num">79%</div>
+      <div class="metric-label">Industry Caregiver Turnover</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num">22%</div>
+      <div class="metric-label">Projected Co-op Turnover</div>
+    </div>
+    <div class="metric gold">
+      <div class="metric-num">$420</div>
+      <div class="metric-label">CMS OAP / Beneficiary (CKM)</div>
+    </div>
+  </div>
+
+  <!-- THE PROBLEM FOR BCH -->
+  <div class="card">
+    <h2>The Problem BCH Faces Today</h2>
+    <p>Every day, Boulder Community Health discharges patients to home care agencies that:</p>
+    <ul>
+      <li>Rotate caregivers constantly (79% annual turnover) — destroying therapeutic relationships built during the inpatient stay</li>
+      <li>Produce no structured clinical documentation — leaving BCH blind to post-discharge outcomes</li>
+      <li>Have no FHIR interoperability — meaning BCH's care plans disappear at the door</li>
+      <li>Cannot participate in CMS value-based programs — eliminating any shared savings upside for BCH</li>
+      <li>Have zero financial incentive to prevent readmissions — in fact, readmissions generate agency revenue</li>
+    </ul>
+    <div class="callout">
+      <strong>The result:</strong> BCH carries the full cost and reputational risk of readmissions while the downstream care partner carries none of it — and the patient gets the worst of both worlds.
+    </div>
+  </div>
+
+  <!-- WHAT CO-OP.CARE OFFERS BCH -->
+  <div class="card">
+    <h2>What co-op.care Offers BCH</h2>
+    <table>
+      <tr><th>Capability</th><th>Traditional Agency</th><th>co-op.care</th></tr>
+      <tr><td>Caregiver continuity (turnover)</td><td class="check" style="color:#dc3545">79% annual churn</td><td class="check">22% projected (co-op model)</td></tr>
+      <tr><td>FHIR R4 data back to BCH</td><td style="color:#dc3545">✗ None</td><td class="check">✓ Structured, real-time</td></tr>
+      <tr><td>Clinical documentation (Omaha System)</td><td style="color:#dc3545">✗ Narrative notes only</td><td class="check">✓ KBS-scored, audit-ready</td></tr>
+      <tr><td>Outcome measurement for CMS</td><td style="color:#dc3545">✗ Not eligible</td><td class="check">✓ ACCESS Model participant</td></tr>
+      <tr><td>Shared savings opportunity</td><td style="color:#dc3545">✗ None</td><td class="check">✓ Via ACCESS OAP + readmission avoidance</td></tr>
+      <tr><td>Physician oversight of AI</td><td style="color:#dc3545">✗ None</td><td class="check">✓ Josh Emdur, DO (CMO) — Layer 3 validation</td></tr>
+      <tr><td>PACE population capability</td><td>Limited</td><td class="check">✓ Designed for dual-eligible</td></tr>
+    </table>
+  </div>
+
+  <!-- SHARED SAVINGS MODEL -->
+  <div class="savings-box">
+    <h2>The Shared Savings Opportunity</h2>
+    <div class="savings-grid">
+      <div class="savings-item">
+        <h4>For BCH</h4>
+        <ul>
+          <li>Reduced unplanned readmissions (→ lower CMS penalties)</li>
+          <li>Structured FHIR data closes the care-gap loop</li>
+          <li>ACCESS Model shared savings via aligned outcomes</li>
+          <li>Quality measure improvements (STAR ratings, HCAHPS)</li>
+          <li>Access to Boulder's Medicare + dual-eligible population data</li>
+        </ul>
+      </div>
+      <div class="savings-item">
+        <h4>For co-op.care</h4>
+        <ul>
+          <li>Warm referral pipeline from BCH discharge coordinators</li>
+          <li>Institutional credibility for pilot launch (co-op #1)</li>
+          <li>PACE population anchor (BCH refers dual-eligible patients)</li>
+          <li>Clinical data loop to refine Omaha System AI accuracy</li>
+          <li>Letter of support for CMS ACCESS application</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="card">
+    <h2>How the Partnership Works — Operationally</h2>
+    <h3>Step 1: BCH Discharge Coordination</h3>
+    <p>BCH discharge coordinators identify Medicare FFS patients (CKM, eCKM, MSK, or BH tracks) appropriate for home care. Referral goes to co-op.care SageCare.ai intake (24/7, auto-drafted care plan within hours).</p>
+    <h3>Step 2: Caregiver Assignment &amp; FHIR Handoff</h3>
+    <p>co-op.care assigns a worker-owner caregiver with continuity commitment. BCH's discharge care plan is ingested via FHIR R4 (Aidbox backend). No data loss at transition.</p>
+    <h3>Step 3: Ongoing Clinical Documentation</h3>
+    <p>Caregiver ambient voice notes → AI maps to Omaha System KBS (1–5) → Physician validation (Josh Emdur, DO) → Structured FHIR R4 data. BCH receives structured outcome data back in real time — closing the loop for quality reporting.</p>
+    <h3>Step 4: ACCESS Model Billing &amp; Shared Outcomes</h3>
+    <p>co-op.care bills CMS ACCESS Model OAPs ($180–$420/beneficiary/year). Outcome Attainment Rate data is shared with BCH for population health reporting. Readmission rates tracked jointly.</p>
+
+    <div class="callout gold">
+      <strong>BCH letter of support for ACCESS application:</strong> A formal letter of support from BCH as a discharge channel partner materially strengthens co-op.care's CMS ACCESS Model application (due April 1, 2026). This is a low-lift action for BCH with high impact for both organizations.
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="card">
+    <h2>Proposed Partnership Timeline</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">Mar 2026</div>
+        <div class="tl-content"><strong>MOU signed.</strong> BCH provides letter of support for CMS ACCESS application. Joint identification of first 10–15 patients for pilot cohort.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Apr 2026</div>
+        <div class="tl-content"><strong>ACCESS Model application submitted.</strong> BCH listed as formal discharge channel partner. FHIR integration spec finalized between Aidbox and BCH EHR.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Q2 2026</div>
+        <div class="tl-content"><strong>CDPHE Class A license issued.</strong> First BCH discharge referrals activated. Director of Nursing onboarded.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Q3 2026</div>
+        <div class="tl-content"><strong>Boulder Pilot Cohort 1 live</strong> (50–75 beneficiaries). ACCESS Model OAP billing begins. Joint outcome dashboard activated.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Q4 2026</div>
+        <div class="tl-content"><strong>90-day outcome review.</strong> Readmission rate comparison, KBS outcome scores, patient satisfaction. Expand to full discharge pipeline or proceed to Phase 2 (PACE).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE ASK -->
+  <div class="card">
+    <h2>What We're Asking of BCH</h2>
+    <ul>
+      <li><strong>Letter of support</strong> for co-op.care's CMS ACCESS Model application — needed by April 1, 2026</li>
+      <li><strong>MOU on discharge referral pipeline</strong> — identify 10–15 Medicare FFS patients for Cohort 1 (Q3 2026)</li>
+      <li><strong>FHIR integration discussion</strong> — connect BCH IT/informatics team with Jacob Pielke (CTO) and Health Samurai/Aidbox team</li>
+      <li><strong>Introduction to BCH PACE program leadership</strong> — dual-eligible population for near-term PACE collaboration</li>
+      <li><strong>Participation in joint outcome reporting</strong> — 90-day readmission and KBS outcome data review</li>
+    </ul>
+  </div>
+
+  <!-- SIGNATURE -->
+  <div class="sig-box">
+    <h2 style="font-size:16px; color:var(--teal); margin-bottom:20px;">Partnership Agreement — Memorandum of Understanding</h2>
+    <div class="sig-grid">
+      <div class="sig-party">
+        <h3>co-op.care Technologies LLC</h3>
+        <div class="sig-line"></div>
+        <div class="sig-label">Blaine Warkentine, MD — Founder &amp; CEO</div>
+        <div class="sig-label" style="margin-top:16px;">Date: _______________</div>
+      </div>
+      <div class="sig-party">
+        <h3>Boulder Community Health (BCH)</h3>
+        <div class="sig-line"></div>
+        <div class="sig-label">Name / Title: _______________</div>
+        <div class="sig-label" style="margin-top:16px;">Date: _______________</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    co-op.care Technologies LLC &nbsp;|&nbsp; Boulder, CO &nbsp;|&nbsp; Confidential &nbsp;|&nbsp; March 2026<br>
+    Blaine Warkentine, MD · orthoblaino@gmail.com
+  </div>
+</div>
+<script>window.addEventListener('beforeprint', () => document.title = 'co-op.care BCH Partnership Brief 2026');</script>
+</body>
+</html>

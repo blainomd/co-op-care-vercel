@@ -1,0 +1,104 @@
+/**
+ * Logo — co-op.care brand logo component
+ *
+ * The logo depicts interlocking hands forming a house shape with a heart center.
+ * Variants: full (icon + text), icon-only, horizontal
+ * Colors: teal (#2BA5A0) to navy (#1B3A5C) gradient
+ */
+
+interface LogoProps {
+  variant?: 'full' | 'icon' | 'horizontal';
+  className?: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const SIZES = {
+  sm: { icon: 28, text: 'text-base' },
+  md: { icon: 36, text: 'text-lg' },
+  lg: { icon: 48, text: 'text-2xl' },
+};
+
+/** The icon mark — interlocking hands + house + heart */
+function LogoIcon({ size = 36 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 64 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      {/* Outer hand loop — teal */}
+      <path
+        d="M32 4C18 4 8 14 8 28c0 10 6 18 14 22l4-2c-8-4-14-12-14-20C12 16 20 8 32 8c12 0 20 8 20 20 0 8-6 16-14 20l4 2c8-4 14-12 14-22C56 14 46 4 32 4z"
+        fill="url(#tealGrad)"
+      />
+      {/* Inner hand loop — navy */}
+      <path
+        d="M32 12C22 12 14 20 14 30c0 6 3 11 8 14l3-2c-4-3-7-8-7-12 0-8 6-14 14-14s14 6 14 14c0 4-3 9-7 12l3 2c5-3 8-8 8-14 0-10-8-18-18-18z"
+        fill="url(#navyGrad)"
+      />
+      {/* House shape */}
+      <path d="M32 20l-10 8v12h6v-8h8v8h6V28l-10-8z" fill="white" opacity="0.95" />
+      {/* Heart in center of house */}
+      <path
+        d="M32 27c-1.5-2-4-2.5-5.5-1s-1 4.5 1 6.5L32 37l4.5-4.5c2-2 2.5-5 1-6.5s-4-1-5.5 1z"
+        fill="#2BA5A0"
+      />
+      <defs>
+        <linearGradient id="tealGrad" x1="8" y1="4" x2="56" y2="50" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#3DC4BE" />
+          <stop offset="1" stopColor="#2BA5A0" />
+        </linearGradient>
+        <linearGradient
+          id="navyGrad"
+          x1="14"
+          y1="12"
+          x2="50"
+          y2="44"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#2A5580" />
+          <stop offset="1" stopColor="#1B3A5C" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
+
+export function Logo({ variant = 'full', className = '', size = 'md' }: LogoProps) {
+  const s = SIZES[size];
+
+  if (variant === 'icon') {
+    return (
+      <span className={className}>
+        <LogoIcon size={s.icon} />
+      </span>
+    );
+  }
+
+  if (variant === 'horizontal') {
+    return (
+      <span className={`inline-flex items-center gap-2 ${className}`}>
+        <LogoIcon size={s.icon} />
+        <span className={`font-heading ${s.text} font-bold text-navy`}>co-op.care</span>
+      </span>
+    );
+  }
+
+  // Full: icon + name + tagline (stacked)
+  return (
+    <span className={`inline-flex items-center gap-2.5 ${className}`}>
+      <LogoIcon size={s.icon} />
+      <span className="flex flex-col leading-tight">
+        <span className={`font-heading ${s.text} font-bold text-navy`}>co-op.care</span>
+        <span className="text-[0.65rem] font-medium tracking-wide text-text-secondary">
+          worker-owned support
+        </span>
+      </span>
+    </span>
+  );
+}
+
+export { LogoIcon };

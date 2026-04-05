@@ -1,0 +1,590 @@
+@import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Caveat:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+/* ============================================================
+   CareOS Brand System — Tailwind CSS 4
+   Fonts: Literata (serif, headings) + DM Sans (sans-serif, body)
+   ============================================================ */
+
+@theme {
+  /* Brand Colors — co-op.care teal/navy identity (March 2026) */
+  --color-sage: #2ba5a0;
+  --color-sage-light: #3dc4be;
+  --color-sage-dark: #1b8a85;
+  --color-copper: #1b3a5c;
+  --color-copper-light: #2a5580;
+  --color-copper-dark: #122840;
+  --color-gold: #c49b40;
+  --color-gold-light: #d4b060;
+  --color-gold-dark: #a07e30;
+  --color-blue: #4a6fa5;
+  --color-blue-light: #6a8fc5;
+  --color-blue-dark: #3a5585;
+  --color-purple: #7a5cb8;
+  --color-purple-light: #9a7cd8;
+  --color-purple-dark: #5a3c98;
+
+  /* New brand tokens (aliases) */
+  --color-teal: #2ba5a0;
+  --color-teal-light: #3dc4be;
+  --color-teal-dark: #1b8a85;
+  --color-navy: #1b3a5c;
+  --color-navy-light: #2a5580;
+  --color-navy-dark: #122840;
+
+  /* CII Zone Colors */
+  --color-zone-green: #4caf50;
+  --color-zone-yellow: #ffc107;
+  --color-zone-red: #f44336;
+
+  /* Neutral Palette */
+  --color-warm-white: #fafaf8;
+  --color-warm-gray: #f5f5f0;
+  --color-text-primary: #2c2c2c;
+  --color-text-secondary: #6b6b6b;
+  --color-text-muted: #9b9b9b;
+  --color-border: #e5e5e0;
+
+  /* Font Families */
+  --font-heading: 'Literata', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-handwritten: 'Caveat', cursive;
+
+  /* Warm palette extensions */
+  --color-cream: #fdf8f0;
+  --color-cream-dark: #f5ede0;
+  --color-linen: #faf6f1;
+  --color-bark: #8b7355;
+  --color-bark-light: #a89070;
+  --color-moss: #6b8f71;
+  --color-moss-light: #8aaf8f;
+  --color-moss-dark: #4a6b4f;
+  --color-clay: #c4a882;
+  --color-clay-light: #d4bfa0;
+}
+
+/* Base Styles */
+html {
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-warm-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+/* Mobile menu slide-down animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Toast slide-in animation */
+@keyframes toast-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.toast-enter {
+  animation: toast-slide-in 0.25s ease-out;
+}
+
+/* Celebration animations */
+@keyframes celebrate-check {
+  0% {
+    transform: scale(0) rotate(-45deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes celebrate-pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+.celebrate-check {
+  animation: celebrate-check 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.celebrate-pulse {
+  animation: celebrate-pulse 0.4s ease-out forwards;
+}
+
+.fade-up {
+  animation: fade-up 0.3s ease-out forwards;
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-warm-gray) 25%,
+    #eeeeea 50%,
+    var(--color-warm-gray) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ── Highlight Pulse (team page stat tap) ── */
+@keyframes highlight-pulse {
+  0% {
+    transform: scale(1);
+    background-color: transparent;
+  }
+  40% {
+    transform: scale(1.12);
+    background-color: rgba(13, 115, 119, 0.08);
+  }
+  100% {
+    transform: scale(1);
+    background-color: transparent;
+  }
+}
+
+/* ── Card Reveal + Signup Animations ── */
+
+@keyframes card-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(100px) scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes card-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(43, 165, 160, 0);
+  }
+  50% {
+    box-shadow: 0 0 30px 10px rgba(43, 165, 160, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(43, 165, 160, 0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes section-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes qr-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.card-slide-up {
+  animation: card-slide-up 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.card-glow {
+  animation: card-glow 2s ease-in-out 1;
+}
+
+.fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+.fade-in-delay-1 {
+  opacity: 0;
+  animation: fade-in 0.4s ease-out 0.8s forwards;
+}
+
+.fade-in-delay-2 {
+  opacity: 0;
+  animation: fade-in 0.4s ease-out 1.2s forwards;
+}
+
+.fade-in-delay-3 {
+  opacity: 0;
+  animation: fade-in 0.4s ease-out 1.8s forwards;
+}
+
+.section-reveal {
+  animation: section-reveal 0.6s ease-out forwards;
+}
+
+.qr-pulse {
+  animation: qr-pulse 2s ease-in-out infinite;
+}
+
+@keyframes tile-swap {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  60% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-tile-swap {
+  animation: tile-swap 0.4s ease-out;
+}
+
+/* ── Warm Community Animations ── */
+
+@keyframes bloom-breathe {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes gentle-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes warm-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gentle-float {
+  animation: gentle-float 4s ease-in-out infinite;
+}
+
+.warm-entrance {
+  animation: warm-entrance 0.6s ease-out forwards;
+}
+
+.warm-entrance-delay-1 {
+  opacity: 0;
+  animation: warm-entrance 0.6s ease-out 0.15s forwards;
+}
+
+.warm-entrance-delay-2 {
+  opacity: 0;
+  animation: warm-entrance 0.6s ease-out 0.3s forwards;
+}
+
+.warm-entrance-delay-3 {
+  opacity: 0;
+  animation: warm-entrance 0.6s ease-out 0.45s forwards;
+}
+
+.warm-entrance-delay-4 {
+  opacity: 0;
+  animation: warm-entrance 0.6s ease-out 0.6s forwards;
+}
+
+/* Paper texture overlay */
+.paper-texture {
+  position: relative;
+}
+.paper-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ── Premium Card Visual ── */
+
+@keyframes card-float {
+  0%,
+  100% {
+    transform: perspective(800px) rotateY(0deg) rotateX(0deg) translateY(0);
+  }
+  25% {
+    transform: perspective(800px) rotateY(2deg) rotateX(-1deg) translateY(-4px);
+  }
+  75% {
+    transform: perspective(800px) rotateY(-2deg) rotateX(1deg) translateY(-2px);
+  }
+}
+
+@keyframes card-shine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.card-float {
+  animation: card-float 6s ease-in-out infinite;
+}
+
+.card-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.15) 45%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.15) 55%,
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  animation: card-shine 4s ease-in-out infinite;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ── Native App Safe Areas (iOS notch, Android status bar) ── */
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+/* When keyboard is open (set by capacitor-bridge.ts) */
+body.keyboard-open {
+  /* Prevent body scroll when keyboard opens on iOS */
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+/* Disable text selection on native (feels more app-like) */
+html.native-app {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* But allow selection in text inputs and textareas */
+html.native-app input,
+html.native-app textarea,
+html.native-app [contenteditable] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Smooth scroll for native — avoids rubber-band issues */
+html.native-app body {
+  overscroll-behavior: none;
+}
+
+/* ── Scroll-reveal animations ── */
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes count-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes breathe-guide {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+}
+
+@keyframes step-line-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.reveal-up {
+  animation: reveal-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.reveal-scale {
+  animation: reveal-scale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.breathe-guide {
+  animation: breathe-guide 6s ease-in-out infinite;
+}
+
+/* Staggered children reveals */
+.stagger-children > * {
+  opacity: 0;
+  animation: reveal-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.stagger-children > *:nth-child(1) {
+  animation-delay: 0s;
+}
+.stagger-children > *:nth-child(2) {
+  animation-delay: 0.08s;
+}
+.stagger-children > *:nth-child(3) {
+  animation-delay: 0.16s;
+}
+.stagger-children > *:nth-child(4) {
+  animation-delay: 0.24s;
+}
+.stagger-children > *:nth-child(5) {
+  animation-delay: 0.32s;
+}
+.stagger-children > *:nth-child(6) {
+  animation-delay: 0.4s;
+}
+
+/* ── Accessibility: Focus Visible ── */
+
+*:focus-visible {
+  outline: 2px solid var(--color-sage);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip to content (sr-only but visible on focus) */
+.sr-only:focus-visible {
+  position: fixed !important;
+  clip: auto !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+}

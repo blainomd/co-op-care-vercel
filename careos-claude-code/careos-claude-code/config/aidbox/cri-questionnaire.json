@@ -1,0 +1,205 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "cri-assessment",
+  "url": "https://co-op.care/fhir/Questionnaire/cri-assessment",
+  "version": "1.0.0",
+  "name": "CareReadinessIndex",
+  "title": "Care Readiness Index (CRI)",
+  "status": "active",
+  "date": "2026-03-01",
+  "publisher": "co-op.care",
+  "description": "14-factor clinician-administered assessment. Raw score range 14.4-72.0. Requires Medical Director review and sign-off.",
+  "purpose": "Assess care recipient readiness and caregiver capacity via structured clinical interview. Used for LMN generation and care plan creation.",
+  "subjectType": ["Patient"],
+  "item": [
+    {
+      "linkId": "cri-1",
+      "text": "Cognitive Status",
+      "definition": "Assessed cognitive function level using standardized screening",
+      "type": "decimal",
+      "required": true,
+      "extension": [
+        { "url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueDecimal": 1.0 },
+        { "url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueDecimal": 5.0 }
+      ]
+    },
+    {
+      "linkId": "cri-2",
+      "text": "Functional Mobility",
+      "definition": "Ability to move independently and perform transfers",
+      "type": "decimal",
+      "required": true,
+      "extension": [
+        { "url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueDecimal": 1.0 },
+        { "url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueDecimal": 5.0 }
+      ]
+    },
+    {
+      "linkId": "cri-3",
+      "text": "ADL Independence",
+      "definition": "Ability to perform activities of daily living independently",
+      "type": "decimal",
+      "required": true,
+      "extension": [
+        { "url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueDecimal": 1.0 },
+        { "url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueDecimal": 5.0 }
+      ]
+    },
+    {
+      "linkId": "cri-4",
+      "text": "IADL Capacity",
+      "definition": "Ability to perform instrumental activities (cooking, finances, transport)",
+      "type": "decimal",
+      "required": true,
+      "extension": [
+        { "url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueDecimal": 1.0 },
+        { "url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueDecimal": 5.0 }
+      ]
+    },
+    {
+      "linkId": "cri-5",
+      "text": "Medication Complexity",
+      "definition": "Number and complexity of medications requiring management",
+      "type": "decimal",
+      "required": true,
+      "extension": [
+        { "url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueDecimal": 1.0 },
+        { "url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueDecimal": 5.0 }
+      ]
+    },
+    {
+      "linkId": "cri-6",
+      "text": "Behavioral Challenges",
+      "definition": "Frequency and severity of behavioral symptoms",
+      "type": "decimal",
+      "required": true,
+      "extension": [
+        { "url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueDecimal": 1.0 },
+        { "url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueDecimal": 5.0 }
+      ]
+    },
+    {
+      "linkId": "cri-7",
+      "text": "Fall Risk",
+      "definition": "History and risk factors for falls",
+      "type": "decimal",
+      "required": true,
+      "extension": [
+        { "url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueDecimal": 1.0 },
+        { "url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueDecimal": 5.0 }
+      ]
+    },
+    {
+      "linkId": "cri-8",
+      "text": "Nutritional Status",
+      "definition": "Nutritional adequacy and meal preparation needs",
+      "type": "decimal",
+      "required": true,
+      "extension": [
+        { "url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueDecimal": 1.0 },
+        { "url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueDecimal": 5.0 }
+      ]
+    },
+    {
+      "linkId": "cri-9",
+      "text": "Social Support Network",
+      "definition": "Availability and reliability of informal support",
+      "type": "decimal",
+      "required": true,
+      "extension": [
+        { "url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueDecimal": 1.0 },
+        { "url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueDecimal": 5.0 }
+      ]
+    },
+    {
+      "linkId": "cri-10",
+      "text": "Caregiver Burnout Level",
+      "definition": "Current caregiver stress and burnout indicators",
+      "type": "decimal",
+      "required": true,
+      "extension": [
+        { "url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueDecimal": 1.0 },
+        { "url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueDecimal": 5.0 }
+      ]
+    },
+    {
+      "linkId": "cri-11",
+      "text": "Home Environment Safety",
+      "definition": "Physical safety of the home environment",
+      "type": "decimal",
+      "required": true,
+      "extension": [
+        { "url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueDecimal": 1.0 },
+        { "url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueDecimal": 5.0 }
+      ]
+    },
+    {
+      "linkId": "cri-12",
+      "text": "Emergency Preparedness",
+      "definition": "Plans and capacity for emergency situations",
+      "type": "decimal",
+      "required": true,
+      "extension": [
+        { "url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueDecimal": 1.0 },
+        { "url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueDecimal": 5.0 }
+      ]
+    },
+    {
+      "linkId": "cri-13",
+      "text": "Financial Resources",
+      "definition": "Financial capacity for ongoing care needs",
+      "type": "decimal",
+      "required": true,
+      "extension": [
+        { "url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueDecimal": 1.03 },
+        { "url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueDecimal": 5.14 }
+      ]
+    },
+    {
+      "linkId": "cri-14",
+      "text": "Care Plan Adherence History",
+      "definition": "Track record of following recommended care plans",
+      "type": "decimal",
+      "required": true,
+      "extension": [
+        { "url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueDecimal": 1.03 },
+        { "url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueDecimal": 5.14 }
+      ]
+    },
+    {
+      "linkId": "cri-total",
+      "text": "Total CRI Raw Score",
+      "type": "decimal",
+      "readOnly": true,
+      "extension": [
+        { "url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueDecimal": 14.4 },
+        { "url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueDecimal": 72.0 }
+      ]
+    },
+    {
+      "linkId": "cri-md-review",
+      "text": "Medical Director Review",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "cri-md-reviewer",
+          "text": "Reviewing Medical Director",
+          "type": "reference",
+          "required": true
+        },
+        {
+          "linkId": "cri-md-approved",
+          "text": "Assessment Approved",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "linkId": "cri-md-notes",
+          "text": "Clinical Notes",
+          "type": "text",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

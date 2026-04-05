@@ -1,0 +1,131 @@
+{
+  "model": "claude-sonnet-4-6",
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_PROJECT_DIR": "."
+  },
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npx *)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git branch:*)",
+      "Bash(git checkout:*)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(npx eslint *)",
+      "Bash(npx prettier *)",
+      "Bash(npx vitest *)",
+      "Bash(node *)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(./config/credentials.*)",
+      "Write(./supabase/migrations/**)",
+      "Bash(psql *)",
+      "Bash(supabase db push *)",
+      "Bash(railway up *)",
+      "Bash(railway deploy *)",
+      "Bash(git push --force*)",
+      "Bash(git push -f *)",
+      "Bash(DROP *)",
+      "Bash(DELETE FROM *)",
+      "Bash(UPDATE * SET *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write(*.ts)|Write(*.tsx)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'PHI CHECK: Verify governance-constitution.ts imported if this file calls Anthropic API' && grep -l 'anthropic.messages.create' $CLAUDE_PROJECT_DIR/src/**/*.ts 2>/dev/null | xargs grep -L 'governance-constitution' 2>/dev/null | head -5"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash(supabase migration new *)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'MIGRATION GATE: Confirm this migration has been reviewed against RLS policies and decision_ledger chain integrity before proceeding.'"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write(*.ts)|Write(*.tsx)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd $CLAUDE_PROJECT_DIR && npx tsc --noEmit 2>&1 | head -20 || true"
+          }
+        ]
+      },
+      {
+        "matcher": "Write(*.sql)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'SQL written. Verify: (1) RLS enabled on new tables (2) No UPDATE/DELETE on ledger tables (3) NPI constraint present on attestation tables'"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "echo '=== SolvingHealth Claude Code ===' && echo 'Entity: SurgeonValue (surgeonvalue.com) | EIN 41-5139576' && echo 'Cohort 1: July 5, 2026' && echo 'PHI moat: governance-constitution.ts → decision_ledger → attestation_id → Stedi' && echo '================================'"
+      }
+    ],
+    "TeammateIdle": [
+      {
+        "type": "command",
+        "command": "npx claude-flow@v3alpha hooks teammate-idle --auto-assign true 2>/dev/null || true"
+      }
+    ],
+    "TaskCompleted": [
+      {
+        "type": "command",
+        "command": "npx claude-flow@v3alpha hooks task-completed --train-patterns true 2>/dev/null || true"
+      }
+    ]
+  },
+  "claudeFlow": {
+    "agentTeams": {
+      "enabled": true,
+      "teammateMode": "auto",
+      "taskListEnabled": true,
+      "mailboxEnabled": true
+    }
+  },
+  "mcpServers": {
+    "clinicalswipe": {
+      "command": "node",
+      "args": ["./packages/clinicalswipe/dist/mcp-server.js"],
+      "env": {
+        "SUPABASE_URL": "${SUPABASE_URL}",
+        "SUPABASE_SERVICE_ROLE_KEY": "${SUPABASE_SERVICE_ROLE_KEY}",
+        "WORKOS_CLIENT_ID": "${WORKOS_CLIENT_ID}",
+        "WORKOS_API_KEY": "${WORKOS_API_KEY}",
+        "AUTHKIT_DOMAIN": "${AUTHKIT_DOMAIN}",
+        "MEDICAL_DIRECTOR_NPI": "1649218389"
+      }
+    },
+    "supabase": {
+      "command": "npx",
+      "args": ["-y", "@supabase/mcp-server-supabase@latest", "--read-only"],
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "${SUPABASE_ACCESS_TOKEN}"
+      }
+    }
+  }
+}

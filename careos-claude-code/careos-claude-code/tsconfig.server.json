@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "outDir": "dist/server",
+    "rootDir": "src",
+    "declaration": false,
+    "sourceMap": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "@server/*": ["src/server/*"],
+      "@shared/*": ["src/shared/*"]
+    }
+  },
+  "include": ["src/server", "src/shared"],
+  "exclude": ["src/**/__tests__", "src/**/*.test.ts", "src/**/*.spec.ts"]
+}

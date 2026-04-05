@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">co-op.care</string>
+    <string name="title_activity_main">co-op.care</string>
+    <string name="package_name">care.coop.app</string>
+    <string name="custom_url_scheme">care.coop.app</string>
+</resources>

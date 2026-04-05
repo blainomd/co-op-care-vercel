@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="co-op.care Strategic Realignment & Operational Blueprint - Worker-owned home care cooperative in Boulder, CO.">
+<title>co-op.care | Strategic Realignment & Operational Blueprint</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+body {
+font-family: 'Inter', sans-serif;
+background-color: #F8FAFC;
+color: #0F172A;
+}
+.chart-container {
+position: relative;
+width: 100%;
+max-width: 800px;
+margin-left: auto;
+margin-right: auto;
+height: 350px;
+max-height: 400px;
+}
+@media (min-width: 768px) {
+.chart-container {
+height: 400px;
+}
+}
+.glass-panel {
+background: rgba(255, 255, 255, 0.98);
+backdrop-filter: blur(12px);
+border: 1px solid rgba(226, 232, 240, 0.8);
+}
+.pivot-card {
+transition: transform 0.2s ease-in-out;
+}
+.pivot-card:hover {
+transform: translateY(-4px);
+}
+.timeline-dot {
+width: 16px;
+height: 16px;
+border-radius: 50%;
+border: 3px solid;
+background: white;
+position: relative;
+z-index: 10;
+}
+.timeline-line {
+position: absolute;
+left: 7px;
+top: 16px;
+bottom: 0;
+width: 2px;
+}
+</style>
+</head>
+<body class="antialiased">
+
+<nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
+<div class="font-black text-2xl tracking-tighter text-slate-900">co-op.care</div>
+<div class="hidden md:flex space-x-6 text-sm font-bold text-slate-600">
+<a href="#crisis" class="hover:text-blue-600 transition-colors">Macro Failure</a>
+<a href="#economics" class="hover:text-blue-600 transition-colors">Economics</a>
+<a href="#safety" class="hover:text-blue-600 transition-colors">Safety Architecture</a>
+<a href="#pivots" class="text-red-600 hover:text-red-800 transition-colors">Strategic Pivots</a>
+<a href="#approach-c" class="text-emerald-600 hover:text-emerald-800 transition-colors">Approach C</a>
+<a href="#nejm" class="hover:text-blue-600 transition-colors">NEJM Validation</a>
+</div>
+</div>
+</nav>
+
+<header class="bg-slate-900 text-white pt-24 pb-28 px-4 sm:px-6 lg:px-8 border-b-8 border-blue-600">
+<div class="max-w-5xl mx-auto">
+<div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-slate-800 text-slate-300 text-xs font-bold tracking-wider mb-8 border border-slate-700">
+<span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+ADVISORY REPORT: MARCH 10, 2026
+</div>
+<h1 class="text-4xl md:text-6xl font-black tracking-tight mb-6 leading-tight">Strategic Realignment & Operational Blueprint.</h1>
+<p class="text-xl font-light text-slate-300 mb-10 max-w-4xl leading-relaxed">
+The American healthcare infrastructure is fracturing. co-op.care possesses a profound social mission and a highly sophisticated technological foundation (5,400 lines of production code). However, translating this vision into a sustainable enterprise requires <span class="font-bold text-white">rigorous strategic sequencing</span>. This is the unvarnished roadmap for survival and scale.
+</p>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+<div class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
+<div class="text-sm text-slate-400 font-bold uppercase tracking-wider mb-1">Capital</div>
+<div class="text-2xl font-black text-emerald-400">$10,000</div>
+</div>
+<div class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
+<div class="text-sm text-slate-400 font-bold uppercase tracking-wider mb-1">Status</div>
+<div class="text-2xl font-black text-blue-400">Pre-Revenue</div>
+</div>
+<div class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
+<div class="text-sm text-slate-400 font-bold uppercase tracking-wider mb-1">Entity</div>
+<div class="text-2xl font-black text-white">LCA Filed</div>
+<div class="text-xs text-slate-500 mt-1">March 10, 2026</div>
+</div>
+<div class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
+<div class="text-sm text-slate-400 font-bold uppercase tracking-wider mb-1">Licensure</div>
+<div class="text-2xl font-black text-orange-400">4-6 Months</div>
+</div>
+</div>
+</div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20 pb-24 space-y-16">
+
+<!-- PART I: MACRO FAILURE -->
+<section id="crisis" class="glass-panel rounded-2xl shadow-xl p-8 md:p-12">
+<div class="mb-10">
+<h2 class="text-3xl font-black mb-4 text-slate-900">Part I: The Macro-Environmental Failure</h2>
+<p class="text-lg text-slate-600 max-w-4xl">
+By 2035, one in five Americans will be over 65. The caregiver support ratio is collapsing from 7:1 to 4:1. The traditional private equity (PE) model actively exacerbates this crisis through extractive financial models that suppress wages, inflate billing, and drive catastrophic turnover.
+</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-red-50 p-6 rounded-xl border border-red-100">
+<div class="text-4xl font-black text-red-600 mb-2">$16.78</div>
+<div class="text-xs font-bold text-slate-800 uppercase tracking-wide">Median Hourly Pay</div>
+<div class="text-xs text-slate-500 mt-1">For 8.9M direct care openings</div>
+</div>
+<div class="bg-orange-50 p-6 rounded-xl border border-orange-100">
+<div class="text-4xl font-black text-orange-600 mb-2">93M</div>
+<div class="text-xs font-bold text-slate-800 uppercase tracking-wide">Unpaid Caregivers</div>
+<div class="text-xs text-slate-500 mt-1">Bearing the burden of facility closures</div>
+</div>
+<div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+<div class="text-4xl font-black text-slate-700 mb-2">800+</div>
+<div class="text-xs font-bold text-slate-800 uppercase tracking-wide">Facility Closures</div>
+<div class="text-xs text-slate-500 mt-1">Nursing homes shut down</div>
+</div>
+<div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+<div class="text-4xl font-black text-slate-700 mb-2">$100B</div>
+<div class="text-xs font-bold text-slate-800 uppercase tracking-wide">Non-Adherence Cost</div>
+<div class="text-xs text-slate-500 mt-1">Driven by inconsistent care</div>
+</div>
+</div>
+<div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
+<h3 class="font-bold text-slate-900 text-center mb-1">Systemic Failure Indicators</h3>
+<p class="text-xs text-slate-500 text-center mb-6">Percentage rates highlighting the collapse of traditional models.</p>
+<div class="chart-container">
+<canvas id="crisisMetricsChart"></canvas>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PART II: COOPERATIVE ECONOMICS -->
+<section id="economics" class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-slate-200 border-l-8 border-l-emerald-500">
+<div class="mb-10">
+<h2 class="text-3xl font-black mb-4 text-slate-900">Part II: Cooperative Economics & The Moat</h2>
+<p class="text-lg text-slate-600 max-w-4xl">
+The primary competitive moat in home healthcare is community embeddedness and labor stability, not proprietary technology. co-op.care neutralizes PE extraction by eliminating external shareholders, aligning W-2 employee-owners with patient outcomes.
+</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7 bg-slate-50 rounded-2xl p-6 border border-slate-200">
+<h3 class="font-bold text-slate-900 text-center mb-1">Hourly Economic Extraction</h3>
+<p class="text-xs text-slate-500 text-center mb-6">Comparison of how a family's hourly payment is distributed.</p>
+<div class="chart-container mx-auto">
+<canvas id="economicsChart"></canvas>
+</div>
+</div>
+<div class="lg:col-span-5 space-y-4">
+<div class="p-5 rounded-xl bg-white shadow-sm border border-slate-100">
+<h4 class="font-black text-emerald-600 mb-1">Tax Transformation</h4>
+<p class="text-sm text-slate-600">Physician-prescribed interventions via LMN allow use of pre-tax HSA/FSA funds, reducing net out-of-pocket costs by <span class="font-bold text-slate-900">28% to 36%</span> while sustaining a $35/hr gross rate.</p>
+</div>
+<div class="p-5 rounded-xl bg-white shadow-sm border border-slate-100">
+<h4 class="font-black text-blue-600 mb-1">The Time Bank Integration</h4>
+<p class="text-sm text-slate-600">A civilizational necessity: transforming invisible labor into exchangeable community currency (Care Credits) to combat isolation and extend paid clinical capacity.</p>
+</div>
+<div class="p-5 rounded-xl bg-white shadow-sm border border-slate-100">
+<h4 class="font-black text-slate-800 mb-1">Psychological Ownership</h4>
+<p class="text-sm text-slate-600">Targeting a sub-15% turnover rate. Stable caregivers serve as the primary clinical sensor network, detecting microscopic physiological deviations.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PART III: 4-LAYER SAFETY -->
+<section id="safety" class="bg-slate-900 text-white rounded-2xl shadow-xl p-8 md:p-12">
+<div class="mb-12">
+<h2 class="text-3xl font-black mb-4">Part III: The 4-Layer Safety Architecture</h2>
+<p class="text-lg text-slate-400 max-w-4xl">
+Generative AI is powerful for NLP, but inherently unsafe for autonomous clinical decisions (evidenced by ChatGPT's 52% under-triage rate). CareOS utilizes a defense-in-depth architecture to mitigate catastrophic failure modes.
+</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-slate-800 rounded-xl p-6 border-t-4 border-blue-500 relative overflow-hidden">
+<div class="text-5xl font-black text-slate-700 absolute -right-2 -top-2 opacity-50">01</div>
+<h3 class="font-bold text-lg mb-2 text-blue-400 relative z-10">CareOS Clinical AI</h3>
+<p class="text-xs text-slate-400 relative z-10">Automated NLP parsing, Omaha System coding, and EVV tracking. Prevents documentation fatigue.</p>
+</div>
+<div class="bg-slate-800 rounded-xl p-6 border-t-4 border-orange-500 relative overflow-hidden">
+<div class="text-5xl font-black text-slate-700 absolute -right-2 -top-2 opacity-50">02</div>
+<h3 class="font-bold text-lg mb-2 text-orange-400 relative z-10">Human Review</h3>
+<p class="text-xs text-slate-400 relative z-10">The "Red Row" checkpoint. Mandatory RN/Director audit prevents AI hallucinations and NLP inaccuracies.</p>
+</div>
+<div class="bg-slate-800 rounded-xl p-6 border-t-4 border-emerald-500 relative overflow-hidden">
+<div class="text-5xl font-black text-slate-700 absolute -right-2 -top-2 opacity-50">03</div>
+<h3 class="font-bold text-lg mb-2 text-emerald-400 relative z-10">Cooperative Labor</h3>
+<p class="text-xs text-slate-400 relative z-10">W-2 worker-owners providing continuous care. Prevents knowledge loss from 77% industry turnover.</p>
+</div>
+<div class="bg-slate-800 rounded-xl p-6 border-t-4 border-purple-500 relative overflow-hidden">
+<div class="text-5xl font-black text-slate-700 absolute -right-2 -top-2 opacity-50">04</div>
+<h3 class="font-bold text-lg mb-2 text-purple-400 relative z-10">Physician Oversight</h3>
+<p class="text-xs text-slate-400 relative z-10">MD/DO review of care plans and LMN issuance. Prevents scope-of-practice violations.</p>
+</div>
+</div>
+</section>
+
+<!-- PART IV: STRATEGIC PIVOTS -->
+<section id="pivots" class="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border-t-8 border-t-red-600">
+<div class="mb-12 text-center">
+<span class="inline-block py-1 px-4 rounded-full bg-red-100 text-red-700 text-xs font-black tracking-wider mb-4 border border-red-200 uppercase">Immediate Execution Mandate</span>
+<h2 class="text-3xl md:text-4xl font-black mb-4 text-slate-900">Part IV: Strategic Realignment</h2>
+<p class="text-lg text-slate-600 max-w-3xl mx-auto">
+Attempting to operationalize a 10-layer revenue stack simultaneously with $10,000 in capital is a formula for organizational collapse. These four pivots must be executed immediately to ensure survival.
+</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="pivot-card bg-slate-50 rounded-2xl p-8 border border-slate-200">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-8 h-8 rounded bg-slate-800 text-white flex items-center justify-center font-black">1</div>
+<h3 class="font-bold text-xl text-slate-900">De-Risk CMS ACCESS</h3>
+</div>
+<div class="mb-4 pb-4 border-b border-slate-200">
+<p class="text-sm font-bold text-red-600 mb-1">The Flaw:</p>
+<p class="text-sm text-slate-600">Rushing the April 1, 2026 Cohort 1 application without Medicare enrollment or outcome data invites CMS rejection.</p>
+</div>
+<div>
+<p class="text-sm font-bold text-emerald-600 mb-1">The Pivot:</p>
+<p class="text-sm text-slate-800">Bypass the April deadline. Target <span class="font-bold">January 1, 2027</span> to establish operational history, finalize Part B, and build clinical efficacy data.</p>
+</div>
+</div>
+<div class="pivot-card bg-slate-50 rounded-2xl p-8 border border-slate-200">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-8 h-8 rounded bg-slate-800 text-white flex items-center justify-center font-black">2</div>
+<h3 class="font-bold text-xl text-slate-900">Capital Preservation</h3>
+</div>
+<div class="mb-4 pb-4 border-b border-slate-200">
+<p class="text-sm font-bold text-red-600 mb-1">The Flaw:</p>
+<p class="text-sm text-slate-600">Deploying $1,900/mo Aidbox production infrastructure immediately will bankrupt the entity.</p>
+</div>
+<div>
+<p class="text-sm font-bold text-emerald-600 mb-1">The Pivot:</p>
+<p class="text-sm text-slate-800">Freeze production deployment. Use free dev license. <span class="font-bold">Monetize CII/CRI Assessments immediately</span> ($150-$300) via Firebase to generate cash flow while awaiting licensure.</p>
+</div>
+</div>
+<div class="pivot-card bg-slate-50 rounded-2xl p-8 border border-slate-200">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-8 h-8 rounded bg-slate-800 text-white flex items-center justify-center font-black">3</div>
+<h3 class="font-bold text-xl text-slate-900">Restructure Hospital Pitch</h3>
+</div>
+<div class="mb-4 pb-4 border-b border-slate-200">
+<p class="text-sm font-bold text-red-600 mb-1">The Flaw:</p>
+<p class="text-sm text-slate-600">Hospital compliance boards will reject pre-revenue platforms handling PHI due to extreme risk aversion.</p>
+</div>
+<div>
+<p class="text-sm font-bold text-emerald-600 mb-1">The Pivot:</p>
+<p class="text-sm text-slate-800">Lead the BCH pitch with <span class="font-bold">Armilla AI Performance Warranty & Beazley Virtual Care</span> shields. Focus pilot strictly on assessment/navigation under hospital NPI.</p>
+</div>
+</div>
+<div class="pivot-card bg-slate-50 rounded-2xl p-8 border border-slate-200">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-8 h-8 rounded bg-slate-800 text-white flex items-center justify-center font-black">4</div>
+<h3 class="font-bold text-xl text-slate-900">Abandon 1099 Bridge</h3>
+</div>
+<div class="mb-4 pb-4 border-b border-slate-200">
+<p class="text-sm font-bold text-red-600 mb-1">The Flaw:</p>
+<p class="text-sm text-slate-600">Using a 1099 placement agency bridge contradicts the core cooperative ethos and risks misclassification audits.</p>
+</div>
+<div>
+<p class="text-sm font-bold text-emerald-600 mb-1">The Pivot:</p>
+<p class="text-sm text-slate-800">Scrap the 1099 model. Hire part-time <span class="font-bold">W-2 Care Navigators</span> now to conduct non-physical CII/CRI assessments and build cooperative culture from Day 1.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PART V: APPROACH C — THE EXECUTION PLAN -->
+<section id="approach-c" class="bg-white rounded-2xl shadow-2xl p-8 md:p-12 border-t-8 border-t-emerald-600">
+<div class="mb-12 text-center">
+<span class="inline-block py-1 px-4 rounded-full bg-emerald-100 text-emerald-700 text-xs font-black tracking-wider mb-4 border border-emerald-200 uppercase">Approach C: Aggressive Parallel Execution</span>
+<h2 class="text-3xl md:text-4xl font-black mb-4 text-slate-900">Part V: The 6-Month Execution Plan</h2>
+<p class="text-lg text-slate-600 max-w-3xl mx-auto">
+Hire W-2 Care Navigators immediately. Generate pre-license revenue through clinical assessments. When the Class B license arrives in Month 5-6, your workforce already knows the families, the system, and each other.
+</p>
+</div>
+
+<!-- Timeline -->
+<div class="max-w-4xl mx-auto space-y-0">
+<!-- Month 1 -->
+<div class="relative pl-10 pb-12">
+<div class="absolute left-0 top-0">
+<div class="timeline-dot border-blue-600 bg-blue-600"></div>
+<div class="timeline-line bg-blue-200" style="height: calc(100% + 1rem);"></div>
+</div>
+<div class="bg-blue-50 rounded-xl p-6 border border-blue-100">
+<div class="flex items-center gap-3 mb-3">
+<span class="text-xs font-black text-blue-700 bg-blue-100 px-3 py-1 rounded-full border border-blue-200">MONTH 1</span>
+<h3 class="font-bold text-lg text-slate-900">Foundation & Filing</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+<div>
+<p class="font-bold text-slate-800 mb-2">Legal</p>
+<ul class="text-slate-600 space-y-1">
+<li>LCA Bylaws (Jason Wiener)</li>
+<li>Subchapter T tax election</li>
+<li>EIN + NPI + State Tax ID</li>
+</ul>
+</div>
+<div>
+<p class="font-bold text-slate-800 mb-2">Regulatory</p>
+<ul class="text-slate-600 space-y-1">
+<li>Submit CDPHE Letter of Intent</li>
+<li>Begin 8-hr Admin Training</li>
+<li>Download licensing guidance doc</li>
+</ul>
+</div>
+<div>
+<p class="font-bold text-slate-800 mb-2">Hiring</p>
+<ul class="text-slate-600 space-y-1">
+<li>Post Care Navigator role</li>
+<li>Target: 2-3 founding hires</li>
+<li>Activate caregiver network</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Month 2-3 -->
+<div class="relative pl-10 pb-12">
+<div class="absolute left-0 top-0">
+<div class="timeline-dot border-emerald-600 bg-emerald-600"></div>
+<div class="timeline-line bg-emerald-200" style="height: calc(100% + 1rem);"></div>
+</div>
+<div class="bg-emerald-50 rounded-xl p-6 border border-emerald-100">
+<div class="flex items-center gap-3 mb-3">
+<span class="text-xs font-black text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-200">MONTHS 2-3</span>
+<h3 class="font-bold text-lg text-slate-900">Pre-License Revenue</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+<div>
+<p class="font-bold text-slate-800 mb-2">Revenue Engine</p>
+<ul class="text-slate-600 space-y-1">
+<li>CII/CRI assessments: $150-300 each</li>
+<li>Target: 16-32/month</li>
+<li>Supervised by Dr. Emdur</li>
+</ul>
+</div>
+<div>
+<p class="font-bold text-slate-800 mb-2">Application</p>
+<ul class="text-slate-600 space-y-1">
+<li>CDPHE sends application packet</li>
+<li>Background checks (all staff)</li>
+<li>Submit complete Class B application</li>
+</ul>
+</div>
+<div>
+<p class="font-bold text-slate-800 mb-2">Partnerships</p>
+<ul class="text-slate-600 space-y-1">
+<li>BCH conversation (Grant Besser)</li>
+<li>2-3 parallel health systems</li>
+<li>Opolis coffee (governance playbook)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Month 4-5 -->
+<div class="relative pl-10 pb-12">
+<div class="absolute left-0 top-0">
+<div class="timeline-dot border-orange-500 bg-orange-500"></div>
+<div class="timeline-line bg-orange-200" style="height: calc(100% + 1rem);"></div>
+</div>
+<div class="bg-orange-50 rounded-xl p-6 border border-orange-100">
+<div class="flex items-center gap-3 mb-3">
+<span class="text-xs font-black text-orange-700 bg-orange-100 px-3 py-1 rounded-full border border-orange-200">MONTHS 4-5</span>
+<h3 class="font-bold text-lg text-slate-900">Building While Waiting</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+<div>
+<p class="font-bold text-slate-800 mb-2">Clinical Training</p>
+<ul class="text-slate-600 space-y-1">
+<li>CareOS voice-to-text pipeline</li>
+<li>Caregiver documentation workflows</li>
+<li>Real assessments, real families</li>
+</ul>
+</div>
+<div>
+<p class="font-bold text-slate-800 mb-2">Capital</p>
+<ul class="text-slate-600 space-y-1">
+<li>CO Employee Ownership Tax Credit</li>
+<li>Seed investor conversations</li>
+<li>Assessment revenue covering wages</li>
+</ul>
+</div>
+<div>
+<p class="font-bold text-slate-800 mb-2">Pipeline</p>
+<ul class="text-slate-600 space-y-1">
+<li>10-15 families in relationship</li>
+<li>Select payroll provider</li>
+<li>Begin CMS-855B enrollment prep</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Month 6 -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-0">
+<div class="timeline-dot border-slate-900 bg-slate-900"></div>
+</div>
+<div class="bg-slate-900 text-white rounded-xl p-6 border border-slate-700">
+<div class="flex items-center gap-3 mb-3">
+<span class="text-xs font-black text-white bg-slate-700 px-3 py-1 rounded-full border border-slate-600">MONTH 6</span>
+<h3 class="font-bold text-lg">License Arrives. Full Operations.</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+<div>
+<p class="font-bold text-emerald-400 mb-2">The Transition</p>
+<p class="text-slate-300">Care Navigators become full companion caregivers. Same families, same trust. Day 1 of licensed care is Day 150+ of real relationships.</p>
+</div>
+<div>
+<p class="font-bold text-blue-400 mb-2">Revenue Activation</p>
+<p class="text-slate-300">Private-pay companion care at $35/hr. Begin Medicare PIN/CHI billing incident-to BCH NPI. Submit CMS-855B for own enrollment.</p>
+</div>
+<div>
+<p class="font-bold text-purple-400 mb-2">Infrastructure</p>
+<p class="text-slate-300">Activate Aidbox production for PHI handling. Launch full CareOS pipeline. Deploy on Railway ($20/mo Pro plan).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Revenue Sequencing Chart -->
+<div class="mt-16 bg-slate-50 rounded-2xl p-8 border border-slate-200">
+<h3 class="font-bold text-xl text-slate-900 text-center mb-2">Revenue Sequencing (Honest Timeline)</h3>
+<p class="text-xs text-slate-500 text-center mb-8">Only layers with a clear path to activation. Everything else is deferred.</p>
+<div class="chart-container mx-auto">
+<canvas id="revenueChart"></canvas>
+</div>
+</div>
+</section>
+
+<!-- PART VI: NEJM CATALYST VALIDATION -->
+<section id="nejm" class="glass-panel rounded-2xl shadow-xl p-8 md:p-12 border-l-8 border-l-blue-600">
+<div class="mb-10">
+<h2 class="text-3xl font-black mb-4 text-slate-900">Part VI: NEJM Catalyst Validation</h2>
+<p class="text-lg text-slate-600 max-w-4xl">
+A recent NEJM Catalyst survey reveals the exact blind spots of the traditional healthcare establishment that co-op.care is designed to exploit. Dr. Sara Murray's analysis frames why our approach is not just a technological play, but a structural economic advantage.
+</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="pivot-card bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-black text-sm">01</div>
+<h3 class="font-bold text-slate-900">The Administrative Blind Spot</h3>
+</div>
+<p class="text-sm text-slate-500 mb-3">Only 24% of healthcare leaders expect AI to impact revenue cycle or admin ops.</p>
+<div class="bg-blue-50 rounded-lg p-4 border border-blue-100">
+<p class="text-sm font-bold text-blue-800 mb-1">Our Edge:</p>
+<p class="text-sm text-slate-700">This blind spot is our entire economic thesis. We use CareOS to automate the administrative overhead that PE agencies extract 40-60% margins to cover. That captured margin funds $25-28/hr W-2 wages.</p>
+</div>
+</div>
+<div class="pivot-card bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-black text-sm">02</div>
+<h3 class="font-bold text-slate-900">Commoditizing the AI Scribe</h3>
+</div>
+<p class="text-sm text-slate-500 mb-3">AI clinical note drafting (57% adoption) has become an "expensive commodity" out of reach for safety-net systems.</p>
+<div class="bg-emerald-50 rounded-lg p-4 border border-emerald-100">
+<p class="text-sm font-bold text-emerald-800 mb-1">Our Edge:</p>
+<p class="text-sm text-slate-700">Home care is the lowest-resourced tier. By building our own ambient voice pipeline on GPT-4o-mini, we democratize this technology for frontline workers without enterprise SaaS fees.</p>
+</div>
+</div>
+<div class="pivot-card bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center font-black text-sm">03</div>
+<h3 class="font-bold text-slate-900">Validating the Safety Model</h3>
+</div>
+<p class="text-sm text-slate-500 mb-3">63% expect AI to impact clinical decision support, but Dr. Murray warns: "The data is not as compelling so far."</p>
+<div class="bg-orange-50 rounded-lg p-4 border border-orange-100">
+<p class="text-sm font-bold text-orange-800 mb-1">Our Edge:</p>
+<p class="text-sm text-slate-700">This validates our strict refusal to use autonomous AI for clinical decisions. CareOS processes data; humans decide. The 4-Layer Safety Model exists because AI alone is unsafe for triage.</p>
+</div>
+</div>
+<div class="pivot-card bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center font-black text-sm">04</div>
+<h3 class="font-bold text-slate-900">Bottom-Up vs. Top-Down</h3>
+</div>
+<p class="text-sm text-slate-500 mb-3">AI investments are 70% executive-driven, 30% CIO-driven. Zero bottom-up.</p>
+<div class="bg-purple-50 rounded-lg p-4 border border-purple-100">
+<p class="text-sm font-bold text-purple-800 mb-1">Our Edge:</p>
+<p class="text-sm text-slate-700">Our technology serves a cooperative workforce from the bottom up. AI empowers the worker-owner, making daily labor easier and more dignified, rather than serving as a surveillance tool deployed against them.</p>
+</div>
+</div>
+</div>
+<div class="mt-8 bg-slate-900 rounded-xl p-6 text-center">
+<p class="text-lg font-bold text-white">The established systems are waiting for AI to cure diagnostics while ignoring the administrative costs bleeding them dry.</p>
+<p class="text-slate-400 mt-2">We do the exact opposite: compress administrative costs so we can invest in the humans delivering care.</p>
+</div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-slate-200">
+<h2 class="text-3xl font-black mb-8 text-slate-900 text-center">The Team</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+<div class="bg-slate-50 rounded-xl p-8 border border-slate-200">
+<h3 class="font-black text-xl text-slate-900 mb-1">Blaine Warkentine, MD, MBA</h3>
+<p class="text-sm font-bold text-blue-600 mb-4">Architect & CEO</p>
+<p class="text-sm text-slate-600 leading-relaxed">
+20+ years in orthopedic technology and health system partnerships. Grew BrainLAB orthopedic vertical to $250M. Multiple healthcare M&A exits including HCA Healthcare and Anytime Fitness. MD (Medical College of Wisconsin), MBA (University of Utah). Built CareOS, CII-12, and CRI-14 clinical instruments.
+</p>
+</div>
+<div class="bg-slate-50 rounded-xl p-8 border border-slate-200">
+<h3 class="font-black text-xl text-slate-900 mb-1">Josh Emdur, DO</h3>
+<p class="text-sm font-bold text-emerald-600 mb-4">Medical Director</p>
+<p class="text-sm text-slate-600 leading-relaxed">
+Boulder Community Health hospitalist since 2008. CMO of Automate Clinic (AI physician oversight, Reality.check validation). Former CMO of SteadyMD. Licensed in all 50 states. His governance enables HSA/FSA eligibility, CMS billing attestation, SB24-205 compliance, and insurance underwriting validity.
+</p>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-slate-900 text-white rounded-2xl p-8 md:p-12 text-center">
+<div class="text-3xl font-black mb-4">Human capital that fights private equity.</div>
+<p class="text-slate-400 text-sm mb-6">co-op.care Limited Cooperative Association &middot; Boulder, Colorado &middot; LCA filed March 10, 2026</p>
+<p class="text-slate-600 text-xs">Confidential Advisory Document &middot; Not for public distribution</p>
+</footer>
+
+</main>
+
+<script>
+const wrapLabel = (text) => {
+if (text.length <= 16) return text;
+const words = text.split(' ');
+const lines = [];
+let currentLine = '';
+for (let i = 0; i < words.length; i++) {
+if ((currentLine + words[i]).length > 16) {
+if (currentLine.trim() !== '') lines.push(currentLine.trim());
+currentLine = words[i] + ' ';
+} else {
+currentLine += words[i] + ' ';
+}
+}
+if (currentLine.trim() !== '') lines.push(currentLine.trim());
+return lines;
+};
+
+const commonTooltipConfig = {
+plugins: {
+tooltip: {
+callbacks: {
+title: function(tooltipItems) {
+const item = tooltipItems[0];
+let label = item.chart.data.labels[item.dataIndex];
+return Array.isArray(label) ? label.join(' ') : label;
+}
+}
+}
+}
+};
+
+// Chart 1: Crisis Metrics
+const ctxCrisis = document.getElementById('crisisMetricsChart').getContext('2d');
+new Chart(ctxCrisis, {
+type: 'bar',
+data: {
+labels: ['PE Annual\nTurnover Rate', 'Caregivers\nStressed/Depressed', 'ChatGPT\nUnder-Triage Rate'].map(wrapLabel),
+datasets: [{
+label: 'Percentage (%)',
+data: [77, 51, 52],
+backgroundColor: ['#EF4444', '#F97316', '#1E3A8A'],
+borderRadius: 4
+}]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+scales: {
+y: { beginAtZero: true, max: 100, title: { display: true, text: 'Percentage' } },
+x: { grid: { display: false }, ticks: { font: { size: 11 } } }
+},
+plugins: { ...commonTooltipConfig.plugins, legend: { display: false } }
+}
+});
+
+// Chart 2: Economics
+const ctxEcon = document.getElementById('economicsChart').getContext('2d');
+new Chart(ctxEcon, {
+type: 'bar',
+data: {
+labels: ['Traditional PE\nAgency ($30-$45/hr)', 'co-op.care\nModel ($35/hr)'].map(wrapLabel),
+datasets: [
+{ label: 'Caregiver Compensation', data: [15.00, 26.50], backgroundColor: '#10B981', stack: 'Stack 0' },
+{ label: 'Platform Overhead / Retained', data: [0, 8.50], backgroundColor: '#3B82F6', stack: 'Stack 0' },
+{ label: 'PE Margin Extracted', data: [22.50, 0], backgroundColor: '#EF4444', stack: 'Stack 0' }
+]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+scales: {
+y: { beginAtZero: true, title: { display: true, text: 'Estimated Hourly Value Flow ($)' } },
+x: { grid: { display: false } }
+},
+...commonTooltipConfig
+}
+});
+
+// Chart 3: Revenue Sequencing
+const ctxRevenue = document.getElementById('revenueChart').getContext('2d');
+new Chart(ctxRevenue, {
+type: 'bar',
+data: {
+labels: [
+'CII/CRI\nAssessments',
+'Private-Pay\nCompanion Care',
+'Medicare PIN/CHI\n(incident-to)',
+'Medicare PIN/CHI\n(own NPI)',
+'Employer\nB2B Pilot',
+'CMS ACCESS\nCohort 2'
+].map(wrapLabel),
+datasets: [{
+label: 'Monthly Revenue Target ($)',
+data: [6000, 20000, 4000, 7500, 5500, 0],
+backgroundColor: [
+'#10B981',
+'#10B981',
+'#3B82F6',
+'#3B82F6',
+'#8B5CF6',
+'#94A3B8'
+],
+borderRadius: 4
+}]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+indexAxis: 'y',
+scales: {
+x: {
+beginAtZero: true,
+title: { display: true, text: 'Monthly Revenue ($)' },
+ticks: { callback: function(value) { return '$' + value.toLocaleString(); } }
+},
+y: {
+grid: { display: false },
+ticks: { font: { size: 11 } }
+}
+},
+plugins: {
+...commonTooltipConfig.plugins,
+legend: { display: false },
+tooltip: {
+callbacks: {
+label: function(context) {
+const labels = ['Now (Month 1-2)', 'Month 5-6 (post-license)', 'Month 6-9', 'Month 8-12', 'Month 9-12', 'Jan 2027 (TBD)'];
+return labels[context.dataIndex] + ': $' + context.raw.toLocaleString() + '/mo';
+}
+}
+}
+}
+}
+});
+</script>
+
+</body>
+</html>

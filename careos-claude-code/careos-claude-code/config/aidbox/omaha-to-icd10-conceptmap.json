@@ -1,0 +1,119 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "omaha-to-icd10",
+  "url": "https://co-op.care/fhir/ConceptMap/omaha-to-icd10",
+  "version": "1.0.0",
+  "name": "OmahaToICD10",
+  "title": "Omaha System to ICD-10-CM Crosswalk",
+  "status": "active",
+  "date": "2026-03-01",
+  "publisher": "co-op.care",
+  "description": "Maps Omaha System problem codes to ICD-10-CM diagnosis codes. Used for LMN generation and billing compliance. Only includes LMN-eligible problems with clinical mappings.",
+  "sourceUri": "https://co-op.care/fhir/CodeSystem/omaha-system",
+  "targetUri": "http://hl7.org/fhir/sid/icd-10-cm",
+  "group": [
+    {
+      "source": "https://co-op.care/fhir/CodeSystem/omaha-system",
+      "target": "http://hl7.org/fhir/sid/icd-10-cm",
+      "element": [
+        { "code": "05", "display": "Communication with Community Resources", "target": [
+          { "code": "Z75.4", "display": "Unavailability and inaccessibility of other helping agencies", "equivalence": "wider" },
+          { "code": "Z75.3", "display": "Unavailability and inaccessibility of health-care facilities", "equivalence": "wider" }
+        ]},
+        { "code": "06", "display": "Social Contact", "target": [
+          { "code": "Z60.2", "display": "Problems related to living alone", "equivalence": "wider" },
+          { "code": "Z60.4", "display": "Social exclusion and rejection", "equivalence": "wider" }
+        ]},
+        { "code": "07", "display": "Role Change", "target": [
+          { "code": "Z63.6", "display": "Dependent relative needing care at home", "equivalence": "wider" },
+          { "code": "Z73.1", "display": "Type A behavior pattern", "equivalence": "wider" }
+        ]},
+        { "code": "08", "display": "Interpersonal Relationship", "target": [
+          { "code": "Z63.0", "display": "Problems in relationship with spouse or partner", "equivalence": "wider" },
+          { "code": "Z63.1", "display": "Problems in relationship with in-laws", "equivalence": "wider" }
+        ]},
+        { "code": "10", "display": "Grief", "target": [
+          { "code": "Z63.4", "display": "Disappearance and death of family member", "equivalence": "wider" },
+          { "code": "F43.21", "display": "Adjustment disorder with depressed mood", "equivalence": "narrower" }
+        ]},
+        { "code": "11", "display": "Mental Health", "target": [
+          { "code": "F32.9", "display": "Major depressive disorder, single episode, unspecified", "equivalence": "wider" },
+          { "code": "F41.1", "display": "Generalized anxiety disorder", "equivalence": "wider" },
+          { "code": "Z73.0", "display": "Burn-out", "equivalence": "wider" }
+        ]},
+        { "code": "13", "display": "Caretaking/Parenting", "target": [
+          { "code": "Z63.6", "display": "Dependent relative needing care at home", "equivalence": "equivalent" },
+          { "code": "Z73.1", "display": "Type A behavior pattern", "equivalence": "wider" }
+        ]},
+        { "code": "16", "display": "Growth and Development", "target": [
+          { "code": "F03.90", "display": "Unspecified dementia without behavioral disturbance", "equivalence": "wider" },
+          { "code": "G30.9", "display": "Alzheimer's disease, unspecified", "equivalence": "narrower" }
+        ]},
+        { "code": "17", "display": "Hearing", "target": [
+          { "code": "H91.90", "display": "Unspecified hearing loss, unspecified ear", "equivalence": "equivalent" }
+        ]},
+        { "code": "18", "display": "Vision", "target": [
+          { "code": "H54.7", "display": "Unspecified visual loss", "equivalence": "equivalent" }
+        ]},
+        { "code": "19", "display": "Speech and Language", "target": [
+          { "code": "R47.01", "display": "Aphasia", "equivalence": "narrower" }
+        ]},
+        { "code": "21", "display": "Cognition", "target": [
+          { "code": "F03.90", "display": "Unspecified dementia without behavioral disturbance", "equivalence": "wider" },
+          { "code": "G30.9", "display": "Alzheimer's disease, unspecified", "equivalence": "narrower" }
+        ]},
+        { "code": "22", "display": "Pain", "target": [
+          { "code": "G89.29", "display": "Other chronic pain", "equivalence": "wider" },
+          { "code": "M54.5", "display": "Low back pain", "equivalence": "narrower" }
+        ]},
+        { "code": "24", "display": "Skin", "target": [
+          { "code": "L89.90", "display": "Pressure ulcer of unspecified site, unspecified stage", "equivalence": "narrower" }
+        ]},
+        { "code": "25", "display": "Neuro-Musculo-Skeletal Function", "target": [
+          { "code": "M62.81", "display": "Muscle weakness (generalized)", "equivalence": "wider" },
+          { "code": "R26.2", "display": "Difficulty in walking, not elsewhere classified", "equivalence": "wider" },
+          { "code": "W19.XXXA", "display": "Unspecified fall, initial encounter", "equivalence": "wider" },
+          { "code": "Z87.39", "display": "Personal history of other musculoskeletal disorders", "equivalence": "wider" }
+        ]},
+        { "code": "26", "display": "Respiration", "target": [
+          { "code": "J44.1", "display": "Chronic obstructive pulmonary disease with acute exacerbation", "equivalence": "narrower" },
+          { "code": "J96.10", "display": "Chronic respiratory failure, unspecified", "equivalence": "wider" }
+        ]},
+        { "code": "27", "display": "Circulation", "target": [
+          { "code": "I50.9", "display": "Heart failure, unspecified", "equivalence": "wider" },
+          { "code": "I10", "display": "Essential (primary) hypertension", "equivalence": "wider" }
+        ]},
+        { "code": "28", "display": "Digestion-Hydration", "target": [
+          { "code": "E86.0", "display": "Dehydration", "equivalence": "narrower" },
+          { "code": "R63.0", "display": "Anorexia", "equivalence": "wider" }
+        ]},
+        { "code": "30", "display": "Urinary Function", "target": [
+          { "code": "N39.0", "display": "Urinary tract infection, site not specified", "equivalence": "narrower" }
+        ]},
+        { "code": "35", "display": "Nutrition", "target": [
+          { "code": "E11.9", "display": "Type 2 diabetes mellitus without complications", "equivalence": "wider" },
+          { "code": "E78.5", "display": "Hyperlipidemia, unspecified", "equivalence": "wider" }
+        ]},
+        { "code": "36", "display": "Sleep and Rest Patterns", "target": [
+          { "code": "G47.00", "display": "Insomnia, unspecified", "equivalence": "wider" }
+        ]},
+        { "code": "37", "display": "Physical Activity", "target": [
+          { "code": "Z72.3", "display": "Lack of physical exercise", "equivalence": "equivalent" }
+        ]},
+        { "code": "38", "display": "Personal Care", "target": [
+          { "code": "R26.89", "display": "Other abnormalities of gait and mobility", "equivalence": "wider" },
+          { "code": "Z74.1", "display": "Need for assistance with personal care", "equivalence": "equivalent" }
+        ]},
+        { "code": "39", "display": "Substance Use", "target": [
+          { "code": "F10.20", "display": "Alcohol dependence, uncomplicated", "equivalence": "narrower" }
+        ]},
+        { "code": "41", "display": "Health Care Supervision", "target": [
+          { "code": "Z79.899", "display": "Other long term (current) drug therapy", "equivalence": "wider" }
+        ]},
+        { "code": "42", "display": "Prescribed Medication Regimen", "target": [
+          { "code": "Z91.19", "display": "Patient's noncompliance with other medical treatment and regimen", "equivalence": "wider" }
+        ]}
+      ]
+    }
+  ]
+}

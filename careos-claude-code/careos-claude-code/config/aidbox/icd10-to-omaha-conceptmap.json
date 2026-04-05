@@ -1,0 +1,100 @@
+{
+  "resourceType": "ConceptMap",
+  "id": "icd10-to-omaha",
+  "url": "https://co-op.care/fhir/ConceptMap/icd10-to-omaha",
+  "version": "1.0.0",
+  "name": "ICD10ToOmaha",
+  "title": "ICD-10-CM to Omaha System Crosswalk",
+  "status": "active",
+  "date": "2026-03-01",
+  "publisher": "co-op.care",
+  "description": "Reverse mapping from ICD-10-CM codes to Omaha System problems. Used for hospital discharge intake: ingests ICD-10 codes from discharge summaries, maps to Omaha problems, and generates initial care plans.",
+  "sourceUri": "http://hl7.org/fhir/sid/icd-10-cm",
+  "targetUri": "https://co-op.care/fhir/CodeSystem/omaha-system",
+  "group": [
+    {
+      "source": "http://hl7.org/fhir/sid/icd-10-cm",
+      "target": "https://co-op.care/fhir/CodeSystem/omaha-system",
+      "element": [
+        { "code": "F03.90", "display": "Unspecified dementia", "target": [
+          { "code": "21", "display": "Cognition", "equivalence": "wider" },
+          { "code": "16", "display": "Growth and Development", "equivalence": "wider" }
+        ]},
+        { "code": "G30.9", "display": "Alzheimer's disease, unspecified", "target": [
+          { "code": "21", "display": "Cognition", "equivalence": "wider" },
+          { "code": "16", "display": "Growth and Development", "equivalence": "wider" }
+        ]},
+        { "code": "F32.9", "display": "Major depressive disorder", "target": [
+          { "code": "11", "display": "Mental Health", "equivalence": "wider" }
+        ]},
+        { "code": "F41.1", "display": "Generalized anxiety disorder", "target": [
+          { "code": "11", "display": "Mental Health", "equivalence": "wider" }
+        ]},
+        { "code": "Z73.0", "display": "Burn-out", "target": [
+          { "code": "11", "display": "Mental Health", "equivalence": "wider" },
+          { "code": "13", "display": "Caretaking/Parenting", "equivalence": "wider" }
+        ]},
+        { "code": "Z63.6", "display": "Dependent relative needing care at home", "target": [
+          { "code": "07", "display": "Role Change", "equivalence": "wider" },
+          { "code": "13", "display": "Caretaking/Parenting", "equivalence": "equivalent" }
+        ]},
+        { "code": "I50.9", "display": "Heart failure, unspecified", "target": [
+          { "code": "27", "display": "Circulation", "equivalence": "wider" }
+        ]},
+        { "code": "I10", "display": "Essential hypertension", "target": [
+          { "code": "27", "display": "Circulation", "equivalence": "wider" }
+        ]},
+        { "code": "J44.1", "display": "COPD with acute exacerbation", "target": [
+          { "code": "26", "display": "Respiration", "equivalence": "wider" }
+        ]},
+        { "code": "E11.9", "display": "Type 2 diabetes mellitus", "target": [
+          { "code": "35", "display": "Nutrition", "equivalence": "wider" }
+        ]},
+        { "code": "W19.XXXA", "display": "Unspecified fall", "target": [
+          { "code": "25", "display": "Neuro-Musculo-Skeletal Function", "equivalence": "wider" }
+        ]},
+        { "code": "Z87.39", "display": "Personal history of musculoskeletal disorders", "target": [
+          { "code": "25", "display": "Neuro-Musculo-Skeletal Function", "equivalence": "wider" }
+        ]},
+        { "code": "M62.81", "display": "Muscle weakness (generalized)", "target": [
+          { "code": "25", "display": "Neuro-Musculo-Skeletal Function", "equivalence": "wider" }
+        ]},
+        { "code": "R26.2", "display": "Difficulty in walking", "target": [
+          { "code": "25", "display": "Neuro-Musculo-Skeletal Function", "equivalence": "wider" },
+          { "code": "38", "display": "Personal Care", "equivalence": "wider" }
+        ]},
+        { "code": "G89.29", "display": "Other chronic pain", "target": [
+          { "code": "22", "display": "Pain", "equivalence": "wider" }
+        ]},
+        { "code": "L89.90", "display": "Pressure ulcer, unspecified", "target": [
+          { "code": "24", "display": "Skin", "equivalence": "wider" }
+        ]},
+        { "code": "N39.0", "display": "Urinary tract infection", "target": [
+          { "code": "30", "display": "Urinary Function", "equivalence": "wider" }
+        ]},
+        { "code": "E86.0", "display": "Dehydration", "target": [
+          { "code": "28", "display": "Digestion-Hydration", "equivalence": "wider" }
+        ]},
+        { "code": "G47.00", "display": "Insomnia, unspecified", "target": [
+          { "code": "36", "display": "Sleep and Rest Patterns", "equivalence": "wider" }
+        ]},
+        { "code": "Z60.2", "display": "Problems related to living alone", "target": [
+          { "code": "06", "display": "Social Contact", "equivalence": "wider" }
+        ]},
+        { "code": "Z74.1", "display": "Need for assistance with personal care", "target": [
+          { "code": "38", "display": "Personal Care", "equivalence": "equivalent" }
+        ]},
+        { "code": "H91.90", "display": "Unspecified hearing loss", "target": [
+          { "code": "17", "display": "Hearing", "equivalence": "equivalent" }
+        ]},
+        { "code": "H54.7", "display": "Unspecified visual loss", "target": [
+          { "code": "18", "display": "Vision", "equivalence": "equivalent" }
+        ]},
+        { "code": "F43.21", "display": "Adjustment disorder with depressed mood", "target": [
+          { "code": "10", "display": "Grief", "equivalence": "wider" },
+          { "code": "11", "display": "Mental Health", "equivalence": "wider" }
+        ]}
+      ]
+    }
+  ]
+}

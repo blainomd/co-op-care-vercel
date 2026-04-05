@@ -1,0 +1,130 @@
+# ─── CareOS Production Stack ─────────────────────────────────
+# For self-hosted deployment (single server / VM)
+# Usage: docker compose -f docker-compose.production.yml up -d
+#
+# Prerequisites:
+#   1. Copy .env.example to .env and fill in production values
+#   2. Generate JWT keys: node scripts/generate-keys.js
+#   3. Generate VAPID keys: node scripts/generate-vapid.js
+
+services:
+  # ── Application ────────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@careos-db:5432/${POSTGRES_DB}
+      AIDBOX_URL: http://aidbox:8888
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      careos-db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      aidbox:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  # ── PostgreSQL ──────────────────────────────────────────────
+  careos-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-careos}
+      POSTGRES_USER: ${POSTGRES_USER:-careos}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - careos_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-careos}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Redis ──────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-}
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Aidbox (FHIR R4) ──────────────────────────────────────
+  aidbox-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: aidbox
+      POSTGRES_USER: ${AIDBOX_PG_USER:-aidbox}
+      POSTGRES_PASSWORD: ${AIDBOX_PG_PASSWORD}
+    volumes:
+      - aidbox_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aidbox"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  aidbox:
+    image: healthsamurai/aidboxone:latest
+    restart: unless-stopped
+    depends_on:
+      aidbox-db:
+        condition: service_healthy
+    environment:
+      AIDBOX_PORT: 8888
+      AIDBOX_FHIR_VERSION: 4.0.1
+      PGHOST: aidbox-db
+      PGPORT: 5432
+      PGDATABASE: aidbox
+      PGUSER: ${AIDBOX_PG_USER:-aidbox}
+      PGPASSWORD: ${AIDBOX_PG_PASSWORD}
+      AIDBOX_CLIENT_ID: ${AIDBOX_CLIENT_ID}
+      AIDBOX_CLIENT_SECRET: ${AIDBOX_CLIENT_SECRET}
+      AIDBOX_ADMIN_ID: ${AIDBOX_ADMIN_ID:-admin}
+      AIDBOX_ADMIN_PASSWORD: ${AIDBOX_ADMIN_PASSWORD}
+      AIDBOX_BASE_URL: ${AIDBOX_BASE_URL:-http://localhost:8888}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888/health"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+  # ── Reverse Proxy (optional — remove if using external LB) ─
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - api
+
+volumes:
+  careos_pg_data:
+  redis_data:
+  aidbox_pg_data:
+  caddy_data:
+  caddy_config:

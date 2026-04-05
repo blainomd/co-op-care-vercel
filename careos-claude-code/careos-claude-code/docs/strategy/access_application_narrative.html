@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>co-op.care | CMS ACCESS Model Application Narrative 2026</title>
+<style>
+  :root {
+    --teal: #0D4F5C; --teal-light: #1a6b7a; --teal-pale: #e8f4f7;
+    --gold: #D4A017; --gold-light: #fdf8ec;
+    --gray-100: #f8f9fa; --gray-200: #e9ecef; --gray-500: #6c757d; --gray-700: #495057;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Inter, Georgia, serif; font-size: 14px; line-height: 1.8; color: #1a2332; background: #f8f9fa; }
+
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 52px; background: var(--teal); color: white; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; z-index: 100; }
+  .topbar-brand { font-size: 16px; font-weight: 700; }
+  .topbar-brand span { color: var(--gold); }
+  .btn-pdf { background: var(--gold); color: #1a2332; font-weight: 700; border: none; padding: 7px 18px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+
+  .page { max-width: 820px; margin: 72px auto 60px; padding: 0 24px; }
+
+  /* COVER PAGE */
+  .cover { background: white; border-radius: 12px; padding: 48px; margin-bottom: 28px; border-top: 6px solid var(--teal); box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+  .cover-agency { font-size: 13px; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .cover h1 { font-size: 26px; font-weight: 800; color: var(--teal); margin-bottom: 8px; line-height: 1.3; }
+  .cover h2 { font-size: 18px; font-weight: 600; color: var(--gray-700); margin-bottom: 28px; }
+  .cover-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; font-size: 13px; }
+  .cover-meta-row { display: contents; }
+  .meta-label { background: var(--gray-100); padding: 9px 16px; font-weight: 600; color: var(--teal); border-bottom: 1px solid var(--gray-200); }
+  .meta-value { background: white; padding: 9px 16px; color: var(--gray-700); border-bottom: 1px solid var(--gray-200); }
+  .cover-deadline { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 12px 16px; margin-top: 20px; font-size: 13px; }
+  .cover-deadline strong { color: #856404; }
+
+  /* NARRATIVE SECTIONS */
+  .section { background: white; border-radius: 10px; padding: 32px 40px; margin-bottom: 20px; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+  .section-num-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--teal-pale); }
+  .sec-num { background: var(--teal); color: white; font-size: 12px; font-weight: 700; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .section h2 { font-size: 18px; font-weight: 700; color: var(--teal); }
+  .section h3 { font-size: 15px; font-weight: 700; color: var(--teal); margin: 20px 0 8px; }
+  .section p { margin-bottom: 12px; font-size: 13.5px; line-height: 1.75; }
+  .section ul { margin: 8px 0 12px 20px; }
+  .section ul li { margin-bottom: 6px; font-size: 13.5px; line-height: 1.65; }
+  .section ol { margin: 8px 0 12px 20px; }
+  .section ol li { margin-bottom: 8px; font-size: 13.5px; }
+
+  /* CALLOUT / NOTE */
+  .note { border-left: 4px solid var(--teal); background: var(--teal-pale); padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 14px 0; font-size: 13px; }
+  .note.gold { border-left-color: var(--gold); background: var(--gold-light); }
+  .note.warn { border-left-color: #ffc107; background: #fff9e6; }
+  .note strong { color: var(--teal); }
+  .note.gold strong { color: #8a6800; }
+  .note.warn strong { color: #856404; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0 20px; }
+  th { background: var(--teal); color: white; padding: 9px 12px; text-align: left; font-size: 12px; font-weight: 600; }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--gray-200); vertical-align: top; line-height: 1.5; }
+  tr:nth-child(even) td { background: var(--gray-100); }
+
+  /* FILL-IN FIELDS */
+  .fill { border-bottom: 1px solid var(--gray-500); color: var(--teal); font-weight: 600; padding: 0 4px; display: inline-block; min-width: 120px; }
+  .bracket { color: var(--gold); font-style: italic; font-size: 12px; }
+
+  .footer { text-align: center; font-size: 11px; color: var(--gray-500); padding: 24px 0; margin-top: 8px; }
+
+  @media print {
+    .topbar, .btn-pdf { display: none !important; }
+    .page { margin-top: 0; }
+    .section { page-break-inside: avoid; box-shadow: none; border: 1px solid var(--gray-200); }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-brand">co-op<span>.</span>care | CMS ACCESS Model Application</div>
+  <button class="btn-pdf" onclick="window.print()">⬇ Save as PDF</button>
+</header>
+
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-agency">Centers for Medicare &amp; Medicaid Services — CMMI</div>
+    <h1>Advancing Chronic Care with Effective &amp; Scalable Solutions (ACCESS) Model</h1>
+    <h2>Application Narrative — co-op.care Technologies LLC / Boulder Family Care Cooperative</h2>
+    <div class="cover-meta">
+      <div class="meta-label">Applicant Organization</div>
+      <div class="meta-value">co-op.care Technologies LLC / Boulder Family Care Cooperative</div>
+      <div class="meta-label">Primary Contact</div>
+      <div class="meta-value">Blaine Warkentine, MD — Founder &amp; CEO</div>
+      <div class="meta-label">Email</div>
+      <div class="meta-value">orthoblaino@gmail.com</div>
+      <div class="meta-label">Address</div>
+      <div class="meta-value">Boulder, CO 80301</div>
+      <div class="meta-label">NPI / Medicare Enrollment</div>
+      <div class="meta-value"><span class="fill">[INSERT NPI]</span></div>
+      <div class="meta-label">Requested Tracks</div>
+      <div class="meta-value">CKM · eCKM · MSK · Behavioral Health</div>
+      <div class="meta-label">Performance Period Start</div>
+      <div class="meta-value">July 1, 2026</div>
+      <div class="meta-label">Geographic Focus</div>
+      <div class="meta-value">Boulder County, CO (expanding Front Range 2027)</div>
+      <div class="meta-label">Channel Partners</div>
+      <div class="meta-value">Boulder Community Health (BCH) · Boulder Valley School District (BVSD)</div>
+    </div>
+    <div class="cover-deadline">
+      <strong>⚡ DEADLINE ALERT:</strong> CMS ACCESS first cohort application deadline is <strong>March 20, 2026</strong> (some sources indicate April 1 — verify at cms.gov/priorities/innovation/files/access-rfa.pdf). Submit by March 20 to be safe. Performance period begins July 1, 2026.
+    </div>
+  </div>
+
+  <!-- SECTION 1: ORGANIZATIONAL OVERVIEW -->
+  <div class="section">
+    <div class="section-num-header"><div class="sec-num">1</div><h2>Organizational Overview</h2></div>
+
+    <h3>1.1 Applicant Description</h3>
+    <p>co-op.care Technologies LLC (the "Hard Shell") is a Boulder, Colorado-based health technology company that provides enterprise-grade clinical AI infrastructure — the CareOS platform — to a network of worker-owned home care cooperatives (the "Soft Centers"). The Boulder Family Care Cooperative is the first local cooperative in this federated network, and will serve as the ACCESS Model participant entity for the Boulder County pilot.</p>
+
+    <p>co-op.care is uniquely positioned for the ACCESS Model because its cooperative ownership structure eliminates the 40–60% agency fee extraction that characterizes traditional home care — enabling substantially higher worker retention (projected 22% annual turnover vs. 66–79% industry average) and sustainable care continuity for chronic disease management.</p>
+
+    <h3>1.2 Legal Structure &amp; Medicare Enrollment</h3>
+    <p>The Boulder Family Care Cooperative is being incorporated as a worker-owned cooperative under Colorado state law, with support from the Rocky Mountain Employee Ownership Center (RMEOC) and its Social Cooperative Academy. The cooperative will enroll in Medicare Part B as a Home Health Agency in advance of the July 2026 performance period start.</p>
+    <p><strong>Medicare HHA enrollment NPI:</strong> <span class="fill">[INSERT]</span> &nbsp;&nbsp; <strong>Enrollment date:</strong> <span class="fill">[INSERT]</span></p>
+
+    <div class="note">
+      <strong>Entity structure note:</strong> The participant entity enrolling under Medicare Part B is the Boulder Family Care Cooperative (local worker-owned co-op), not co-op.care Technologies LLC. The Technologies LLC provides the CareOS platform under a licensing agreement. Each future co-op in the national network will enroll separately.
+    </div>
+
+    <h3>1.3 Key Personnel</h3>
+    <table>
+      <tr><th>Role</th><th>Name</th><th>Credentials</th><th>Relevant Experience</th></tr>
+      <tr><td>Founder &amp; CEO</td><td>Blaine Warkentine, MD</td><td>MD (Medical College of Wisconsin), BS Business (CU Boulder)</td><td>Orthopedic surgeon, 19+ years; 35+ patents; Former R&amp;D Director BrainLAB; Healthcare Informatics Top 100 Innovator; Senior Fellow, Jefferson School of Population Health</td></tr>
+      <tr><td>Chief Medical Officer</td><td>Josh Emdur, DO</td><td>DO, Board-Certified Family Medicine</td><td>Former CMO, SteadyMD; 50-state licensed; expertise in chronic disease management and telemedicine; Boulder-based; qualifies as PACE Medical Director (42 CFR 460.70)</td></tr>
+      <tr><td>Chief Technology Officer</td><td>Jacob Pielke</td><td>USC Marshall alum</td><td>CEO, Cohesion Labs; Founder Virtual Fork (acquired 2024); healthcare software architect since 2017; FHIR/Redox/Metriport expert</td></tr>
+      <tr><td>Chief Operating Officer</td><td>Jess Dion</td><td>Healthcare Administration</td><td>Cooperative governance; social enterprise leadership; RMEOC partnership management; CDPHE licensing process oversight</td></tr>
+      <tr><td>Director of Nursing</td><td>[TBD — hire Phase 2]</td><td>RN, Colorado licensed</td><td>CDPHE Class A license compliance; CMS Medicare certification; clinical supervisor for AI-validated care notes (42 CFR 484.75)</td></tr>
+    </table>
+  </div>
+
+  <!-- SECTION 2: TARGET POPULATION -->
+  <div class="section">
+    <div class="section-num-header"><div class="sec-num">2</div><h2>Target Beneficiary Population</h2></div>
+
+    <h3>2.1 Population Description</h3>
+    <p>co-op.care will serve Medicare Fee-for-Service beneficiaries in Boulder County, Colorado enrolled in Part A and Part B, receiving home-based care following hospital discharge or as an alternative to unnecessary institutionalization. The initial cohort of 50–75 beneficiaries will be sourced through the Boulder Community Health (BCH) hospital discharge pipeline, with secondary referrals from the Boulder Valley School District (BVSD) employer-sponsored pilot.</p>
+
+    <h3>2.2 Tracks Requested and Target Conditions</h3>
+    <table>
+      <tr><th>Track</th><th>Target Conditions</th><th>Annual OAP</th><th>Initial Cohort Target</th></tr>
+      <tr><td><strong>Cardio-Kidney-Metabolic (CKM)</strong></td><td>Hypertension, CKD, Type 2 diabetes, dyslipidemia</td><td>$420/beneficiary</td><td>20–25 patients (BCH discharge)</td></tr>
+      <tr><td><strong>Early CKM (eCKM)</strong></td><td>Prediabetes, pre-hypertension, obesity, early CKD</td><td>$360/beneficiary</td><td>10–15 patients</td></tr>
+      <tr><td><strong>Musculoskeletal (MSK)</strong></td><td>Post-surgical rehab, OA, low back pain, joint conditions</td><td>$180/beneficiary</td><td>15–20 patients (Blaine's surgical network)</td></tr>
+      <tr><td><strong>Behavioral Health (BH)</strong></td><td>Depression (PHQ-9 ≥10), anxiety (GAD-7 ≥10)</td><td>$180/beneficiary</td><td>5–10 patients</td></tr>
+    </table>
+
+    <h3>2.3 Health Equity Considerations</h3>
+    <p>Boulder County's Medicare FFS population includes a meaningful proportion of lower-income seniors who face SDOH barriers (transportation, food security, social isolation) that compound chronic disease. The cooperative employment model directly addresses SDOH by employing caregivers from the same communities they serve — creating economic reciprocity and cultural trust. The Time Bank mutual aid layer (hOurworld platform) addresses non-clinical SDOH needs without additional billing cost.</p>
+  </div>
+
+  <!-- SECTION 3: CLINICAL APPROACH -->
+  <div class="section">
+    <div class="section-num-header"><div class="sec-num">3</div><h2>Clinical Approach &amp; Care Delivery Model</h2></div>
+
+    <h3>3.1 Core Clinical Model</h3>
+    <p>co-op.care delivers a 5-stage integrated care workflow that combines AI-assisted documentation with mandatory physician oversight, structured around the Omaha System taxonomy for community-based care:</p>
+
+    <ol>
+      <li><strong>Intake (SageCare.ai):</strong> 24/7 AI intake layer captures referrals from BCH discharge coordinators, auto-drafts individualized care plans within hours, and routes beneficiaries to the appropriate ACCESS track. Zero lead leakage — every referral is documented and acted upon.</li>
+      <li><strong>Assignment &amp; Onboarding:</strong> Worker-owner caregivers are matched to beneficiaries based on clinical need, language, geography, and continuity potential. Caregiver onboarding uses CareAcademy (75-hour HHA certification, 59 online + 16 in-person) and Relias micro-learning modules for ongoing skill maintenance.</li>
+      <li><strong>Ongoing Care Delivery:</strong> Caregivers deliver scheduled home visits per the individualized care plan. The cooperative ownership model ensures care continuity — the 79% industry turnover rate drops to a projected 22% for worker-owners, preserving therapeutic relationships critical for chronic disease management.</li>
+      <li><strong>AI Clinical Documentation (4-Layer Safety Model):</strong>
+        <ul>
+          <li>Layer 1: Caregiver records ambient voice note at end of each visit</li>
+          <li>Layer 2: CareOS AI maps note to Omaha System KBS (Knowledge/Behavior/Status, 1–5 scale) and interRAI CAPs</li>
+          <li>Layer 3: Josh Emdur, DO (CMO) reviews and validates AI-generated clinical documentation via HIPAA-compliant Physician Oversight Portal — satisfying 2026 CMS AI oversight requirements</li>
+          <li>Layer 4: Validated data generates structured FHIR R4 output, populating Aidbox backend for billing, compliance, and outcome reporting</li>
+        </ul>
+      </li>
+      <li><strong>Mutual Aid Support (Time Bank):</strong> Non-clinical needs (transportation, errands, companionship, SDOH) are addressed through the hOurworld Time Bank (TimeDollars: 1 hour of service = 1 credit), offloading these tasks from billable caregivers at zero additional cost.</li>
+    </ol>
+
+    <h3>3.2 Outcome Measurement Plan</h3>
+    <table>
+      <tr><th>Track</th><th>Measures</th><th>Baseline Window</th><th>Target (Outcome Attainment Rate ≥50%)</th></tr>
+      <tr><td>CKM</td><td>BP &lt;130/80 or ≥15 mmHg reduction; HbA1c &lt;7.5% or ≥1% reduction; LDL &lt;70 mg/dL; BMI/weight target</td><td>Within 60 days of enrollment</td><td>≥50% of CKM beneficiaries meet all applicable measures at 12 months</td></tr>
+      <tr><td>eCKM</td><td>BP &lt;130 or ≥15 mmHg reduction; BMI &lt;30 or ≥5% reduction; HbA1c (prediabetes); LDL (dyslipidemia)</td><td>Within 60 days</td><td>≥50% outcome attainment at 12 months</td></tr>
+      <tr><td>MSK</td><td>PROMIS PF/PI, ODI, NDI, QuickDASH, KOOS JR/HOOS JR; Pain NRS; PGIC minimum improvement</td><td>Within 60 days</td><td>Minimum meaningful clinical improvement at 12 months</td></tr>
+      <tr><td>BH</td><td>PHQ-9 ≤10 or ≥5-point reduction; GAD-7 ≤10 or ≥4-point reduction; PGIC; optional WHODAS 2.0</td><td>Within 60 days (must have baseline PHQ-9/GAD-7 ≥10)</td><td>≥50% outcome attainment at 12 months</td></tr>
+    </table>
+
+    <div class="note">
+      <strong>Reporting schedule:</strong> Baseline within 60 days of enrollment; quarterly reports (70–110 day cycle); final outcome reporting on Day 425. Early reporting permitted (up to 90 days early for CKM/eCKM; 180 days early for BH/MSK). co-op.care's FHIR R4 backend (Aidbox) enables automated data extraction for all reporting cycles.
+    </div>
+
+    <h3>3.3 Substitute Services Management</h3>
+    <p>co-op.care will actively monitor Substitute Spend to maintain it below 90% of allowed substitute services — the threshold required to avoid payment reduction. The CareOS platform tracks digital health device billing codes (G0552, G0553), psychiatric diagnostic evaluations (90791, 90792), remote therapeutic monitoring setup (98975), and collaborative care management (99492) in real time, flagging any approaching thresholds for Clinical Director review.</p>
+  </div>
+
+  <!-- SECTION 4: TECHNOLOGY -->
+  <div class="section">
+    <div class="section-num-header"><div class="sec-num">4</div><h2>Technology Infrastructure</h2></div>
+
+    <h3>4.1 CareOS Platform — Technical Architecture</h3>
+    <p>co-op.care's CareOS is built on an enterprise-grade FHIR-native backend powered by Aidbox (Health Samurai), a Google Cloud-certified FHIR R4 server used by Washington State Department of Health and Sonic Healthcare for population-scale data management. The architecture enables the voice-to-FHIR-to-billing pipeline required for ACCESS Model participation.</p>
+
+    <table>
+      <tr><th>Component</th><th>Technology</th><th>Function</th><th>ACCESS Model Relevance</th></tr>
+      <tr><td>FHIR Backend</td><td>Aidbox (Health Samurai)</td><td>FHIR R4 data store, API layer, compliance</td><td>Structured outcome data for OAP reporting</td></tr>
+      <tr><td>Intake AI</td><td>SageCare.ai</td><td>24/7 intake, care plan drafting, referral routing</td><td>Baseline assessment capture within 60-day window</td></tr>
+      <tr><td>Clinical Scribe AI</td><td>co-op.care CareOS</td><td>Omaha System KBS mapping, interRAI CAPs</td><td>Structured clinical documentation for outcome measurement</td></tr>
+      <tr><td>Physician Oversight Portal</td><td>HIPAA-compliant, proprietary</td><td>CMO validation of AI clinical notes (Layer 3)</td><td>Satisfies 2026 CMS AI physician oversight requirement</td></tr>
+      <tr><td>EMR Integration</td><td>WellSky</td><td>Home health EMR for CDPHE/CMS compliance</td><td>Medicare billing rails, OASIS integration</td></tr>
+      <tr><td>Interoperability</td><td>Redox / Metriport (via Cohesion Labs)</td><td>BCH EHR ↔ Aidbox FHIR data exchange</td><td>Baseline data import from hospital discharge</td></tr>
+    </table>
+
+    <h3>4.2 Data Security &amp; Privacy</h3>
+    <p>All Protected Health Information (PHI) is processed and stored in HIPAA-compliant infrastructure. The Aidbox platform maintains SOC 2 Type II certification. The Physician Oversight Portal requires two-factor authentication and role-based access control. Caregiver mobile applications use end-to-end encryption for all voice note transmission.</p>
+
+    <h3>4.3 AI Safety &amp; Oversight (2026 CMS Requirements)</h3>
+    <p>co-op.care's 4-layer clinical AI safety model is designed specifically to comply with CMS 2026 AI oversight requirements for AI-assisted medical necessity determinations:</p>
+    <ul>
+      <li>No AI output is used for billing or clinical decision-making without physician validation (Layer 3)</li>
+      <li>Josh Emdur, DO (CMO, 50-state licensed) reviews every AI-generated clinical note via the HIPAA-compliant Physician Oversight Portal</li>
+      <li>Audit trail maintained for every AI inference, human review, and output modification</li>
+      <li>Omaha System KBS taxonomy provides standardized, validated clinical language — not free-form AI generation</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 5: ORGANIZATIONAL CAPACITY -->
+  <div class="section">
+    <div class="section-num-header"><div class="sec-num">5</div><h2>Organizational Capacity &amp; Readiness</h2></div>
+
+    <h3>5.1 Infrastructure Readiness</h3>
+    <ul>
+      <li>Aidbox FHIR infrastructure: actively being deployed (Q1 2026)</li>
+      <li>CDPHE Class A Home Health license: application to be submitted Q2 2026 (requires Director of Nursing hire)</li>
+      <li>Medicare Part B HHA enrollment: in process, target completion Q2 2026</li>
+      <li>Cooperative formation (RMEOC support): Phase 1, board formation underway</li>
+      <li>Colorado 75% employee-ownership tax credit: application in preparation</li>
+    </ul>
+
+    <h3>5.2 Partnership Infrastructure</h3>
+    <ul>
+      <li><strong>Health Samurai / Aidbox:</strong> Technology platform partner; FHIR R4 backend; Google Cloud partner; established state-level healthcare deployments</li>
+      <li><strong>RMEOC (Rocky Mountain Employee Ownership Center):</strong> 501(c)3 founded 2012; dedicated Colorado Homecare Cooperative Program Director; expertise in employee-ownership conversions and governance</li>
+      <li><strong>Boulder Community Health (BCH):</strong> Hospital discharge pipeline; channel partner for Cohort 1 referrals; provides letter of support for this application</li>
+      <li><strong>Boulder Valley School District (BVSD):</strong> Employer-sponsored pilot; validates B2B employer channel and institutional client anchor</li>
+    </ul>
+
+    <h3>5.3 Financial Sustainability</h3>
+    <p>co-op.care is currently completing a seed round of $750K–$1.5M (target $1M) to fund the 90-day Coop-in-a-Box deployment, Director of Nursing hire, CDPHE licensing, and initial technology buildout. The ACCESS Model Outcome-Aligned Payments ($180–$420/beneficiary/year) provide the near-term federal revenue stream; PACE capitation provides a parallel near-term anchor. The cooperative Hard Shell licensing model ($75–150K per co-op) provides scalable platform revenue as the network expands nationally.</p>
+    <p>The 50% target gross margin is achieved through automation of clinical documentation (reducing documentation labor by ~80%), a 57-percentage-point reduction in caregiver turnover (from 79% to 22%), and ACCESS Model OAP revenue that does not exist in the traditional agency model.</p>
+
+    <div class="note warn">
+      <strong>Important:</strong> This narrative should be reviewed by a healthcare regulatory attorney before submission. CMS ACCESS Model applications require specific form fields, attachments, and legal certifications not captured in this narrative document. This document serves as the substantive content foundation for the formal CMS application.
+    </div>
+  </div>
+
+  <!-- SECTION 6: COMMUNITY BENEFIT -->
+  <div class="section">
+    <div class="section-num-header"><div class="sec-num">6</div><h2>Community Benefit &amp; Health Equity</h2></div>
+
+    <h3>6.1 Economic Justice for Caregivers</h3>
+    <p>The structural inequity in home care is not just a business problem — it is a public health problem. Caregiver poverty wages ($13–15/hr) drive the 79% annual turnover that makes chronic disease management impossible. co-op.care's cooperative model pays caregivers $22–27/hr, builds ~$52,000 in equity over 5 years for a 30-hour/week worker-owner, and eliminates the agency extraction that currently consumes 40–60% of every dollar families pay for care.</p>
+
+    <h3>6.2 Precedent: Cooperative Home Care Associates (CHCA)</h3>
+    <p>Cooperative Home Care Associates (Bronx, NY) — the largest worker-owned home care cooperative in the United States — has demonstrated for 40+ years that the cooperative model produces lower caregiver turnover, higher patient care quality, and measurable wealth building for workers. Peer-reviewed evidence published in <em>Health Affairs Scholar</em> (2025) confirms that cooperative structure improves both job quality and patient outcomes. co-op.care scales the CHCA model with enterprise AI infrastructure and federal ACCESS Model participation.</p>
+
+    <h3>6.3 SDOH Integration via Time Bank</h3>
+    <p>The hOurworld Time Bank (TimeDollars) layer addresses Social Determinants of Health that compound chronic disease without adding billing cost. Volunteers earn credits by providing transportation, meal support, and companionship — freeing worker-owner caregivers to focus exclusively on billable clinical care. This layer is unique to the cooperative model and has no analog in traditional home care agency operations.</p>
+  </div>
+
+  <div class="footer">
+    co-op.care Technologies LLC / Boulder Family Care Cooperative &nbsp;|&nbsp; CMS ACCESS Model Application &nbsp;|&nbsp; Boulder, CO &nbsp;|&nbsp; March 2026<br>
+    Prepared by: Blaine Warkentine, MD · orthoblaino@gmail.com<br>
+    <strong>CONFIDENTIAL — Not for distribution · Attorney review recommended before submission</strong>
+  </div>
+</div>
+<script>window.addEventListener('beforeprint', () => document.title = 'co-op.care CMS ACCESS Model Application 2026');</script>
+</body>
+</html>

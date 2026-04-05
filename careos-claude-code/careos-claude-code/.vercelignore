@@ -1,0 +1,23 @@
+# Large docs - not needed for Vercel build
+docs/media/
+docs/pitch-decks/
+docs/research/
+docs/logo/
+docs/legacy/
+docs/gemini-gems/
+docs/resumes/
+docs/*.pdf
+docs/*.pptx
+docs/*.key
+docs/*.pages
+docs/*.xlsx
+docs/*.docx
+
+# Dev files
+node_modules/
+.git/
+_archive/
+e2e/
+*.mp3
+*.mp4
+*.mov

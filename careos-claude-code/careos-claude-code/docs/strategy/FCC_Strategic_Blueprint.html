@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Care Cooperative — Strategic Blueprint</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --dark: #1a3a3a;
+            --teal: #1a6b5a;
+            --teal-light: #2a8b7a;
+            --amber: #d4a84b;
+            --amber-dark: #b88f3a;
+            --cream: #F5F2EB;
+            --cream-dark: #EDE9E0;
+            --white: #ffffff;
+            --text: #2c3e50;
+            --text-light: #5a6a7a;
+            --text-muted: #8a9aaa;
+        }
+
+        html { font-size: 16px; }
+        body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); }
+
+        .page {
+            width: 10in;
+            min-height: 5.625in;
+            padding: 0.6in 0.7in;
+            page-break-after: always;
+            position: relative;
+            overflow: hidden;
+        }
+        .page:last-child { page-break-after: auto; }
+
+        .page-dark {
+            background: var(--dark);
+            color: var(--white);
+        }
+        .page-cream {
+            background: var(--cream);
+            color: var(--text);
+        }
+
+        /* Typography */
+        .page-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+            line-height: 1.15;
+        }
+        .page-subtitle {
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-bottom: 0.3rem;
+        }
+        .section-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 0.2rem;
+        }
+        .section-label-dark {
+            color: var(--text-muted);
+        }
+        .stat-big {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--amber);
+            line-height: 1.1;
+            margin-bottom: 0.25in;
+        }
+        .stat-desc {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            line-height: 1.5;
+            margin-top: 0.3in;
+        }
+
+        /* Grid layouts */
+        .grid-2x2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5in;
+            margin-top: 0.35in;
+        }
+        .grid-2x2-tight {
+            gap: 0.35in;
+        }
+        .grid-3col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.35in;
+            margin-top: 0.35in;
+        }
+        .grid-4col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 0.25in;
+            margin-top: 0.3in;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 0.35in 0.3in;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .card-dark {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 0.3in 0.25in;
+        }
+        .card-amber-border {
+            border-left: 4px solid var(--amber);
+        }
+
+        /* Icon circles */
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.15in;
+            font-size: 1.1rem;
+        }
+        .icon-teal { background: var(--teal); color: white; }
+        .icon-amber { background: var(--amber); color: white; }
+        .icon-dark { background: var(--dark); color: var(--amber); }
+
+        /* Comparison table */
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.25in;
+            font-size: 0.75rem;
+        }
+        .comp-table th {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.12in 0.15in;
+            text-align: left;
+            border-bottom: 2px solid var(--amber);
+            color: var(--text-light);
+        }
+        .comp-table th:last-child {
+            color: var(--amber);
+        }
+        .comp-table td {
+            padding: 0.12in 0.15in;
+            border-bottom: 1px solid #e8e5de;
+            vertical-align: middle;
+        }
+        .comp-table tr:last-child td {
+            border-bottom: none;
+        }
+        .comp-table .metric-label {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.72rem;
+        }
+        .comp-table .highlight-col {
+            background: rgba(26, 107, 90, 0.06);
+            font-weight: 600;
+            color: var(--teal);
+        }
+
+        /* Dark table */
+        .comp-table-dark th {
+            color: rgba(255,255,255,0.5);
+            border-bottom-color: var(--amber);
+        }
+        .comp-table-dark th:last-child {
+            color: var(--amber);
+        }
+        .comp-table-dark td {
+            color: rgba(255,255,255,0.8);
+            border-bottom-color: rgba(255,255,255,0.1);
+        }
+        .comp-table-dark .metric-label {
+            color: white;
+        }
+        .comp-table-dark .highlight-col {
+            background: rgba(212,168,75,0.1);
+            color: var(--amber);
+            font-weight: 700;
+        }
+
+        /* Steps */
+        .step-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--teal);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.12in;
+        }
+        .step-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 0.05in;
+        }
+        .step-desc {
+            font-size: 0.72rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* Timeline */
+        .timeline {
+            display: flex;
+            gap: 0;
+            margin-top: 0.3in;
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 20px;
+            right: 20px;
+            height: 3px;
+            background: linear-gradient(to right, var(--amber), var(--teal));
+            border-radius: 2px;
+        }
+        .timeline-item {
+            flex: 1;
+            position: relative;
+            padding-top: 0.4in;
+            text-align: center;
+            padding-left: 0.08in;
+            padding-right: 0.08in;
+        }
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--teal);
+            border: 3px solid var(--cream);
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        .timeline-dot.active {
+            width: 18px;
+            height: 18px;
+            background: var(--amber);
+            border: 3px solid var(--cream);
+            top: 9px;
+        }
+        .timeline-phase {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--teal);
+            margin-bottom: 0.04in;
+        }
+        .timeline-title {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.04in;
+        }
+        .timeline-desc {
+            font-size: 0.62rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+        .here-badge {
+            display: inline-block;
+            background: var(--amber);
+            color: white;
+            font-size: 0.5rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-bottom: 0.06in;
+        }
+
+        /* Revenue boxes */
+        .rev-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.3in;
+            margin-top: 0.3in;
+        }
+        .rev-box {
+            padding: 0.25in;
+            border-radius: 8px;
+            background: var(--white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .rev-box .icon-circle {
+            width: 32px;
+            height: 32px;
+            font-size: 0.85rem;
+            margin-bottom: 0.1in;
+        }
+        .rev-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.02in;
+        }
+        .rev-subtitle {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--teal);
+            margin-bottom: 0.06in;
+        }
+        .rev-desc {
+            font-size: 0.65rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* Numbers grid */
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.4in;
+            margin-top: 0.3in;
+        }
+        .numbers-section h3 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.2in;
+            color: var(--text);
+        }
+        .numbers-section-dark h3 {
+            color: white;
+        }
+        .num-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.15in;
+            margin-bottom: 0.15in;
+        }
+        .num-label {
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.02in;
+        }
+        .num-value {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--amber);
+        }
+        .num-value-light {
+            color: var(--text);
+        }
+
+        /* Pricing tiers */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 0.2in;
+            margin-top: 0.25in;
+        }
+        .tier-card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 0.2in 0.18in;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-top: 3px solid var(--teal);
+        }
+        .tier-card.featured {
+            border-top-color: var(--amber);
+            box-shadow: 0 4px 16px rgba(212,168,75,0.2);
+        }
+        .tier-name {
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 0.06in;
+        }
+        .tier-hours {
+            font-size: 0.6rem;
+            color: var(--text-light);
+            margin-bottom: 0.06in;
+        }
+        .tier-price {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--amber);
+            margin-bottom: 0.04in;
+        }
+        .tier-unit {
+            font-size: 0.55rem;
+            color: var(--text-muted);
+            margin-bottom: 0.08in;
+        }
+        .tier-desc {
+            font-size: 0.58rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        /* Fund allocation */
+        .fund-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.2in 0.4in;
+            margin-top: 0.2in;
+        }
+        .fund-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.1in 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .fund-label {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.85);
+        }
+        .fund-amount {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--amber);
+        }
+
+        /* Grant pipeline */
+        .grant-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 0.2in;
+            margin-top: 0.2in;
+        }
+        .grant-box {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 6px;
+            padding: 0.15in;
+            text-align: center;
+        }
+        .grant-name {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0.04in;
+        }
+        .grant-amount {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--amber);
+        }
+
+        /* Leadership */
+        .leader-card {
+            display: flex;
+            gap: 0.35in;
+            margin-top: 0.25in;
+        }
+        .leader-info {
+            flex: 3;
+        }
+        .leader-hires {
+            flex: 2;
+        }
+        .leader-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.02in;
+        }
+        .leader-title-text {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.15in;
+        }
+        .leader-bio {
+            font-size: 0.72rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 0.15in;
+            font-style: italic;
+        }
+        .leader-cred {
+            font-size: 0.7rem;
+            color: var(--text);
+            line-height: 1.7;
+            padding-left: 0.15in;
+            border-left: 3px solid var(--amber);
+        }
+        .leader-cred li {
+            margin-bottom: 0.03in;
+            list-style: none;
+        }
+        .leader-cred li::before {
+            content: '→ ';
+            color: var(--amber);
+            font-weight: 700;
+        }
+
+        .hire-card {
+            background: var(--white);
+            border-radius: 6px;
+            padding: 0.15in;
+            margin-bottom: 0.12in;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+            border-left: 3px solid var(--teal);
+        }
+        .hire-role {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .hire-status {
+            font-size: 0.58rem;
+            color: var(--text-muted);
+        }
+
+        /* Closing page */
+        .closing-quote {
+            font-size: 1.15rem;
+            font-weight: 300;
+            line-height: 2;
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+            margin-top: 0.6in;
+        }
+        .closing-contact {
+            text-align: center;
+            margin-top: 0.5in;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.75rem;
+        }
+        .closing-contact a {
+            color: var(--amber);
+            text-decoration: none;
+        }
+        .closing-org {
+            text-align: center;
+            margin-top: 0.1in;
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* Money flow comparison */
+        .flow-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.4in;
+            margin-top: 0.3in;
+        }
+        .flow-box {
+            padding: 0.3in;
+            border-radius: 8px;
+        }
+        .flow-traditional {
+            background: var(--white);
+            border: 1px solid #e0ddd6;
+        }
+        .flow-fcc {
+            background: var(--white);
+            border: 2px solid var(--teal);
+        }
+        .flow-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.15in;
+        }
+        .flow-traditional .flow-title { color: var(--text-muted); }
+        .flow-fcc .flow-title { color: var(--teal); }
+        .flow-line {
+            font-size: 0.78rem;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .flow-line .amount {
+            font-weight: 700;
+        }
+        .flow-line .extraction {
+            color: #c0392b;
+            font-weight: 600;
+        }
+        .flow-line .fair {
+            color: var(--teal);
+            font-weight: 600;
+        }
+        .flow-insight {
+            margin-top: 0.2in;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--teal);
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* Retention callout */
+        .retention-callout {
+            background: rgba(26, 107, 90, 0.08);
+            border-radius: 8px;
+            padding: 0.2in 0.3in;
+            text-align: center;
+            margin-top: 0.25in;
+            font-size: 0.75rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .retention-callout strong {
+            color: var(--teal);
+        }
+
+        /* Build phases */
+        .phase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.3in;
+            margin-top: 0.3in;
+        }
+        .phase-card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 0.25in;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            position: relative;
+        }
+        .phase-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            border-radius: 8px 8px 0 0;
+        }
+        .phase-card.phase-1::before { background: var(--amber); }
+        .phase-card.phase-2::before { background: var(--teal); }
+        .phase-card.phase-3::before { background: var(--dark); }
+        .phase-label {
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.04in;
+        }
+        .phase-1 .phase-label { color: var(--amber); }
+        .phase-2 .phase-label { color: var(--teal); }
+        .phase-3 .phase-label { color: var(--dark); }
+        .phase-name {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.1in;
+        }
+        .phase-details {
+            font-size: 0.65rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .phase-details li {
+            margin-bottom: 0.04in;
+            list-style: none;
+        }
+        .phase-details li::before {
+            content: '• ';
+            color: var(--teal);
+        }
+
+        @media print {
+            .page { page-break-after: always; }
+            .page:last-child { page-break-after: auto; }
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- PAGE 1: Title -->
+<div class="page page-dark" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+    <div style="margin-bottom: 0.3in;">
+        <div style="font-size: 0.6rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.2in;">Boulder, Colorado</div>
+        <div style="font-size: 3rem; font-weight: 800; letter-spacing: -1px; line-height: 1.1;">Family Care<br>Cooperative</div>
+        <div style="font-size: 1.05rem; font-weight: 300; margin-top: 0.2in; opacity: 0.8;">Companion Care, Cooperatively Owned</div>
+    </div>
+    <div style="margin-top: 0.6in; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.5;">Seed Round &nbsp;|&nbsp; Boulder, Colorado &nbsp;|&nbsp; 2026</div>
+</div>
+
+<!-- PAGE 2: The Problem -->
+<div class="page page-cream">
+    <div class="page-title" style="color: var(--dark);">The Care Economy Is Broken</div>
+    <div class="grid-2x2" style="margin-top: 0.3in;">
+        <div class="card">
+            <div class="section-label section-label-dark">For Families</div>
+            <div class="stat-big">77%</div>
+            <div class="stat-desc">Of caregivers quit every year. That means a different stranger in your parent's home every week. No relationship. No trust. No continuity.</div>
+        </div>
+        <div class="card">
+            <div class="section-label section-label-dark">For Caregivers</div>
+            <div class="stat-big">$16/hr</div>
+            <div class="stat-desc">Average pay, no benefits, no equity, no path forward. They're doing the most intimate work in healthcare and getting poverty wages for it.</div>
+        </div>
+        <div class="card">
+            <div class="section-label section-label-dark">For Employers</div>
+            <div class="stat-big">$5,365/yr</div>
+            <div class="stat-desc">Hidden productivity cost per caregiving employee — absenteeism, turnover, and distraction from worrying about aging parents.</div>
+        </div>
+        <div class="card">
+            <div class="section-label section-label-dark">For Health Systems</div>
+            <div class="stat-big">No Partner</div>
+            <div class="stat-desc">When families need companion care after a hospital visit, health systems have nobody reliable to refer them to. No trusted partner in the community.</div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 3: Why Now -->
+<div class="page page-cream">
+    <div class="page-title" style="color: var(--dark);">Why Now</div>
+    <div class="grid-2x2 grid-2x2-tight" style="margin-top: 0.3in;">
+        <div class="card">
+            <div class="section-label section-label-dark">Demographic Tsunami</div>
+            <div class="stat-big">10,000/day</div>
+            <div class="stat-desc">Americans turn 65 every single day, driving unprecedented demand for in-home care infrastructure.</div>
+        </div>
+        <div class="card">
+            <div class="section-label section-label-dark">Massive Market</div>
+            <div class="stat-big">$107 Billion</div>
+            <div class="stat-desc">US home care market. Companion care is the fastest-growing, highest-retention segment within it.</div>
+        </div>
+        <div class="card">
+            <div class="section-label section-label-dark">Universal Preference</div>
+            <div class="stat-big">90%</div>
+            <div class="stat-desc">Of seniors want to age at home. The demand is there. The infrastructure is not.</div>
+        </div>
+        <div class="card">
+            <div class="section-label section-label-dark">Federal Tailwinds</div>
+            <div class="stat-big">2026 Launch</div>
+            <div class="stat-desc">CMS ACCESS Model and MAHA ELEVATE — new federal funding aimed at exactly this problem.</div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 4: Our Solution -->
+<div class="page page-cream">
+    <div class="page-title" style="color: var(--dark);">What If Caregivers Owned the Company?</div>
+    <div class="page-subtitle" style="color: var(--text-light);">Family Care Cooperative — professional companion care, cooperatively owned.</div>
+
+    <div class="grid-3col" style="margin-top: 0.3in;">
+        <div class="card card-amber-border">
+            <div class="section-label section-label-dark">Worker-Owned</div>
+            <div style="font-size: 1.3rem; font-weight: 800; color: var(--amber); margin-bottom: 0.08in;">$25-28/hr</div>
+            <div style="font-size: 0.72rem; font-weight: 600; color: var(--teal); margin-bottom: 0.1in;">+ W-2 Benefits + Equity</div>
+            <div class="stat-desc">Caregivers earn real living wages and cooperative equity. They stay because they're owners. Target: &lt;15% turnover vs. 77% industry average.</div>
+        </div>
+        <div class="card card-amber-border">
+            <div class="section-label section-label-dark">Relationship-Based</div>
+            <div style="font-size: 1.3rem; font-weight: 800; color: var(--amber); margin-bottom: 0.08in;">Same Person</div>
+            <div style="font-size: 0.72rem; font-weight: 600; color: var(--teal); margin-bottom: 0.1in;">Month After Month</div>
+            <div class="stat-desc">Same caregiver, same family, same trust. In companion care, retention IS the product. Your mom gets someone who knows her.</div>
+        </div>
+        <div class="card card-amber-border">
+            <div class="section-label section-label-dark">Affordable</div>
+            <div style="font-size: 1.3rem; font-weight: 800; color: var(--amber); margin-bottom: 0.08in;">$27/hr</div>
+            <div style="font-size: 0.72rem; font-weight: 600; color: var(--teal); margin-bottom: 0.1in;">HSA-Eligible. No Contracts.</div>
+            <div class="stat-desc">Price-competitive with traditional agencies ($33-45/hr) because cooperative overhead is minimal. Better care for less.</div>
+        </div>
+    </div>
+
+    <div class="retention-callout">
+        <strong>Retention thesis:</strong> 77% annual turnover (industry) → 15% (cooperative ownership). This structural advantage compounds, reducing hiring costs and dramatically improving care quality.
+    </div>
+</div>
+
+<!-- PAGE 5: Where the Money Goes -->
+<div class="page page-cream">
+    <div class="page-title" style="color: var(--dark);">Where the Money Goes</div>
+    <div class="page-subtitle" style="color: var(--text-light);">The structural problem with traditional care — and why cooperatives fix it.</div>
+
+    <div class="flow-grid">
+        <div class="flow-box flow-traditional">
+            <div class="flow-title">Traditional Agency</div>
+            <div class="flow-line">Family pays <span class="amount">$33/hr</span></div>
+            <div class="flow-line">Agency extracts <span class="extraction">$17 (52%)</span></div>
+            <div class="flow-line">Caregiver gets <span class="amount">$16/hr</span></div>
+            <div style="margin-top: 0.15in; font-size: 0.7rem; color: var(--text-muted); font-style: italic;">The gap is corporate extraction. That's why caregivers leave.</div>
+        </div>
+        <div class="flow-box flow-fcc">
+            <div class="flow-title">Family Care Cooperative</div>
+            <div class="flow-line">Family pays <span class="amount">$27/hr</span></div>
+            <div class="flow-line">Cooperative overhead <span class="fair">$2-5</span></div>
+            <div class="flow-line">Caregiver gets <span class="amount fair">$22-25/hr</span></div>
+            <div style="margin-top: 0.15in; font-size: 0.7rem; color: var(--teal); font-style: italic;">No VCs extracting returns. The people doing the care own the company.</div>
+        </div>
+    </div>
+
+    <div class="flow-insight">"When caregivers earn enough to stay, families get what they actually need: consistency."</div>
+</div>
+
+<!-- PAGE 6: Flexible Pricing -->
+<div class="page page-cream">
+    <div class="page-title" style="color: var(--dark);">Care That Scales With What You Need</div>
+    <div class="page-subtitle" style="color: var(--text-light);">No contracts. HSA-eligible. Scale up or down anytime.</div>
+
+    <div class="tier-grid" style="margin-top: 0.3in;">
+        <div class="tier-card">
+            <div class="tier-name">Peace of Mind</div>
+            <div class="tier-hours">5 hrs/week</div>
+            <div class="tier-price">~$550</div>
+            <div class="tier-unit">per month</div>
+            <div class="tier-desc">Weekly check-in, errands, companionship, light housekeeping</div>
+        </div>
+        <div class="tier-card featured">
+            <div class="tier-name">Regular Support</div>
+            <div class="tier-hours">10-15 hrs/week</div>
+            <div class="tier-price">$1,100-$1,650</div>
+            <div class="tier-unit">per month</div>
+            <div class="tier-desc">Meals, transport, medication reminders, daily companionship</div>
+        </div>
+        <div class="tier-card">
+            <div class="tier-name">Daily Living</div>
+            <div class="tier-hours">20-25 hrs/week</div>
+            <div class="tier-price">$2,200-$2,750</div>
+            <div class="tier-unit">per month</div>
+            <div class="tier-desc">Full companion + personal care assistance</div>
+        </div>
+        <div class="tier-card">
+            <div class="tier-name">Intensive</div>
+            <div class="tier-hours">30-40 hrs/week</div>
+            <div class="tier-price">$3,300-$4,400</div>
+            <div class="tier-unit">per month</div>
+            <div class="tier-desc">Post-hospital, complex needs, extended daily support</div>
+        </div>
+    </div>
+
+    <div style="margin-top: 0.3in; text-align: center; font-size: 0.72rem; color: var(--text-light);">
+        Base rate: <strong style="color: var(--teal);">$27/hr average</strong> &nbsp;|&nbsp; HSA/FSA eligible &nbsp;|&nbsp; Boulder traditional agencies charge $33-45/hr
+    </div>
+</div>
+
+<!-- PAGE 7: The Cooperative Advantage -->
+<div class="page page-dark">
+    <div class="page-title">The Cooperative Advantage</div>
+
+    <table class="comp-table comp-table-dark" style="margin-top: 0.3in;">
+        <thead>
+            <tr>
+                <th style="width: 18%;">Metric</th>
+                <th style="width: 22%;">Traditional Agency</th>
+                <th style="width: 20%;">Gig Platform</th>
+                <th style="width: 20%;">Nursing Home</th>
+                <th style="width: 20%;">Family Care Coop</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="metric-label">Family Cost</td>
+                <td>$33-45/hr</td>
+                <td>$25-35/hr + fees</td>
+                <td>$9,900/mo</td>
+                <td class="highlight-col">$25-28/hr</td>
+            </tr>
+            <tr>
+                <td class="metric-label">Caregiver Pay</td>
+                <td>$15-17/hr</td>
+                <td>Variable (1099)</td>
+                <td>$16-18/hr</td>
+                <td class="highlight-col">$22-25/hr (W-2)</td>
+            </tr>
+            <tr>
+                <td class="metric-label">Benefits</td>
+                <td>Minimal</td>
+                <td>None</td>
+                <td>Limited</td>
+                <td class="highlight-col">Full W-2 + Equity</td>
+            </tr>
+            <tr>
+                <td class="metric-label">Annual Turnover</td>
+                <td>77%</td>
+                <td>Very High</td>
+                <td>~100% (aides)</td>
+                <td class="highlight-col">&lt;15% (projected)</td>
+            </tr>
+            <tr>
+                <td class="metric-label">Who Profits</td>
+                <td>Agency Owners</td>
+                <td>Platform Investors</td>
+                <td>Facility Owners</td>
+                <td class="highlight-col">Caregivers & Families</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- PAGE 8: Revenue Model -->
+<div class="page page-cream">
+    <div class="page-title" style="color: var(--dark);">Revenue Model</div>
+
+    <div class="rev-grid">
+        <div class="rev-box">
+            <div class="icon-circle icon-teal" style="width: 32px; height: 32px; font-size: 0.8rem;">$</div>
+            <div class="rev-title">Family Payments</div>
+            <div class="rev-subtitle">$27/hr avg, HSA-eligible</div>
+            <div class="rev-desc">Primary revenue stream. Direct from families. Flexible hours, no contracts, affordable rate enabled by cooperative efficiency.</div>
+        </div>
+        <div class="rev-box">
+            <div class="icon-circle icon-teal" style="width: 32px; height: 32px; font-size: 0.8rem;">🏥</div>
+            <div class="rev-title">Health System Referrals</div>
+            <div class="rev-subtitle">Phase 2+ channel</div>
+            <div class="rev-desc">Discharge coordinators and social workers refer families who need companion care. Trusted community partner, not a discharge vendor.</div>
+        </div>
+        <div class="rev-box">
+            <div class="icon-circle icon-amber" style="width: 32px; height: 32px; font-size: 0.8rem;">💼</div>
+            <div class="rev-title">Employer Benefits</div>
+            <div class="rev-subtitle">Voluntary benefit contracts</div>
+            <div class="rev-desc">Distribution channel through HR/benefits departments. Support caregiving employees, reduce absenteeism.</div>
+        </div>
+        <div class="rev-box">
+            <div class="icon-circle icon-amber" style="width: 32px; height: 32px; font-size: 0.8rem;">🏛</div>
+            <div class="rev-title">CMS Payments</div>
+            <div class="rev-subtitle">ACCESS Model (Phase 3)</div>
+            <div class="rev-desc">Federal alignment for outcome-based payments. Reducing readmissions and improving health outcomes at home.</div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 0.25in; padding: 0.15in; background: rgba(26,107,90,0.08); border-radius: 6px;">
+        <span style="font-size: 0.7rem; font-weight: 600; color: var(--teal);">Unit Economics: ~23% Contribution Margin &nbsp;&nbsp;|&nbsp;&nbsp; Break-even: Month 18-22</span>
+    </div>
+</div>
+
+<!-- PAGE 9: The Numbers -->
+<div class="page page-cream">
+    <div class="page-title" style="color: var(--dark);">The Numbers</div>
+
+    <div class="numbers-grid">
+        <div class="numbers-section">
+            <h3>Per Client</h3>
+            <div class="num-row">
+                <div>
+                    <div class="num-label">Avg Rate</div>
+                    <div class="num-value">$27/hr</div>
+                </div>
+                <div>
+                    <div class="num-label">Caregiver Cost (loaded)</div>
+                    <div class="num-value">$24/hr</div>
+                </div>
+            </div>
+            <div class="num-row">
+                <div>
+                    <div class="num-label">Contribution Margin</div>
+                    <div class="num-value">~23%</div>
+                </div>
+                <div>
+                    <div class="num-label">Avg Client LTV</div>
+                    <div class="num-value">12-18 mo</div>
+                </div>
+            </div>
+        </div>
+        <div class="numbers-section">
+            <h3>At Scale (Year 3)</h3>
+            <div class="num-row">
+                <div>
+                    <div class="num-label">Clients</div>
+                    <div class="num-value">75</div>
+                </div>
+                <div>
+                    <div class="num-label">Caregivers</div>
+                    <div class="num-value">25</div>
+                </div>
+            </div>
+            <div class="num-row">
+                <div>
+                    <div class="num-label">Annual Revenue</div>
+                    <div class="num-value">~$2.4M</div>
+                </div>
+                <div>
+                    <div class="num-label">Break-Even</div>
+                    <div class="num-value">Mo 18-22</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="retention-callout" style="margin-top: 0.2in;">
+        <strong>Retention thesis:</strong> 77% annual turnover (industry) → 15% (cooperative ownership). This structural advantage compounds dramatically — reducing hiring costs ($4,000-6,000 per caregiver replacement) and building the trust that families are actually paying for.
+    </div>
+</div>
+
+<!-- PAGE 10: Build in Stages -->
+<div class="page page-cream">
+    <div class="page-title" style="color: var(--dark);">Companion Care First. Then Grow.</div>
+
+    <div class="phase-grid">
+        <div class="phase-card phase-1">
+            <div class="phase-label">Phase 1 — Now</div>
+            <div class="phase-name">Companion Care</div>
+            <ul class="phase-details">
+                <li>Colorado Class B license</li>
+                <li>5 founding caregivers</li>
+                <li>15-20 families in Boulder</li>
+                <li>Direct-to-family + 1 employer pilot</li>
+                <li>Companionship, errands, meals, light housekeeping</li>
+            </ul>
+        </div>
+        <div class="phase-card phase-2">
+            <div class="phase-label">Phase 2 — 6-12 Months</div>
+            <div class="phase-name">Personal Care + Health Systems</div>
+            <ul class="phase-details">
+                <li>Add bathing, dressing, mobility assistance</li>
+                <li>Health system referral partnerships</li>
+                <li>30-50 families</li>
+                <li>10-15 caregivers</li>
+                <li>Employer benefit contracts</li>
+            </ul>
+        </div>
+        <div class="phase-card phase-3">
+            <div class="phase-label">Phase 3 — Year 2+</div>
+            <div class="phase-name">Medical Home Care</div>
+            <ul class="phase-details">
+                <li>Class A license (skilled nursing)</li>
+                <li>Hospital discharge partnerships</li>
+                <li>CMS ACCESS/ELEVATE applications</li>
+                <li>75+ families, 25+ caregivers</li>
+                <li>Second market expansion</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 11: Where We Are (Timeline) -->
+<div class="page page-cream">
+    <div class="page-title" style="color: var(--dark);">Where We Are</div>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-dot active"></div>
+            <div class="here-badge">WE ARE HERE</div>
+            <div class="timeline-phase">Q1 2026</div>
+            <div class="timeline-title">Foundation</div>
+            <div class="timeline-desc">Class B license application. Founding caregiver recruitment. Seed fundraising.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-phase">Q2 2026</div>
+            <div class="timeline-title">Launch</div>
+            <div class="timeline-desc">First 5 caregivers serving 10-15 families. Initial companion care delivery in Boulder.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-phase">Q3 2026</div>
+            <div class="timeline-title">Expand</div>
+            <div class="timeline-desc">Employer pilot launch. Health system conversations. 20+ families.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-phase">Q4 2026</div>
+            <div class="timeline-title">Validate</div>
+            <div class="timeline-desc">30 clients. Retention data published. First revenue milestones.</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-phase">2027</div>
+            <div class="timeline-title">Scale</div>
+            <div class="timeline-desc">75 clients, break-even. Personal care expansion. Class A prep.</div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 12: Leadership -->
+<div class="page page-cream">
+    <div class="page-title" style="color: var(--dark);">Leadership</div>
+
+    <div class="leader-card">
+        <div class="leader-info">
+            <div class="leader-name">Blaine Warkentine</div>
+            <div class="leader-title-text">Founder &nbsp;|&nbsp; MD, MBA</div>
+            <div class="leader-bio">"I went to medical school to become an orthopedic surgeon. Four years into residency, I realized my real skill was in the space between surgeons and the companies building tools for them. I became a translator — someone who speaks both clinical and commercial fluently."</div>
+            <ul class="leader-cred">
+                <li>Built BrainLAB's orthopedic vertical from $0 to $250M</li>
+                <li>20+ years in health system partnerships &amp; M&amp;A</li>
+                <li>Multiple exits: PumpOne → Anytime Fitness, InVivoLink → HCA Healthcare</li>
+                <li>10+ years building in the caregiving space</li>
+                <li>MD (Medical College of Wisconsin), MBA (University of Utah)</li>
+            </ul>
+        </div>
+        <div class="leader-hires">
+            <div style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.35in;">Key Hires Needed</div>
+            <div class="hire-card">
+                <div class="hire-role">Operations Director</div>
+                <div class="hire-status">Open Position</div>
+            </div>
+            <div class="hire-card">
+                <div class="hire-role">Caregiver Recruitment Lead</div>
+                <div class="hire-status">Open Position</div>
+            </div>
+            <div class="hire-card">
+                <div class="hire-role">Technology / Scheduling Lead</div>
+                <div class="hire-status">Open Position</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 13: What We Need -->
+<div class="page page-dark">
+    <div class="page-title">What We Need</div>
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 0.1in;">
+        <div class="section-label">Seed Round Allocation</div>
+        <div style="font-size: 1.6rem; font-weight: 800; color: var(--amber);">$150K – $250K</div>
+    </div>
+
+    <div class="fund-grid" style="margin-top: 0.2in;">
+        <div class="fund-item">
+            <span class="fund-label">Caregiver Recruitment & Training</span>
+            <span class="fund-amount">$40K</span>
+        </div>
+        <div class="fund-item">
+            <span class="fund-label">Operations & Scheduling Platform</span>
+            <span class="fund-amount">$50K</span>
+        </div>
+        <div class="fund-item">
+            <span class="fund-label">6-Month Operating Runway</span>
+            <span class="fund-amount">$60K</span>
+        </div>
+        <div class="fund-item">
+            <span class="fund-label">Marketing & Outreach</span>
+            <span class="fund-amount">$30K</span>
+        </div>
+        <div class="fund-item">
+            <span class="fund-label">Legal, Licensing & Compliance</span>
+            <span class="fund-amount">$30K</span>
+        </div>
+        <div class="fund-item">
+            <span class="fund-label">Working Capital</span>
+            <span class="fund-amount">$40K</span>
+        </div>
+    </div>
+
+    <div style="margin-top: 0.35in;">
+        <div class="section-label">Non-Dilutive Grant Pipeline</div>
+        <div class="grant-grid">
+            <div class="grant-box">
+                <div class="grant-name">CMS ACCESS Model</div>
+                <div class="grant-amount">$500K - $2M</div>
+            </div>
+            <div class="grant-box">
+                <div class="grant-name">MAHA ELEVATE</div>
+                <div class="grant-amount">$3.3M Pool</div>
+            </div>
+            <div class="grant-box">
+                <div class="grant-name">Colorado OEDIT</div>
+                <div class="grant-amount">Advanced Ind.</div>
+            </div>
+            <div class="grant-box">
+                <div class="grant-name">Angel Tax Credit</div>
+                <div class="grant-amount">25 - 35%</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 14: Closing -->
+<div class="page page-dark" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+    <div class="closing-quote">
+        Every aging parent deserves to stay home with dignity.<br>
+        Every family deserves affordable professional support.<br>
+        Every caregiver deserves to build wealth doing meaningful work.
+    </div>
+    <div class="closing-contact">
+        Family Care Cooperative &nbsp;|&nbsp; Boulder, Colorado<br>
+        <a href="mailto:blaine@familycarecoop.com">blaine@familycarecoop.com</a>
+        &nbsp;|&nbsp;
+        <a href="https://linkedin.com/company/family-care-cooperative">LinkedIn</a>
+    </div>
+</div>
+
+</body>
+</html>

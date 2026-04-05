@@ -1,0 +1,91 @@
+[
+  {
+    "id": "P2-001",
+    "name": "Verify test suite post force-push",
+    "priority": 1,
+    "status": "blocked",
+    "owner": "jacob",
+    "description": "Run npm run test:all. Confirm 682 tests pass. If any fail, diagnose whether force-push caused regression.",
+    "acceptance": "All 682 tests pass. No new test failures.",
+    "dependencies": [],
+    "blocking": ["P2-002", "P2-003", "P2-004", "P2-005", "P2-006", "P2-007"]
+  },
+  {
+    "id": "P2-002",
+    "name": "ClinicalSwipe billing engine integration",
+    "priority": 2,
+    "status": "pending",
+    "owner": "jacob",
+    "description": "Integrate claim_lock, claim_release, claim_status tools from clinicalswipe-mcp into CareOS. Requires review_metrics enforcement on attestation.",
+    "acceptance": "claim_lock acquires lock, claim_release validates OIG thresholds (30s/20s/80%), claim_status returns pipeline state.",
+    "dependencies": ["P2-001"],
+    "blocking": ["P2-004"]
+  },
+  {
+    "id": "P2-003",
+    "name": "VBC pre-visit intake tool",
+    "priority": 3,
+    "status": "pending",
+    "owner": "blaine",
+    "description": "Deploy vbc_previsit_intake to scan referrals for PIN, ACP, PCM, CCM, SDOH, and PROMIS opportunities.",
+    "acceptance": "Tool identifies all billable codes from a test referral. Decision ledger entries written with correct authorization levels.",
+    "dependencies": ["P2-001"],
+    "blocking": []
+  },
+  {
+    "id": "P2-004",
+    "name": "Stedi EDI 837P submission pipeline",
+    "priority": 4,
+    "status": "pending",
+    "owner": "jacob",
+    "description": "Wire payload-builder.ts to Stedi API. Job 4 (billing drain) picks up ready_for_submission claims and submits.",
+    "acceptance": "Test claim submitted to Stedi sandbox. Response contains transaction_id and control_number.",
+    "dependencies": ["P2-002"],
+    "blocking": []
+  },
+  {
+    "id": "P2-005",
+    "name": "Election addendum tools (hospice)",
+    "priority": 5,
+    "status": "pending",
+    "owner": "blaine",
+    "description": "Deploy generate_election_addendum, deliver_and_capture_addendum, get_addendum_compliance_report.",
+    "acceptance": "Addendum generated with content hash, delivery captured with timing compliance check, HQRP report shows compliance rate.",
+    "dependencies": ["P2-001"],
+    "blocking": [],
+    "deadline": "2026-10-01"
+  },
+  {
+    "id": "P2-006",
+    "name": "SSVI analytics module",
+    "priority": 6,
+    "status": "pending",
+    "owner": "blaine",
+    "description": "Deploy get_ssvi_score, get_ssvi_network_scan, get_ssvi_market_intelligence. Ingest CMS SSVI CSV data.",
+    "acceptance": "Score returned for test CCN. Network scan returns ranked list. Market intelligence shows score distribution.",
+    "dependencies": ["P2-001"],
+    "blocking": []
+  },
+  {
+    "id": "P2-007",
+    "name": "Conversational attention residual memory",
+    "priority": 7,
+    "status": "pending",
+    "owner": "jacob",
+    "description": "Deploy conversation_sessions and conversation_blocks tables with pgvector HNSW indexes. Wire retrieveConversationContext into careos-agent.ts.",
+    "acceptance": "Sage conversation creates session record with embedding. Monthly compression produces block summary. Retrieval returns attention-weighted context.",
+    "dependencies": ["P2-001"],
+    "blocking": []
+  },
+  {
+    "id": "P2-008",
+    "name": "WorkOS MCP Auth integration",
+    "priority": 8,
+    "status": "pending",
+    "owner": "jacob",
+    "description": "Integrate WorkOS AuthKit OAuth 2.1 for ClinicalSwipe MCP tool role-gating. attest_claim visible only to medical_director role.",
+    "acceptance": "Josh authenticates via AuthKit. Session-scoped token. Tool visibility matches role. Session expires on timeout.",
+    "dependencies": ["P2-001"],
+    "blocking": []
+  }
+]

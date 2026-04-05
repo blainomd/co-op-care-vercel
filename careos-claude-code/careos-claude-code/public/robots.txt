@@ -1,0 +1,5 @@
+# co-op.care — Cooperative Home Care
+User-agent: *
+Allow: /
+
+Sitemap: https://app.co-op.care/sitemap.xml

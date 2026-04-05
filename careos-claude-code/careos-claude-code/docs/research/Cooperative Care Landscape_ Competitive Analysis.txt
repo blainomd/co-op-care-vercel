@@ -1,0 +1,95 @@
+﻿Cooperative Care Landscape: Strategic Plan & Build Roadmap (2026)
+Report Date: March 1, 2026
+Subject: Operational Synthesis of the "Coop-in-a-Box" Federated Model
+Focus: Integration of SageCare.ai (Intake), Co-op.care (Clinical), RMEOC Backend, and Automated Mutual Aid.
+________________
+1. Executive Summary: The "Coop-in-a-Box" Vision
+The "Coop-in-a-Box" model is a turnkey social and technological infrastructure designed to solve the national care crisis through regional empowerment. By combining Silicon Valley automation with worker-ownership economics, the model enables local stakeholders—families, doctors, and cities—to deploy high-retention care networks ($22–$27/hr + equity) that effectively cut industry turnover from 66% to 22%. 1
+________________
+2. The Integrated Workflow: From Inquiry to Bedside
+The "Coop-in-a-box" architecture moves a patient through four distinct technological and human layers, ensuring that care is captured instantly, vetted democratically, and delivered clinically.
+Stage
+	Process
+	primary Tool
+	System impact
+	Inquiry
+	24/7 Front-Office
+	SageCare.ai
+	Zero lead leakage; auto-drafted care plans.
+	Hiring
+	Democratic Vetting
+	Recruitee
+	Peer-to-peer "one-member, one-vote" candidate review.
+	Onboarding
+	High-Speed Capture
+	Workstream
+	Instant SMS responses and automated background checks.
+	Clinical
+	Bedside Oversight
+	Co-op.care
+	Ambient scribing mapped to Omaha System outcomes.
+	Support
+	Mutual Aid Exchange
+	Time Bank
+	Offloads non-clinical tasks to the community.
+	________________
+3. The Personnel & Training Stack
+To support a $22–$27/hr wage moat, each regional cooperative provides an elite professional development pipeline.
+A. Professional Vetting & Capture
+* Democratic Hiring (Recruitee): Existing worker-owners use "Team Notes" to rank and discuss candidate alignment with cooperative values.
+* High-Volume Engagement (Workstream): Automates the "first touch" via mobile-first SMS, ensuring top-tier CNAs are captured within 3 days.
+B. Certification & Micro-Learning
+* HHA Certification (CareAcademy): A 75-hour federal-compliant program (59 hours online, 16 in-person) designed for rapid workforce entry.
+* Point-of-Care Education (Relias): Mobile-first "Pro on the Go" modules allow caregivers to master complex skills like wound care or safe transfers during their shifts.
+________________
+4. Proprietary Build: The "Clinical Soul" (Co-op.care)
+Co-op.care focuses its proprietary development on the Integration Layer that transforms labor into billable clinical value.
+I. The Clinical AI Scribe
+A point-of-care ambient listening tool specifically engineered for high-acuity PACE and Medicare environments.
+* Audit-Ready Logic: Generates narratives aligned to Medicare Evaluation Criteria and Local Coverage Determinations (LCDs). 2
+* Mapping Engine: Automatically maps session data to the Omaha System KBS Scale (Knowledge, Behavior, Status) and interRAI CAPs (Clinical Assessment Protocols).
+II. The Physician Oversight Portal
+A HIPAA-compliant interface where licensed doctors review, refine, and sign AI-generated notes. 3
+* Compliance Shield: Satisfies 2026 CMS requirements that AI cannot independently determine medical necessity for capitated payments. 3
+________________
+5. Community Logic: The Time Bank Mutual Aid Layer
+Integrating a time bank solves the "scope of care" problem by allowing members to exchange non-clinical support.
+Integration Mechanics
+* Platform: Use hOurworld / Time and Talents (the standard for communities like TimeBank Boulder).
+* Currency: Members earn "TimeDollars" (one hour of service = one credit) regardless of the task's market value.
+* Workflow Integration: Regional co-ops offload non-medical tasks—grocery shopping, tech support, or errands—to community volunteers. This allows worker-owners to focus 100% of their billable time on high-acuity interventions.
+________________
+6. Clinical Outcome Logic: Omaha System Scoring
+To dominate the PACE market, the proprietary scribe must provide audit-ready proof of outcome attainment using the KBS Scale (1-5):
+Dimension
+	Definition
+	scoring Benchmark
+	Knowledge
+	Client ability to remember and interpret info.
+	1 = None; 5 = Superior.
+	Behavior
+	Observable actions or healthy habits.
+	1 = Not Appropriate; 5 = Consistently Appropriate.
+	Status
+	Severity of signs and symptoms.
+	1 = Extreme Signs; 5 = No Signs.
+	________________
+7. The Regional Deployment Roadmap (90-Day Launch)
+Leveraging RMEOC learnings from the Colorado Care Cooperative, each region follows this playbook:
+Phase 1: Incubation (Days 1-30)
+* Form a multi-stakeholder board (Caregivers, Families, Doctors).
+* Utilize RMEOC’s Social Cooperative Academy for democratic education.
+* Apply for Colorado's 75% tax credit for employee ownership conversions.
+Phase 2: Licensing (Days 31-60)
+* Hire a Director of Nursing ($100k-$120k salary) and Agency Administrator.
+* Finalize the CDPHE Class A license application (enabling skilled nursing tasks).
+Phase 3: Operations (Days 61-90)
+* Activate SageCare.ai for the 24/7 front door and WellSky EMR sync.
+* Launch Recruitee and Workstream for worker-owner recruitment.
+* Deploy the Co-op.care AI Scribe to patient bedsides.
+Conclusion
+The path to winning the PACE market in Colorado is to provide the Clinical Layer (physician-led oversight) while leveraging SageCare.ai for the Intake Layer. By anchoring these in a federated structure and deploying the "Box" regionally, you create an entity that is technically as efficient as a Silicon Valley startup and operationally as stable as a 40-year worker-owned veteran.
+Works cited
+1. What Are the Average Caregiver Pay Rates in 2025? - Paid.Care, accessed March 1, 2026, https://paid.care/guides/what-are-the-average-caregiver-pay-rates-in-2025
+2. Uncovering the Hidden Compliance Hurdles in Hospice AI Documentation, accessed March 1, 2026, https://hospicenews.com/2026/01/02/uncovering-the-hidden-compliance-hurdles-in-hospice-ai-documentation/
+3. Navigating the AI Frontier: Legal Guardrails for Home Health and Hospice Providers in 2025 and Beyond | JD Supra, accessed March 1, 2026, https://www.jdsupra.com/legalnews/navigating-the-ai-frontier-legal-7826859/

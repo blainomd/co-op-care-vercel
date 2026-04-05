@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>co-op.care | Investor Document 2026</title>
+<style>
+  :root {
+    --teal: #0D4F5C;
+    --teal-light: #1a6b7a;
+    --teal-pale: #e8f4f7;
+    --gold: #D4A017;
+    --gold-light: #f5e4a0;
+    --white: #ffffff;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-500: #6c757d;
+    --gray-700: #495057;
+    --gray-900: #212529;
+    --text: #1a2332;
+    --sidebar-w: 240px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Inter, system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--gray-100);
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; height: 56px;
+    background: var(--teal); color: white;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; z-index: 200; box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+  .topbar-brand { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+  .topbar-brand span { color: var(--gold); }
+  .topbar-right { display: flex; gap: 12px; align-items: center; }
+  .topbar-tag { font-size: 11px; background: rgba(255,255,255,0.15); padding: 3px 10px; border-radius: 20px; }
+  .btn-pdf {
+    background: var(--gold); color: #1a2332; font-weight: 700;
+    border: none; padding: 8px 18px; border-radius: 6px; cursor: pointer;
+    font-size: 13px; letter-spacing: 0.3px;
+    transition: background 0.2s;
+  }
+  .btn-pdf:hover { background: #e8b820; }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position: fixed; top: 56px; left: 0; width: var(--sidebar-w);
+    height: calc(100vh - 56px); overflow-y: auto;
+    background: var(--white); border-right: 1px solid var(--gray-200);
+    padding: 20px 0; z-index: 100;
+  }
+  .sidebar-section { font-size: 10px; font-weight: 700; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--gray-500); padding: 6px 20px 4px; }
+  .sidebar a {
+    display: block; padding: 7px 20px 7px 28px;
+    text-decoration: none; color: var(--gray-700); font-size: 13px;
+    border-left: 3px solid transparent; transition: all 0.15s;
+  }
+  .sidebar a:hover, .sidebar a.active {
+    color: var(--teal); background: var(--teal-pale);
+    border-left-color: var(--teal);
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    margin-left: var(--sidebar-w); margin-top: 56px;
+    padding: 40px 52px 80px; max-width: 940px;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
+    color: white; border-radius: 12px; padding: 56px 48px; margin-bottom: 48px;
+    position: relative; overflow: hidden;
+  }
+  .cover::before {
+    content: ''; position: absolute; top: -40px; right: -40px;
+    width: 280px; height: 280px; border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .cover-tag {
+    display: inline-block; background: var(--gold); color: #1a2332;
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 20px;
+  }
+  .cover h1 { font-size: 42px; font-weight: 800; line-height: 1.15; margin-bottom: 14px; letter-spacing: -1px; }
+  .cover h1 span { color: var(--gold); }
+  .cover-sub { font-size: 17px; opacity: 0.88; margin-bottom: 32px; max-width: 580px; }
+  .cover-meta { display: flex; gap: 32px; flex-wrap: wrap; }
+  .cover-meta-item { font-size: 13px; opacity: 0.8; }
+  .cover-meta-item strong { display: block; font-size: 15px; opacity: 1; color: var(--gold-light); }
+
+  /* ── SECTION HEADERS ── */
+  .section { margin-bottom: 48px; scroll-margin-top: 80px; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    border-bottom: 3px solid var(--teal); margin-bottom: 24px; padding-bottom: 10px;
+  }
+  .section-num {
+    background: var(--teal); color: white; font-size: 12px; font-weight: 700;
+    width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 24px; font-weight: 700; color: var(--teal); letter-spacing: -0.5px; }
+
+  /* ── METRIC CARDS ── */
+  .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 14px; margin-bottom: 24px; }
+  .metric-card {
+    background: white; border: 1px solid var(--gray-200); border-top: 4px solid var(--teal);
+    border-radius: 8px; padding: 16px 14px; text-align: center;
+  }
+  .metric-card.gold { border-top-color: var(--gold); }
+  .metric-card.danger { border-top-color: #dc3545; }
+  .metric-num { font-size: 28px; font-weight: 800; color: var(--teal); line-height: 1; }
+  .metric-card.gold .metric-num { color: var(--gold); }
+  .metric-card.danger .metric-num { color: #dc3545; }
+  .metric-label { font-size: 11px; color: var(--gray-500); margin-top: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .metric-sub { font-size: 11px; color: var(--gray-500); margin-top: 2px; }
+
+  /* ── COMPARISON TABLE ── */
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 16px 0 24px; }
+  th { background: var(--teal); color: white; padding: 10px 14px; text-align: left; font-size: 12px; font-weight: 600; letter-spacing: 0.4px; }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+  tr:nth-child(even) td { background: var(--gray-100); }
+  tr:hover td { background: var(--teal-pale); }
+  .check { color: #28a745; font-weight: 700; }
+  .cross { color: #dc3545; font-weight: 700; }
+  .cell-teal { color: var(--teal); font-weight: 600; }
+  .cell-gold { color: #a07000; font-weight: 600; }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    border-left: 4px solid var(--teal); background: var(--teal-pale);
+    padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 14px;
+  }
+  .callout.gold { border-left-color: var(--gold); background: #fdf8ec; }
+  .callout.danger { border-left-color: #dc3545; background: #fff5f5; }
+  .callout strong { color: var(--teal); }
+  .callout.gold strong { color: #8a6800; }
+  .callout.danger strong { color: #dc3545; }
+
+  /* ── WORKFLOW STEPS ── */
+  .workflow { display: flex; flex-direction: column; gap: 0; margin: 20px 0; }
+  .wf-step {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 14px 18px; background: white; border: 1px solid var(--gray-200);
+    position: relative;
+  }
+  .wf-step:first-child { border-radius: 8px 8px 0 0; }
+  .wf-step:last-child { border-radius: 0 0 8px 8px; }
+  .wf-step:not(:last-child)::after {
+    content: '↓'; position: absolute; left: 26px; bottom: -14px;
+    font-size: 16px; color: var(--teal); z-index: 1; background: white;
+    width: 20px; text-align: center;
+  }
+  .wf-num {
+    background: var(--teal); color: white; font-weight: 700; font-size: 12px;
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+  }
+  .wf-body h4 { font-size: 14px; font-weight: 700; color: var(--teal); }
+  .wf-body p { font-size: 13px; color: var(--gray-700); margin-top: 3px; }
+  .wf-tool { font-size: 11px; background: var(--teal-pale); color: var(--teal);
+    padding: 2px 8px; border-radius: 10px; font-weight: 600; margin-top: 4px; display: inline-block; }
+
+  /* ── TEAM CARDS ── */
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 18px; margin: 20px 0; }
+  .team-card {
+    background: white; border: 1px solid var(--gray-200); border-radius: 10px;
+    padding: 20px; position: relative; overflow: hidden;
+  }
+  .team-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: var(--teal);
+  }
+  .team-card.gold::before { background: var(--gold); }
+  .team-name { font-size: 16px; font-weight: 700; color: var(--teal); }
+  .team-title { font-size: 12px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .team-card ul { list-style: none; padding: 0; }
+  .team-card ul li { font-size: 13px; color: var(--gray-700); padding: 3px 0; padding-left: 14px; position: relative; }
+  .team-card ul li::before { content: '•'; position: absolute; left: 0; color: var(--teal); }
+
+  /* ── PHASE BOXES ── */
+  .phases { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin: 20px 0; }
+  .phase {
+    border: 2px solid var(--teal); border-radius: 10px; padding: 18px; background: white;
+  }
+  .phase-header {
+    background: var(--teal); color: white; font-weight: 700; font-size: 13px;
+    padding: 6px 12px; border-radius: 5px; margin: -18px -18px 14px; letter-spacing: 0.3px;
+  }
+  .phase ul { list-style: none; padding: 0; }
+  .phase ul li { font-size: 13px; color: var(--gray-700); padding: 4px 0; padding-left: 14px; position: relative; border-bottom: 1px dashed var(--gray-200); }
+  .phase ul li:last-child { border-bottom: none; }
+  .phase ul li::before { content: '→'; position: absolute; left: 0; color: var(--teal); font-size: 11px; top: 5px; }
+
+  /* ── PARTNER STRIP ── */
+  .partner-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 14px; margin: 20px 0; }
+  .partner-card {
+    background: white; border: 1px solid var(--gray-200); border-radius: 8px; padding: 16px;
+    border-top: 3px solid var(--gold);
+  }
+  .partner-name { font-size: 14px; font-weight: 700; color: var(--teal); }
+  .partner-role { font-size: 12px; color: var(--gray-500); margin-bottom: 6px; }
+  .partner-detail { font-size: 12px; color: var(--gray-700); }
+
+  /* ── RISK TABLE ── */
+  .risk-high { color: #dc3545; font-weight: 700; }
+  .risk-med { color: #fd7e14; font-weight: 700; }
+  .risk-low { color: #28a745; font-weight: 700; }
+
+  /* ── ASK BOX ── */
+  .ask-box {
+    background: linear-gradient(135deg, var(--teal), var(--teal-light));
+    color: white; border-radius: 12px; padding: 36px 40px; margin-top: 24px;
+  }
+  .ask-box h3 { font-size: 22px; font-weight: 700; margin-bottom: 20px; color: var(--gold-light); }
+  .ask-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .ask-item h4 { font-size: 13px; font-weight: 700; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+  .ask-item ul { list-style: none; }
+  .ask-item ul li { font-size: 14px; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .ask-amount { font-size: 44px; font-weight: 800; color: var(--gold); line-height: 1; }
+
+  /* ── CONFIDENTIAL FOOTER ── */
+  .doc-footer {
+    text-align: center; font-size: 11px; color: var(--gray-500);
+    padding: 24px 0 8px; border-top: 1px solid var(--gray-200); margin-top: 48px;
+  }
+
+  /* ── PRINT STYLES ── */
+  @media print {
+    .topbar, .sidebar, .btn-pdf { display: none !important; }
+    .main { margin: 0; padding: 20px; max-width: 100%; }
+    .cover { border-radius: 0; }
+    .section { page-break-inside: avoid; }
+    .team-grid, .metric-grid, .phases { grid-template-columns: repeat(2,1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 24px 20px; }
+    .phases { grid-template-columns: 1fr; }
+    .ask-grid { grid-template-columns: 1fr; }
+    .cover h1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-brand">co-op<span>.</span>care</div>
+  <div class="topbar-right">
+    <span class="topbar-tag">CONFIDENTIAL · SEED ROUND 2026</span>
+    <button class="btn-pdf" onclick="window.print()">⬇ Save as PDF</button>
+  </div>
+</header>
+
+<!-- SIDEBAR NAV -->
+<nav class="sidebar">
+  <div class="sidebar-section">Overview</div>
+  <a href="#cover">Cover</a>
+  <a href="#problem">Problem</a>
+  <a href="#solution">Solution</a>
+  <div class="sidebar-section">Strategy</div>
+  <a href="#moat">Federal Moat</a>
+  <a href="#technology">Technology</a>
+  <a href="#coop-box">Coop-in-a-Box</a>
+  <div class="sidebar-section">Economics</div>
+  <a href="#unit-economics">Unit Economics</a>
+  <a href="#financials">Financials</a>
+  <a href="#market">Market (TAM)</a>
+  <div class="sidebar-section">Execution</div>
+  <a href="#traction">Traction</a>
+  <a href="#team">Team</a>
+  <a href="#risks">Risks</a>
+  <a href="#ask">The Ask</a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <!-- ── COVER ── -->
+  <section id="cover" class="cover">
+    <div class="cover-tag">Seed Round · 2026</div>
+    <h1>The Operating System<br>for <span>Worker-Owned</span><br>Home Care</h1>
+    <p class="cover-sub">co-op.care eliminates the agency middleman, routes 88¢ of every dollar to worker-owners, and captures exclusive federal ACCESS Model payments that traditional agencies cannot bill.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><strong>$258B</strong>U.S. Home Care TAM (2026)</div>
+      <div class="cover-meta-item"><strong>79%</strong>Industry Caregiver Turnover</div>
+      <div class="cover-meta-item"><strong>88¢</strong>Revenue to Worker-Owners</div>
+      <div class="cover-meta-item"><strong>50%</strong>Target Gross Margin</div>
+      <div class="cover-meta-item"><strong>Apr 1</strong>ACCESS Model Deadline</div>
+    </div>
+  </section>
+
+  <!-- ── 1. THE PROBLEM ── -->
+  <section id="problem" class="section">
+    <div class="section-header"><div class="section-num">1</div><h2>The Crisis in Home Care</h2></div>
+
+    <div class="metric-grid">
+      <div class="metric-card danger">
+        <div class="metric-num">79%</div>
+        <div class="metric-label">Annual Caregiver Turnover</div>
+        <div class="metric-sub">Industry median, 2023–2025</div>
+      </div>
+      <div class="metric-card danger">
+        <div class="metric-num">40–60%</div>
+        <div class="metric-label">Revenue Extracted by Agencies</div>
+        <div class="metric-sub">Before worker is paid</div>
+      </div>
+      <div class="metric-card danger">
+        <div class="metric-num">$13–15/hr</div>
+        <div class="metric-label">Avg Caregiver Take-Home</div>
+        <div class="metric-sub">At or below poverty wage</div>
+      </div>
+      <div class="metric-card danger">
+        <div class="metric-num">$15K+</div>
+        <div class="metric-label">Cost Per Unplanned Readmission</div>
+        <div class="metric-sub">Driven by care coordination failure</div>
+      </div>
+    </div>
+
+    <p>Three simultaneous failures compound each other. <strong>For families:</strong> agency fees consume 40–60% of every dollar, yet turnover means a new caregiver appears constantly — destroying therapeutic relationships. <strong>For caregivers:</strong> poverty wages, zero equity, and zero voice produce 79% annual turnover — the industry's defining crisis. <strong>For the healthcare system:</strong> fragmented, undocumented care produces unplanned readmissions and zero clinical data, making outcome-based federal reimbursement structurally impossible.</p>
+
+    <div class="callout danger">
+      <strong>The root cause:</strong> The agency model extracts 40–60% in overhead, distributes no equity, has no clinical documentation infrastructure, and is structurally excluded from the next generation of CMS value-based payment models.
+    </div>
+  </section>
+
+  <!-- ── 2. THE SOLUTION ── -->
+  <section id="solution" class="section">
+    <div class="section-header"><div class="section-num">2</div><h2>The Solution: Hard Shell / Soft Center</h2></div>
+
+    <table>
+      <tr><th>Layer</th><th>Entity</th><th>Function</th><th>IP Ownership</th></tr>
+      <tr>
+        <td><strong>Hard Shell</strong></td>
+        <td>co-op.care Technologies LLC</td>
+        <td>CareOS platform, FHIR rails, billing engine, federal contracts, licensing</td>
+        <td class="check">✓ Full IP ownership</td>
+      </tr>
+      <tr>
+        <td><strong>Soft Center</strong></td>
+        <td>Local Worker-Owned Co-ops</td>
+        <td>Care delivery, employment, democratic governance, community trust</td>
+        <td class="check">✓ Member equity & profit share</td>
+      </tr>
+      <tr>
+        <td><strong>Intake Layer</strong></td>
+        <td>SageCare.ai</td>
+        <td>24/7 AI front-office, auto-drafted care plans, zero lead leakage</td>
+        <td class="check">✓ Integrated platform</td>
+      </tr>
+      <tr>
+        <td><strong>Mutual Aid Layer</strong></td>
+        <td>Time Bank (hOurworld)</td>
+        <td>Non-clinical task offload via TimeDollars (1 hr = 1 credit), frees caregivers for billable hours</td>
+        <td>Community-owned</td>
+      </tr>
+    </table>
+
+    <div class="callout">
+      <strong>The structural insight:</strong> The Hard Shell captures IP, regulatory credentials, and federal payment contracts. The Soft Center delivers care with full worker ownership and governance. Neither traditional agencies nor tech platforms have combined both — because they don't share economics with workers.
+    </div>
+  </section>
+
+  <!-- ── 3. FEDERAL MOAT ── -->
+  <section id="moat" class="section">
+    <div class="section-header"><div class="section-num">3</div><h2>Federal Moat: ACCESS Model + PACE Exclusivity</h2></div>
+
+    <div class="callout gold">
+      <strong>The FFS Exclusion Rule:</strong> CMS ACCESS Model participants are prohibited from billing Medicare Fee-for-Service. This bars every traditional home care agency from entering the program — permanently reserving the payment pool for qualified participants like co-op.care.
+    </div>
+
+    <h3 style="color:var(--teal); margin: 20px 0 12px; font-size:17px;">CMS ACCESS Model Payments (July 2026)</h3>
+    <table>
+      <tr><th>Track</th><th>Annual OAP</th><th>Monthly (initial)</th><th>Key Outcome Targets</th></tr>
+      <tr><td>Cardio-Kidney-Metabolic (CKM)</td><td class="cell-teal">$420</td><td>$28/beneficiary</td><td>BP &lt;130, HbA1c &lt;7.5%, LDL &lt;70</td></tr>
+      <tr><td>Early CKM (eCKM)</td><td class="cell-teal">$360</td><td>$24/beneficiary</td><td>BP &lt;130, BMI reduction, HbA1c (prediabetes)</td></tr>
+      <tr><td>Musculoskeletal (MSK)</td><td class="cell-teal">$180</td><td>$12/beneficiary</td><td>PROMIS PF/PI, pain NRS, PGIC minimum improvement</td></tr>
+      <tr><td>Behavioral Health (BH)</td><td class="cell-teal">$180</td><td>$12/beneficiary</td><td>PHQ-9 ≤10 or −5 pts, GAD-7 ≤10 or −4 pts</td></tr>
+      <tr><td>Rural eCKM/CKM premium</td><td class="cell-gold">+$15</td><td>+$1.25/beneficiary</td><td>Geographic supplement</td></tr>
+    </table>
+
+    <p style="font-size:13px; color:var(--gray-500); margin-bottom:20px;">Payments: 80% Medicare + 20% waivable beneficiary coinsurance. 50% withheld pending Outcome Attainment Rate (≥50% beneficiaries meet all measures) and Substitute Spend (&lt;90% of allowed services).</p>
+
+    <h3 style="color:var(--teal); margin: 20px 0 12px; font-size:17px;">PACE Program — Primary Near-Term Target</h3>
+    <table>
+      <tr><th>Feature</th><th>PACE</th><th>ACCESS Model</th></tr>
+      <tr><td>Payment structure</td><td>Capitated (per-member per-month)</td><td>Outcome-Aligned (annual, performance-gated)</td></tr>
+      <tr><td>Target population</td><td>Dual-eligible (Medicare + Medicaid), 55+</td><td>Medicare FFS chronic disease patients</td></tr>
+      <tr><td>Revenue predictability</td><td class="check">✓ Highly predictable PMPM</td><td>50% at-risk until reconciliation</td></tr>
+      <tr><td>Co-op.care advantage</td><td>Lower churn = better PMPM economics</td><td>FFS exclusion locks out competitors</td></tr>
+      <tr><td>Timeline</td><td>Near-term anchor revenue</td><td>10-year program (2026–2036)</td></tr>
+    </table>
+
+    <div class="callout">
+      <strong>Strategic positioning:</strong> PACE serves as the near-term revenue anchor (capitated, predictable, dual-eligible population). The ACCESS Model is the 10-year federal moat that no traditional agency can access. Co-op.care is the only model structured to win both.
+    </div>
+
+    <h3 style="color:var(--teal); margin: 20px 0 12px; font-size:17px;">Additional Reimbursement: PIN &amp; CHI Codes</h3>
+    <table>
+      <tr><th>Code Type</th><th>Service</th><th>Advantage</th></tr>
+      <tr><td>PIN (Principal Illness Navigation)</td><td>Care navigation for serious illness</td><td>Billable by qualified navigators, not just MDs</td></tr>
+      <tr><td>CHI (Community Health Integration)</td><td>SDOH-focused community health work</td><td>Maps directly to co-op caregiver skill set</td></tr>
+    </table>
+  </section>
+
+  <!-- ── 4. TECHNOLOGY ── -->
+  <section id="technology" class="section">
+    <div class="section-header"><div class="section-num">4</div><h2>CareOS: The 5-Layer Clinical AI Stack</h2></div>
+
+    <div class="callout">
+      <strong>Architecture principle:</strong> Voice-to-FHIR-to-billing in one automated pipeline. The Omaha System provides the clinical taxonomy; FHIR R4 provides the interoperability layer; Aidbox provides the enterprise-grade backend. Together they create a "clinical data factory" for federal reimbursement documentation.
+    </div>
+
+    <div class="workflow">
+      <div class="wf-step">
+        <div class="wf-num">1</div>
+        <div class="wf-body">
+          <h4>Inquiry &amp; Intake — Zero Lead Leakage</h4>
+          <p>24/7 AI front-office handles inbound referrals, auto-drafts care plans, routes to appropriate clinical track</p>
+          <span class="wf-tool">SageCare.ai</span>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">2</div>
+        <div class="wf-body">
+          <h4>Democratic Hiring — One Member, One Vote</h4>
+          <p>Worker-owners participate in vetting new hires; high-volume SMS capture for applicants within 3 days of first touch</p>
+          <span class="wf-tool">Recruitee</span> <span class="wf-tool">Workstream</span>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">3</div>
+        <div class="wf-body">
+          <h4>Certification &amp; Micro-Learning</h4>
+          <p>75-hour HHA program (59 online + 16 in-person); ongoing mobile micro-learning modules for skill maintenance</p>
+          <span class="wf-tool">CareAcademy</span> <span class="wf-tool">Relias</span>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">4</div>
+        <div class="wf-body">
+          <h4>Clinical AI Scribe — 4-Layer Safety Model</h4>
+          <p><strong>Layer 1:</strong> Caregiver ambient voice note → <strong>Layer 2:</strong> AI maps to Omaha System KBS (1–5 scale) + interRAI CAPs → <strong>Layer 3:</strong> CMO physician review &amp; validation → <strong>Layer 4:</strong> FHIR R4 structured data output to federal billing rails. Satisfies 2026 CMS AI oversight requirements.</p>
+          <span class="wf-tool">co-op.care CareOS</span> <span class="wf-tool">Aidbox FHIR R4</span> <span class="wf-tool">WellSky EMR</span>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">5</div>
+        <div class="wf-body">
+          <h4>Mutual Aid &amp; Community Support</h4>
+          <p>Non-clinical tasks (transportation, errands, companionship) offloaded to Time Bank volunteers using TimeDollars (1 hour = 1 credit), freeing caregivers for billable hours at zero additional labor cost</p>
+          <span class="wf-tool">hOurworld / Time and Talents</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="color:var(--teal); margin: 24px 0 12px; font-size:16px;">Omaha System KBS Scoring</h3>
+    <table>
+      <tr><th>Dimension</th><th>1 (No)</th><th>3 (Basic)</th><th>5 (Superior)</th><th>Billing Impact</th></tr>
+      <tr><td><strong>Knowledge</strong></td><td>No knowledge</td><td>Basic knowledge</td><td>Superior knowledge</td><td>Documents patient education</td></tr>
+      <tr><td><strong>Behavior</strong></td><td>Not appropriate</td><td>Inconsistently appropriate</td><td>Consistently appropriate</td><td>Documents care adherence</td></tr>
+      <tr><td><strong>Status</strong></td><td>Extreme signs/symptoms</td><td>Moderate signs/symptoms</td><td>No signs/symptoms</td><td>Documents clinical outcomes</td></tr>
+    </table>
+  </section>
+
+  <!-- ── 5. COOP-IN-A-BOX ── -->
+  <section id="coop-box" class="section">
+    <div class="section-header"><div class="section-num">5</div><h2>Coop-in-a-Box: 90-Day Deployment Playbook</h2></div>
+
+    <div class="metric-grid">
+      <div class="metric-card danger">
+        <div class="metric-num">$500K+</div>
+        <div class="metric-label">Traditional Agency Build</div>
+        <div class="metric-sub">18 months to operational</div>
+      </div>
+      <div class="metric-card gold">
+        <div class="metric-num">$75–150K</div>
+        <div class="metric-label">Coop-in-a-Box License</div>
+        <div class="metric-sub">90 days to operational</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">75%</div>
+        <div class="metric-label">CO Tax Credit</div>
+        <div class="metric-sub">For employee-ownership conversions</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">22%</div>
+        <div class="metric-label">Projected Co-op Turnover</div>
+        <div class="metric-sub">vs. 66–79% industry average</div>
+      </div>
+    </div>
+
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-header">Phase 1: Incubation (Days 1–30)</div>
+        <ul>
+          <li>Form cooperative board of directors</li>
+          <li>Engage RMEOC Social Cooperative Academy for governance training</li>
+          <li>Apply for Colorado 75% employee-ownership tax credit</li>
+          <li>Submit CMS ACCESS Model application (deadline Apr 1, 2026)</li>
+          <li>Identify founding worker-owners (minimum 3–5)</li>
+          <li>Establish Aidbox FHIR infrastructure</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-header">Phase 2: Licensing (Days 31–60)</div>
+        <ul>
+          <li>Hire Director of Nursing ($100–120K/yr, CDPHE requirement)</li>
+          <li>Hire Agency Administrator</li>
+          <li>Submit CDPHE Class A Home Health license application</li>
+          <li>Begin Medicare Part B enrollment for the co-op entity</li>
+          <li>Finalize BCH discharge pipeline agreement</li>
+          <li>Activate BVSD employer-sponsored pilot contract</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-header">Phase 3: Operations (Days 61–90)</div>
+        <ul>
+          <li>Activate SageCare.ai intake layer</li>
+          <li>Launch Recruitee democratic hiring portal</li>
+          <li>Deploy Workstream onboarding (SMS + background checks)</li>
+          <li>Deploy co-op.care AI scribe for first patients</li>
+          <li>Activate TimeBank Boulder (hOurworld) mutual aid layer</li>
+          <li>First ACCESS Model OAP billing cycle begins</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 6. UNIT ECONOMICS ── -->
+  <section id="unit-economics" class="section">
+    <div class="section-header"><div class="section-num">6</div><h2>Unit Economics: Cooperative vs. Agency Model</h2></div>
+
+    <table>
+      <tr>
+        <th>Metric</th>
+        <th>Traditional Agency</th>
+        <th>co-op.care Model</th>
+        <th>Δ</th>
+      </tr>
+      <tr>
+        <td>Revenue captured by agency</td>
+        <td class="cross">40–60%</td>
+        <td class="check">12% (platform fee)</td>
+        <td class="check">+28–48% to workers</td>
+      </tr>
+      <tr>
+        <td>Revenue to care workers</td>
+        <td class="cross">40–60¢ / $1</td>
+        <td class="check">88¢ / $1</td>
+        <td class="check">+88% improvement</td>
+      </tr>
+      <tr>
+        <td>Caregiver hourly wage</td>
+        <td>$13–15/hr</td>
+        <td>$22–27/hr</td>
+        <td class="check">+$9–12/hr</td>
+      </tr>
+      <tr>
+        <td>Annual caregiver turnover</td>
+        <td class="cross">66–79%</td>
+        <td class="check">22% (projected)</td>
+        <td class="check">−57 percentage points</td>
+      </tr>
+      <tr>
+        <td>Caregiver equity (5 yrs, 30 hrs/wk)</td>
+        <td class="cross">$0</td>
+        <td class="check">~$52,000</td>
+        <td class="check">Wealth building</td>
+      </tr>
+      <tr>
+        <td>Clinical documentation</td>
+        <td class="cross">Manual, inconsistent</td>
+        <td class="check">AI-structured, FHIR R4</td>
+        <td class="check">Federal billing eligible</td>
+      </tr>
+      <tr>
+        <td>ACCESS/PACE eligibility</td>
+        <td class="cross">FFS exclusion bars them</td>
+        <td class="check">Qualified participant</td>
+        <td class="check">Exclusive revenue stream</td>
+      </tr>
+    </table>
+
+    <div class="callout gold">
+      <strong>CHCA Precedent:</strong> Cooperative Home Care Associates (Bronx, NY) — the largest worker-owned home care co-op in the U.S. — demonstrates lower turnover, higher care quality scores, and measurable wealth-building for members. Peer-reviewed evidence in <em>Health Affairs Scholar</em> supports cooperative structure improving both job quality and patient outcomes.
+    </div>
+
+    <h3 style="color:var(--teal); margin: 20px 0 12px; font-size:16px;">Per-Beneficiary Revenue Stack (Boulder Pilot)</h3>
+    <table>
+      <tr><th>Revenue Source</th><th>Per Beneficiary/Year</th><th>Notes</th></tr>
+      <tr><td>ACCESS Model OAP (CKM track)</td><td class="cell-teal">$420</td><td>80% Medicare, performance-gated</td></tr>
+      <tr><td>ACCESS Model OAP (eCKM track)</td><td class="cell-teal">$360</td><td>80% Medicare, chronic disease</td></tr>
+      <tr><td>ACCESS Model OAP (MSK track)</td><td class="cell-teal">$180</td><td>Blaine's clinical sweet spot</td></tr>
+      <tr><td>PACE capitation (PMPM basis)</td><td class="cell-teal">Variable</td><td>Dual-eligible anchor revenue</td></tr>
+      <tr><td>PIN / CHI billing codes</td><td class="cell-gold">Additive</td><td>Navigation + SDOH services</td></tr>
+      <tr><td>Coop-in-a-Box licensing fees</td><td class="cell-gold">$75–150K/co-op</td><td>Hard Shell platform revenue</td></tr>
+    </table>
+  </section>
+
+  <!-- ── 7. FINANCIALS ── -->
+  <section id="financials" class="section">
+    <div class="section-header"><div class="section-num">7</div><h2>Financial Projections</h2></div>
+
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-num">$250–450K</div>
+        <div class="metric-label">Year 1 Revenue</div>
+        <div class="metric-sub">Boulder pilot, 50–75 beneficiaries</div>
+      </div>
+      <div class="metric-card gold">
+        <div class="metric-num">50%</div>
+        <div class="metric-label">Target Gross Margin</div>
+        <div class="metric-sub">Post-automation, scaled ops</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">$2.4M</div>
+        <div class="metric-label">Year 3 SOM</div>
+        <div class="metric-sub">Boulder + regional expansion</div>
+      </div>
+      <div class="metric-card gold">
+        <div class="metric-num">$120M</div>
+        <div class="metric-label">Year 7 Target</div>
+        <div class="metric-sub">50 co-ops, national scale</div>
+      </div>
+    </div>
+
+    <h3 style="color:var(--teal); margin: 20px 0 12px; font-size:16px;">Gross Margin Bridge</h3>
+    <table>
+      <tr><th>Cost Category</th><th>Traditional Agency</th><th>co-op.care</th><th>Driver</th></tr>
+      <tr><td>Labor (caregiver wages)</td><td>40–55% of revenue</td><td>88% flows to workers</td><td>Cooperative pass-through</td></tr>
+      <tr><td>Recruitment / turnover costs</td><td>15–20% of revenue</td><td>&lt;5% projected</td><td>79% → 22% turnover reduction</td></tr>
+      <tr><td>Clinical documentation (manual)</td><td>8–12% of revenue</td><td>&lt;2% (automated)</td><td>AI scribe replaces labor</td></tr>
+      <tr><td>Platform fee (Hard Shell)</td><td>N/A</td><td>12% of co-op revenue</td><td>Scalable SaaS economics</td></tr>
+      <tr><td><strong>Gross Margin</strong></td><td><strong>10–20%</strong></td><td><strong>50% (target)</strong></td><td><strong>Automation + federal billing</strong></td></tr>
+    </table>
+
+    <h3 style="color:var(--teal); margin: 20px 0 12px; font-size:16px;">Key Assumptions</h3>
+    <table>
+      <tr><th>Assumption</th><th>Value</th><th>Source/Basis</th></tr>
+      <tr><td>Director of Nursing salary (Phase 2)</td><td>$100–120K/yr</td><td>Colorado market rate</td></tr>
+      <tr><td>Colorado employee-ownership tax credit</td><td>75% of conversion costs</td><td>Colorado state statute</td></tr>
+      <tr><td>AI-to-physician review ratio</td><td>TBD (key operational variable)</td><td>Define before Series A</td></tr>
+      <tr><td>Max beneficiaries per Clinical Director</td><td>TBD (capacity limit)</td><td>Define before hiring FTE</td></tr>
+      <tr><td>Coop-in-a-Box license fee per co-op</td><td>$75–150K (one-time)</td><td>Internal model</td></tr>
+    </table>
+  </section>
+
+  <!-- ── 8. MARKET ── -->
+  <section id="market" class="section">
+    <div class="section-header"><div class="section-num">8</div><h2>Market Opportunity</h2></div>
+
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-num">$258B</div>
+        <div class="metric-label">TAM — U.S. Home Care (2026)</div>
+        <div class="metric-sub">Precedence Research; growing to $659B by 2036</div>
+      </div>
+      <div class="metric-card gold">
+        <div class="metric-num">$47B</div>
+        <div class="metric-label">SAM — Value-Based Home Care</div>
+        <div class="metric-sub">Medicare FFS + PACE-eligible population</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">$2.4M</div>
+        <div class="metric-label">SOM — Year 3</div>
+        <div class="metric-sub">Boulder + Front Range co-ops</div>
+      </div>
+      <div class="metric-card gold">
+        <div class="metric-num">$120M</div>
+        <div class="metric-label">SOM — Year 7</div>
+        <div class="metric-sub">50 co-ops, national licensing</div>
+      </div>
+    </div>
+
+    <p>The U.S. home care market is structurally distressed and ripe for platform disruption. The aging population (10,000 Americans turning 65 daily through 2030), CMS's accelerating shift to value-based care, and the collapse of traditional agency economics create a once-in-a-generation entry point. Co-op.care is not competing for market share in a legacy model — it is founding a new category that legacy players are structurally barred from entering.</p>
+
+    <h3 style="color:var(--teal); margin: 20px 0 12px; font-size:16px;">Competitive Landscape</h3>
+    <table>
+      <tr><th>Competitor Type</th><th>ACCESS Model Eligible?</th><th>Cooperative Structure?</th><th>Clinical AI?</th><th>co-op.care Advantage</th></tr>
+      <tr><td>Traditional home care agencies</td><td class="cross">✗ Barred (FFS exclusion)</td><td class="cross">✗</td><td class="cross">✗</td><td>Exclusive federal revenue + lower cost structure</td></tr>
+      <tr><td>Cityblock Health / agilon</td><td>Partial (different models)</td><td class="cross">✗</td><td class="check">✓</td><td>Worker-ownership + cooperative legal structure</td></tr>
+      <tr><td>Amazon Home Care / Optum</td><td class="cross">✗ (FFS-dependent)</td><td class="cross">✗</td><td class="check">✓</td><td>Cooperative economics = 88¢ worker retention</td></tr>
+      <tr><td>PACE programs (existing)</td><td>Complementary</td><td>Some</td><td>Limited</td><td>Technology layer + cooperative governance</td></tr>
+    </table>
+  </section>
+
+  <!-- ── 9. TRACTION ── -->
+  <section id="traction" class="section">
+    <div class="section-header"><div class="section-num">9</div><h2>Traction &amp; Timeline</h2></div>
+
+    <div class="partner-grid">
+      <div class="partner-card">
+        <div class="partner-name">Health Samurai / Aidbox</div>
+        <div class="partner-role">Technology Infrastructure Partner</div>
+        <div class="partner-detail">FHIR R4 enterprise backend; Google Cloud partner; WA State Dept. of Health implementation; Sonic Healthcare. Powers the CareOS billing rails.</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-name">RMEOC</div>
+        <div class="partner-role">Cooperative Development Partner</div>
+        <div class="partner-detail">Rocky Mountain Employee Ownership Center (501(c)3, founded 2012). Provides dedicated Colorado Homecare Cooperative Program Director and expertise in employee-ownership conversions.</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-name">Boulder Community Health (BCH)</div>
+        <div class="partner-role">Hospital Channel Partner</div>
+        <div class="partner-detail">Hospital discharge pipeline; $15K+ savings per unplanned readmission avoided. Primary referral source for Boulder Pilot Cohort 1 (50–75 beneficiaries).</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-name">Boulder Valley School District (BVSD)</div>
+        <div class="partner-role">Employer-Sponsored Pilot</div>
+        <div class="partner-detail">Employer-sponsored home care pilot; anchor institutional client for Boulder Co-op #1; validates B2B employer channel beyond Medicare.</div>
+      </div>
+    </div>
+
+    <h3 style="color:var(--teal); margin: 20px 0 12px; font-size:16px;">Boulder Pilot Timeline</h3>
+    <table>
+      <tr><th>Milestone</th><th>Date</th><th>Status</th></tr>
+      <tr><td>Aidbox FHIR infrastructure deployment</td><td>Q1 2026</td><td class="check">✓ In Progress</td></tr>
+      <tr><td>CMS ACCESS Model application submission</td><td>Apr 1, 2026 (verify Mar 20)</td><td style="color:#fd7e14; font-weight:600;">⚡ Critical deadline</td></tr>
+      <tr><td>CDPHE Class A license filing</td><td>Q2 2026</td><td>Planned</td></tr>
+      <tr><td>First beneficiary enrollment (BCH discharge)</td><td>Q3 2026</td><td>Planned</td></tr>
+      <tr><td>First ACCESS Model OAP billing cycle</td><td>Q3 2026</td><td>Planned</td></tr>
+      <tr><td>Boulder Co-op #1 breakeven</td><td>Q4 2026</td><td>Projected</td></tr>
+      <tr><td>Replicate model — Front Range Co-op #2</td><td>2027</td><td>Expansion</td></tr>
+      <tr><td>National licensing (Coop-in-a-Box)</td><td>2028–2030</td><td>Scale</td></tr>
+      <tr><td>50 co-ops, $120M revenue</td><td>Year 7</td><td>Vision</td></tr>
+    </table>
+  </section>
+
+  <!-- ── 10. TEAM ── -->
+  <section id="team" class="section">
+    <div class="section-header"><div class="section-num">10</div><h2>Team</h2></div>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-name">Blaine Warkentine, MD</div>
+        <div class="team-title">Founder &amp; CEO · Boulder, CO</div>
+        <ul>
+          <li>Orthopedic surgeon, 19+ years clinical experience</li>
+          <li>35+ patents across surgical technology</li>
+          <li>Former R&D Director, BrainLAB</li>
+          <li>Healthcare Informatics Top 100 Innovator (2010)</li>
+          <li>Founder: InnovationThrives, RidRx, OrthoThinkTank</li>
+          <li>Senior Fellow, Jefferson School of Population Health</li>
+          <li>BS Business, CU Boulder · MD, Medical College of Wisconsin</li>
+          <li>94th percentile, Orthopaedic In-Training Exam</li>
+        </ul>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Josh Emdur, DO</div>
+        <div class="team-title">Chief Medical Officer · Boulder, CO</div>
+        <ul>
+          <li>Board-Certified Family Medicine Physician (DO)</li>
+          <li>Former CMO, SteadyMD (leading telemedicine platform)</li>
+          <li>50-state licensed — enables full virtual oversight model</li>
+          <li>Expertise: chronic disease management &amp; telemedicine</li>
+          <li>Boulder-embedded — in the pilot market</li>
+          <li>Serves as Layer 3 (physician validation) in CareOS AI safety model</li>
+          <li>Qualifies as PACE Medical Director (42 CFR 460.70)</li>
+        </ul>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Jacob Pielke</div>
+        <div class="team-title">Chief Technology Officer · Remote</div>
+        <ul>
+          <li>CEO, Cohesion Labs (healthcare interoperability firm)</li>
+          <li>Founder, Virtual Fork — acquired 2024</li>
+          <li>Healthcare software architect since 2017</li>
+          <li>Expert: FHIR, Redox, Metriport, direct integrations</li>
+          <li>USC Marshall School of Business alum</li>
+          <li>Leads Aidbox implementation and CareOS build</li>
+        </ul>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Jess Dion</div>
+        <div class="team-title">Chief Operating Officer · Boulder, CO</div>
+        <ul>
+          <li>Cooperative governance &amp; operations specialist</li>
+          <li>Healthcare administration background</li>
+          <li>Social enterprise leadership</li>
+          <li>Manages RMEOC partnership and board development</li>
+          <li>Oversees CDPHE licensing process and HR systems</li>
+        </ul>
+      </div>
+      <div class="team-card gold">
+        <div class="team-name">[TBD] Director of Nursing, RN</div>
+        <div class="team-title">Director of Nursing · Boulder, CO</div>
+        <ul>
+          <li>CDPHE Class A license compliance (required by state law)</li>
+          <li>CMS Medicare certification oversight (42 CFR 484.75)</li>
+          <li>Clinical supervisor for AI-validated care notes (Layer 2)</li>
+          <li>Reports to Josh Emdur, DO (CMO)</li>
+          <li>Budgeted hire: $100–120K/yr · funded from seed round</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="color:var(--teal); margin: 24px 0 12px; font-size:16px;">Advisors</h3>
+    <table>
+      <tr><th>Advisor</th><th>Role</th><th>Contribution</th></tr>
+      <tr><td>Rhett Silver, MD</td><td>Clinical Advisor</td><td>Emergency medicine perspective; early clinical architecture input</td></tr>
+    </table>
+  </section>
+
+  <!-- ── 11. RISKS ── -->
+  <section id="risks" class="section">
+    <div class="section-header"><div class="section-num">11</div><h2>Risk Factors &amp; Mitigations</h2></div>
+
+    <table>
+      <tr><th>Risk</th><th>Severity</th><th>Mitigation</th></tr>
+      <tr>
+        <td><strong>ACCESS Model deadline (Apr 1 / Mar 20)</strong></td>
+        <td class="risk-high">HIGH</td>
+        <td>Verify exact date at CMS RFA PDF. Submit before Mar 20 to be safe. Missing this = wait until 2027 cohort.</td>
+      </tr>
+      <tr>
+        <td><strong>CMS policy reversal / program discontinuation</strong></td>
+        <td class="risk-med">MEDIUM</td>
+        <td>PACE provides parallel capitated revenue independent of ACCESS Model. Dual-track federal strategy reduces single-program dependency.</td>
+      </tr>
+      <tr>
+        <td><strong>Cooperative governance complexity at scale</strong></td>
+        <td class="risk-med">MEDIUM</td>
+        <td>RMEOC partnership + Social Cooperative Academy. Federated model (local co-ops stay small, Hard Shell scales). CHCA precedent at 2,000+ workers.</td>
+      </tr>
+      <tr>
+        <td><strong>Medicare Part B enrollment — entity ambiguity</strong></td>
+        <td class="risk-high">HIGH</td>
+        <td>Clarify now: does the LLC or each local co-op enroll? Each co-op likely needs separate enrollment. Build legal structure before Phase 2.</td>
+      </tr>
+      <tr>
+        <td><strong>AI safety / 2026 CMS AI restrictions</strong></td>
+        <td class="risk-med">MEDIUM</td>
+        <td>4-layer safety model with mandatory physician (Josh Emdur) validation. Physician Oversight Portal satisfies CMS 2026 AI oversight requirements.</td>
+      </tr>
+      <tr>
+        <td><strong>50% gross margin depends on automation ratio</strong></td>
+        <td class="risk-med">MEDIUM</td>
+        <td>Define AI-to-human review ratio and max caseload per Clinical Director before hiring FTEs. Include in operational model before Series A.</td>
+      </tr>
+      <tr>
+        <td><strong>CDPHE Class A license timeline (Phase 2)</strong></td>
+        <td class="risk-med">MEDIUM</td>
+        <td>Begin DoN hire in Phase 1 (pre-license) to compress timeline. RMEOC has navigated this for Colorado co-ops before.</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- ── 12. THE ASK ── -->
+  <section id="ask" class="section">
+    <div class="section-header"><div class="section-num">12</div><h2>The Ask</h2></div>
+
+    <div class="ask-box">
+      <h3>Seed Round</h3>
+      <div class="metric-grid" style="margin-bottom:28px;">
+        <div style="text-align:center;">
+          <div class="ask-amount">$1M</div>
+          <div style="font-size:13px; opacity:0.7; margin-top:6px; text-transform:uppercase; letter-spacing:0.8px;">Target Raise</div>
+          <div style="font-size:12px; opacity:0.6; margin-top:2px;">Range: $750K–$1.5M</div>
+        </div>
+      </div>
+      <div class="ask-grid">
+        <div class="ask-item">
+          <h4>Use of Funds</h4>
+          <ul>
+            <li>Director of Nursing hire (Phase 2) — $110K/yr</li>
+            <li>Aidbox infrastructure buildout — $80–100K</li>
+            <li>CDPHE Class A license + CMS enrollment — $30–50K</li>
+            <li>SageCare.ai / CareOS development — $150–200K</li>
+            <li>Legal (cooperative formation, Medicare) — $40–60K</li>
+            <li>Operations (90-day pilot) — $100–150K</li>
+            <li>Working capital / contingency — $200–300K</li>
+          </ul>
+        </div>
+        <div class="ask-item">
+          <h4>Exit Comparables</h4>
+          <ul>
+            <li>Cityblock Health — $600M (value-based primary care)</li>
+            <li>agilon health — $3B+ (physician enablement)</li>
+            <li>Navi Health — $2.5B (post-acute care coordination)</li>
+            <li>Landmark Health — $2.5B (home-based medicine)</li>
+          </ul>
+          <div style="margin-top: 16px;">
+            <h4>Colorado Tax Advantage</h4>
+            <ul>
+              <li>75% state tax credit on cooperative formation costs</li>
+              <li>On $50K formation spend → $37,500 effective credit</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout gold" style="margin-top:24px;">
+      <strong>The bottom line:</strong> This is not a home care company trying to add technology. This is a technology platform founding a new federally-protected category of worker-owned care cooperatives. The FFS exclusion rule is the moat. The cooperative economics are the retention engine. The AI clinical stack is the margin driver. Together they create a model that incumbent agencies cannot copy and that platform-only companies cannot replicate.
+    </div>
+  </section>
+
+  <div class="doc-footer">
+    <p><strong>co-op.care Technologies LLC</strong> &nbsp;|&nbsp; Confidential &amp; Proprietary &nbsp;|&nbsp; March 2026</p>
+    <p style="margin-top:6px;">Contact: Blaine Warkentine, MD · orthoblaino@gmail.com · Boulder, CO</p>
+    <p style="margin-top:6px; font-size:10px;">This document contains forward-looking statements and projections based on current assumptions. Actual results may differ materially. Not an offer to sell securities.</p>
+  </div>
+
+</main>
+
+<script>
+// Active sidebar nav on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.sidebar a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>

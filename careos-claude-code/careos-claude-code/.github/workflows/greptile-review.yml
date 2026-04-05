@@ -1,0 +1,21 @@
+name: Greptile AI Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [main, dev]
+
+jobs:
+  greptile:
+    name: greptile-review
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Greptile PR Review
+        uses: greptileai/greptile-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          greptile_api_key: ${{ secrets.GREPTILE_API_KEY }}

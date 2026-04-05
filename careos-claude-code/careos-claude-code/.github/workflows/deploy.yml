@@ -1,0 +1,84 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+defaults:
+  run:
+    working-directory: careos-claude-code/careos-claude-code
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: careos-claude-code/careos-claude-code/node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('careos-claude-code/careos-claude-code/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: careos-claude-code/careos-claude-code
+
+      - name: TypeScript check
+        run: node node_modules/.bin/tsc --noEmit
+        working-directory: careos-claude-code/careos-claude-code
+
+      - name: Lint
+        run: node node_modules/.bin/eslint src/
+        working-directory: careos-claude-code/careos-claude-code
+
+      - name: Unit tests
+        run: node node_modules/.bin/vitest run
+        working-directory: careos-claude-code/careos-claude-code
+
+      - name: Build
+        run: node node_modules/.bin/vite build
+        working-directory: careos-claude-code/careos-claude-code
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: ci
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: careos-claude-code/careos-claude-code/node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('careos-claude-code/careos-claude-code/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: careos-claude-code/careos-claude-code
+
+      - name: Build
+        run: node node_modules/.bin/vite build
+        working-directory: careos-claude-code/careos-claude-code
+
+      - name: Deploy to Fly.io
+        uses: superfly/flyctl-actions@v1
+        with:
+          args: deploy
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

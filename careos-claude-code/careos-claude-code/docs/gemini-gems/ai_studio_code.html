@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>co-op.care: The Architecture of Community Care</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .trust-layer {
+            transition: transform 0.3s ease;
+        }
+        .trust-layer:hover {
+            transform: translateY(-5px);
+        }
+        .bg-gradient-mesh {
+            background-color: #f8fafc;
+            background-image: radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.05) 0, transparent 50%), 
+                              radial-gradient(at 50% 0%, rgba(244, 63, 94, 0.05) 0, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-gradient-mesh text-slate-800 font-sans antialiased">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Header -->
+        <header class="text-center mb-16">
+            <h1 class="text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+                <span class="text-blue-600">co-op.care</span>: The Logic of the Neighborhood
+            </h1>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
+                Building care infrastructure to face two converging crises: employment collapse and demographic aging. We sell community care as an asset, not a burden.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-10">
+                <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-rose-500">
+                    <div class="text-4xl font-black text-slate-900 mb-1">8.9M</div>
+                    <div class="text-sm font-semibold text-rose-500 uppercase tracking-wide">Job Openings by 2032</div>
+                    <div class="text-xs text-slate-500 mt-2">The caregiver support ratio is collapsing from 7:1 to 4:1.</div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-emerald-500">
+                    <div class="text-4xl font-black text-slate-900 mb-1">$35/hr</div>
+                    <div class="text-sm font-semibold text-emerald-500 uppercase tracking-wide">Flat Family Rate</div>
+                    <div class="text-xs text-slate-500 mt-2">Transparent pricing. No hidden markups. HSA/FSA eligible.</div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-blue-500">
+                    <div class="text-4xl font-black text-slate-900 mb-1">$25-28</div>
+                    <div class="text-sm font-semibold text-blue-500 uppercase tracking-wide">Hourly Worker Wage</div>
+                    <div class="text-xs text-slate-500 mt-2">Plus $52,000 in equity over five years. Ownership changes everything.</div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-amber-500">
+                    <div class="text-4xl font-black text-slate-900 mb-1">40-70%</div>
+                    <div class="text-sm font-semibold text-amber-500 uppercase tracking-wide">Cost Reduction</div>
+                    <div class="text-xs text-slate-500 mt-2">Compared to traditional facilities and agencies using blended care.</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Section 1: Demographic Crisis -->
+        <section class="mb-20">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">1. The Caregiver Crisis in Colorado</h2>
+                <p class="text-lg text-slate-600">
+                    The traditional system is failing. Colorado faces a critical inflection point where the demand for care vastly outpaces the available workforce, driven by an aging population growing three times faster than the national average.
+                </p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h3 class="text-xl font-bold text-slate-800 text-center mb-6">Colorado Caregiver Supply vs. Demand Shortfall (Projected)</h3>
+                <div id="plotly-shortfall-chart" style="width:100%; height:400px;"></div>
+                <p class="text-sm text-center text-slate-500 mt-4">
+                    Currently facing an 8,700 caregiver shortfall, driving a $1.1B state deficit and $122M in medication waste.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2 & 3: Extraction vs Solution -->
+        <section class="mb-20 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">2. The Problem of Extraction</h2>
+                <p class="text-lg text-slate-600 mb-6">
+                    Private equity firms buy agencies, inflate billing, and cut wages to the bone. They pocket 40-60% of what families pay. Worker ownership means no equity to extract.
+                </p>
+                <div class="bg-white rounded-2xl shadow-lg p-8 h-full">
+                    <h3 class="text-xl font-bold text-slate-800 text-center mb-6">Where the Family's $35/hr Goes (Traditional)</h3>
+                    <div class="chart-container">
+                        <canvas id="extractionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">3. The Cooperative Solution</h2>
+                <p class="text-lg text-slate-600 mb-6">
+                    By removing the middlemen, co-op.care aligns caregiver living wages with family affordability. We offer a career path insulated from AI displacement.
+                </p>
+                <div class="bg-white rounded-2xl shadow-lg p-8 h-full">
+                    <h3 class="text-xl font-bold text-slate-800 text-center mb-6">Competitive Landscape: Hourly Cost vs. Worker Wage</h3>
+                    <div class="chart-container">
+                        <canvas id="competitorChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Blended Care -->
+        <section class="mb-20">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">4. Blended Care Economics</h2>
+                <p class="text-lg text-slate-600">
+                    Combining professional caregivers with our Time Bank neighbor support network creates profound cost savings. Neighbors perform non-clinical tasks for Time Bank credits, preserving professional hours for clinical support.
+                </p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h3 class="text-xl font-bold text-slate-800 text-center mb-6">Weekly Cost for 18 Hours of Care Support</h3>
+                <div class="chart-container">
+                    <canvas id="blendedCareChart"></canvas>
+                </div>
+                <div class="mt-8 text-center">
+                    <span class="inline-block bg-emerald-100 text-emerald-800 text-lg font-bold px-6 py-3 rounded-full">
+                        &#10003; 44% Annual Savings ($14,560 saved per year)
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Trust Stack -->
+        <section class="mb-20">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">5. The 5-Layer Trust Stack & Platform</h2>
+                <p class="text-lg text-slate-600">
+                    Our architecture secures the pathway through the Colorado regulatory sandbox toward full MAHA ELEVATE integration.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-7 flex flex-col-reverse space-y-reverse space-y-4">
+                    <div class="trust-layer bg-slate-800 text-white rounded-xl p-6 shadow-md border-l-8 border-blue-500">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-lg font-bold">Layer 1: Reality.check&trade; Validation</h4>
+                        </div>
+                        <p class="text-sm mt-2 text-slate-300">Clinically validated AI engine trained against physician gold standards.</p>
+                    </div>
+                    <div class="trust-layer bg-slate-700 text-white rounded-xl p-6 shadow-md border-l-8 border-cyan-500">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-lg font-bold">Layer 2: Graduated Autonomy</h4>
+                        </div>
+                        <p class="text-sm mt-2 text-slate-300">Safety-first deployment: 100% human review &rarr; statistical audit.</p>
+                    </div>
+                    <div class="trust-layer bg-slate-600 text-white rounded-xl p-6 shadow-md border-l-8 border-emerald-500">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-lg font-bold">Layer 3: Beazley Virtual Care</h4>
+                        </div>
+                        <p class="text-sm mt-2 text-slate-200">$25M coverage for both AI liability and medical malpractice.</p>
+                    </div>
+                    <div class="trust-layer bg-slate-500 text-white rounded-xl p-6 shadow-md border-l-8 border-amber-500">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-lg font-bold">Layer 4: Armilla AI Warranty</h4>
+                        </div>
+                        <p class="text-sm mt-2 text-slate-100">Reimburses nursing costs if AI accuracy falls below thresholds.</p>
+                    </div>
+                    <div class="trust-layer bg-blue-600 text-white rounded-xl p-6 shadow-xl border-l-8 border-rose-500">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-lg font-bold">Layer 5: Cooperative Governance</h4>
+                        </div>
+                        <p class="text-sm mt-2 text-blue-100">Democratic oversight replacing corporate fiat.</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-5 bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">The Conductor Dashboard</h3>
+                    <p class="text-sm text-slate-600 mb-6">Designed for the "Alpha Daughter"—the remote family caregiver orchestrating support.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start"><span class="text-emerald-500 font-bold mr-3">&#10003;</span> Health Trajectory Visuals</li>
+                        <li class="flex items-start"><span class="text-emerald-500 font-bold mr-3">&#10003;</span> Favorites Booking (Trusted Circle)</li>
+                        <li class="flex items-start"><span class="text-emerald-500 font-bold mr-3">&#10003;</span> Time Bank Requests</li>
+                        <li class="flex items-start"><span class="text-emerald-500 font-bold mr-3">&#10003;</span> Hospital/ADT Discharge Alerts</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW Section 6: The Equity Engine -->
+        <section class="mb-20">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">6. The Equity Engine: Building Worker Wealth</h2>
+                <p class="text-lg text-slate-600">
+                    In the traditional "Gig" or "Agency" model, workers generate 100% of the value but capture 0% of the equity. At co-op.care, tenure converts to ownership. By year 5, a worker-owner has built significant net worth while earning a living wage.
+                </p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h3 class="text-xl font-bold text-slate-800 text-center mb-6">Projected Total Wealth Accumulation (Wage + Equity)</h3>
+                <div class="chart-container" style="max-width: 900px; height: 450px;">
+                    <canvas id="equityChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW Section 7: National Scale Roadmap -->
+        <section class="mb-20">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">7. Roadmap: The Network of Networks</h2>
+                <p class="text-lg text-slate-600">
+                    We don't scale by building one giant corporation. We scale by federating local cooperatives. Each "Cell" is neighborhood-specific, but uses the same Trust Stack, Insurance, and Platform.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-blue-50 p-8 rounded-2xl border-b-4 border-blue-500">
+                    <h4 class="text-blue-600 font-black text-xl mb-2">PHASE 1 (2024)</h4>
+                    <p class="text-sm font-bold uppercase text-slate-500 mb-4">The Sandbox</p>
+                    <ul class="text-slate-700 space-y-2 text-sm">
+                        <li>• Launch CO Sandbox Alpha</li>
+                        <li>• Dr. Emdur clinical protocols</li>
+                        <li>• First 50 Worker-Owners</li>
+                        <li>• Time Bank Alpha Release</li>
+                    </ul>
+                </div>
+                <div class="bg-rose-50 p-8 rounded-2xl border-b-4 border-rose-500">
+                    <h4 class="text-rose-600 font-black text-xl mb-2">PHASE 2 (2025)</h4>
+                    <p class="text-sm font-bold uppercase text-slate-500 mb-4">The Regional Grid</p>
+                    <ul class="text-slate-700 space-y-2 text-sm">
+                        <li>• Expand to Front Range</li>
+                        <li>• MAHA ELEVATE integration</li>
+                        <li>• AI Warranty Activation</li>
+                        <li>• $10M Revenue Milestone</li>
+                    </ul>
+                </div>
+                <div class="bg-emerald-50 p-8 rounded-2xl border-b-4 border-emerald-500">
+                    <h4 class="text-emerald-600 font-black text-xl mb-2">PHASE 3 (2026)</h4>
+                    <p class="text-sm font-bold uppercase text-slate-500 mb-4">The Federation</p>
+                    <ul class="text-slate-700 space-y-2 text-sm">
+                        <li>• Multi-state licensing</li>
+                        <li>• White-label Co-op Stack</li>
+                        <li>• 5,000+ Caregiver Network</li>
+                        <li>• National Policy Lobbying</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center py-12 border-t border-slate-200">
+            <p class="text-slate-500 font-medium">co-op.care &copy; 2024. A Benefit Corporation. Owned by the people who care.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Shared Tooltip Logic
+        const tooltipConfig = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        // 1. Plotly Shortfall Chart
+        const plotlyData = [
+            {
+                x: [2024, 2026, 2028, 2030, 2032],
+                y: [580000, 600000, 630000, 660000, 690000],
+                mode: 'lines+markers',
+                name: 'Care Demand (CO)',
+                type: 'scattergl',
+                line: {color: '#F43F5E', width: 4},
+                marker: {size: 8}
+            },
+            {
+                x: [2024, 2026, 2028, 2030, 2032],
+                y: [580000, 591300, 605000, 615000, 620000],
+                mode: 'lines+markers',
+                name: 'Caregiver Supply',
+                type: 'scattergl',
+                line: {color: '#3B82F6', width: 4},
+                marker: {size: 8}
+            }
+        ];
+        const plotlyLayout = {
+            margin: {t: 20, b: 40, l: 60, r: 20},
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            xaxis: { gridcolor: '#e2e8f0' },
+            yaxis: { gridcolor: '#e2e8f0', title: 'Population' },
+            legend: { orientation: 'h', y: -0.2 }
+        };
+        Plotly.newPlot('plotly-shortfall-chart', plotlyData, plotlyLayout, {displayModeBar: false});
+
+        // 2. Extraction Chart
+        const extractionCtx = document.getElementById('extractionChart').getContext('2d');
+        new Chart(extractionCtx, {
+            type: 'doughnut',
+            data: {
+                labels: [['Agency Overhead', '& Profit Margin'], ['Caregiver Base', 'Wages']],
+                datasets: [{
+                    data: [21, 14],
+                    backgroundColor: ['#F43F5E', '#10B981'],
+                    borderWidth: 0
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { tooltip: tooltipConfig, legend: { position: 'bottom' } } }
+        });
+
+        // 3. Competitor Chart
+        const competitorCtx = document.getElementById('competitorChart').getContext('2d');
+        new Chart(competitorCtx, {
+            type: 'bar',
+            data: {
+                labels: [['Honor'], ['Papa'], ['Traditional'], ['co-op.care']],
+                datasets: [
+                    { label: 'Cost to Family ($/hr)', data: [33, 18, 32, 35], backgroundColor: '#94A3B8', borderRadius: 4 },
+                    { label: 'Caregiver Wage ($/hr)', data: [16, 14, 14, 27], backgroundColor: '#3B82F6', borderRadius: 4 }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { tooltip: tooltipConfig, legend: { position: 'bottom' } } }
+        });
+
+        // 4. Blended Care Chart
+        const blendedCtx = document.getElementById('blendedCareChart').getContext('2d');
+        new Chart(blendedCtx, {
+            type: 'bar',
+            data: {
+                labels: [['Traditional Agency'], ['co-op.care Blended']],
+                datasets: [
+                    { label: 'Professional Cost', data: [630, 350], backgroundColor: '#F43F5E', stack: 'S0' },
+                    { label: 'Time Bank Credits', data: [0, 280], backgroundColor: '#10B981', stack: 'S0' }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, scales: { x: { stacked: true }, y: { stacked: true } } }
+        });
+
+        // 6. NEW Equity Engine Chart (Worker Wealth Over 5 Years)
+        const equityCtx = document.getElementById('equityChart').getContext('2d');
+        new Chart(equityCtx, {
+            type: 'line',
+            data: {
+                labels: ['Year 0', 'Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+                datasets: [
+                    {
+                        label: 'co-op.care Worker Total Wealth (Wage + Equity)',
+                        data: [0, 58000, 122000, 192000, 268000, 350000],
+                        borderColor: '#3B82F6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 6,
+                        borderWidth: 4
+                    },
+                    {
+                        label: 'Traditional Agency Worker Wealth (Wage Only)',
+                        data: [0, 32000, 64000, 96000, 128000, 160000],
+                        borderColor: '#F43F5E',
+                        borderDash: [5, 5],
+                        fill: false,
+                        tension: 0,
+                        pointRadius: 6,
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) { return `$${context.parsed.y.toLocaleString()}`; }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Cumulative USD ($)' },
+                        grid: { color: '#f1f5f9' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

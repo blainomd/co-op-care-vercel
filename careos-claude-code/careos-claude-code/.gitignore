@@ -1,0 +1,44 @@
+node_modules/
+dist/
+.env
+.env.local
+.env.staging
+.env.production
+*.log
+.DS_Store
+.vite/
+/coverage/
+
+# Allow .env.example to be tracked
+!.env.example
+
+# Capacitor native build artifacts
+ios/App/Pods/
+ios/App/App/public/
+ios/App/App/capacitor.config.json
+android/app/src/main/assets/public/
+android/app/src/main/assets/capacitor.config.json
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+DerivedData/
+.vercel
+
+# Large docs files (media, pitch decks, etc.) — keep local only
+docs/media/
+docs/pitch-decks/
+docs/logo/
+docs/research/*.pdf
+docs/legacy/
+docs/resumes/
+docs/gemini-gems/*.pdf
+docs/business/*.pages
+docs/**/*.key
+docs/**/*.mov
+docs/**/*.mp3
+docs/**/*.mp4
+docs/**/*.pptx

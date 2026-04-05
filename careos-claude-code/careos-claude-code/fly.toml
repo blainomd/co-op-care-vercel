@@ -1,0 +1,46 @@
+# ─── CareOS — Fly.io Configuration ──────────────────────────
+# Deploy: fly deploy
+# Secrets: fly secrets set JWT_PRIVATE_KEY=... DATABASE_URL=...
+
+app = "careos"
+primary_region = "den"  # Denver — closest to Boulder, CO
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+  PORT = "3001"
+
+[http_service]
+  internal_port = 3001
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 1
+
+  [http_service.concurrency]
+    type = "requests"
+    hard_limit = 250
+    soft_limit = 200
+
+[[http_service.checks]]
+  grace_period = "10s"
+  interval = "30s"
+  method = "GET"
+  path = "/health"
+  timeout = "5s"
+
+[checks]
+  [checks.health]
+    grace_period = "10s"
+    interval = "30s"
+    method = "GET"
+    path = "/health"
+    port = 3001
+    timeout = "5s"
+    type = "http"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"

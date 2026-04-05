@@ -1,0 +1,33 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer hand loop — teal gradient -->
+  <path
+    d="M32 4C18 4 8 14 8 28c0 10 6 18 14 22l4-2c-8-4-14-12-14-20C12 16 20 8 32 8c12 0 20 8 20 20 0 8-6 16-14 20l4 2c8-4 14-12 14-22C56 14 46 4 32 4z"
+    fill="url(#tealGrad)"
+  />
+  <!-- Inner hand loop — navy gradient -->
+  <path
+    d="M32 12C22 12 14 20 14 30c0 6 3 11 8 14l3-2c-4-3-7-8-7-12 0-8 6-14 14-14s14 6 14 14c0 4-3 9-7 12l3 2c5-3 8-8 8-14 0-10-8-18-18-18z"
+    fill="url(#navyGrad)"
+  />
+  <!-- House shape -->
+  <path
+    d="M32 20l-10 8v12h6v-8h8v8h6V28l-10-8z"
+    fill="white"
+    opacity="0.95"
+  />
+  <!-- Heart in center of house -->
+  <path
+    d="M32 27c-1.5-2-4-2.5-5.5-1s-1 4.5 1 6.5L32 37l4.5-4.5c2-2 2.5-5 1-6.5s-4-1-5.5 1z"
+    fill="#2BA5A0"
+  />
+  <defs>
+    <linearGradient id="tealGrad" x1="8" y1="4" x2="56" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3DC4BE" />
+      <stop offset="1" stop-color="#2BA5A0" />
+    </linearGradient>
+    <linearGradient id="navyGrad" x1="14" y1="12" x2="50" y2="44" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2A5580" />
+      <stop offset="1" stop-color="#1B3A5C" />
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="tg" x1="4" y1="2" x2="28" y2="25" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3DC4BE"/>
+      <stop offset="1" stop-color="#2BA5A0"/>
+    </linearGradient>
+    <linearGradient id="ng" x1="7" y1="6" x2="25" y2="22" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2A5580"/>
+      <stop offset="1" stop-color="#1B3A5C"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer hand loop -->
+  <path d="M16 2C9 2 4 7 4 14c0 5 3 9 7 11l2-1c-4-2-7-6-7-10C6 8 10 4 16 4s10 4 10 10c0 4-3 8-7 10l2 1c4-2 7-6 7-11C28 7 23 2 16 2z" fill="url(#tg)"/>
+  <!-- Inner hand loop -->
+  <path d="M16 6c-5 0-9 4-9 9 0 3 1.5 5.5 4 7l1.5-1c-2-1.5-3.5-4-3.5-6 0-4 3-7 7-7s7 3 7 7c0 2-1.5 4.5-3.5 6L21 22c2.5-1.5 4-4 4-7 0-5-4-9-9-9z" fill="url(#ng)"/>
+  <!-- House -->
+  <path d="M16 10l-5 4v6h3v-4h4v4h3v-6l-5-4z" fill="white" opacity="0.95"/>
+  <!-- Heart -->
+  <path d="M16 13.5c-.75-1-2-1.25-2.75-.5s-.5 2.25.5 3.25L16 18.5l2.25-2.25c1-1 1.25-2.5.5-3.25s-2-.5-2.75.5z" fill="#2BA5A0"/>
+</svg>

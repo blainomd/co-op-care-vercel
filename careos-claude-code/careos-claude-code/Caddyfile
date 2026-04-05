@@ -1,0 +1,24 @@
+# ─── CareOS Caddy Reverse Proxy ──────────────────────────────
+# Automatic HTTPS via Let's Encrypt
+# Replace app.co-op.care with your actual domain
+
+app.co-op.care {
+	# Proxy all traffic to Fastify
+	reverse_proxy api:3001
+
+	# Security headers
+	header {
+		Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
+
+	# Compress responses
+	encode gzip zstd
+
+	# Logging
+	log {
+		output file /var/log/caddy/access.log
+	}
+}
